@@ -1,0 +1,117 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import HeroSlider from '../components/home/HeroSlider.tsx';
+import CategoryGrid from '../components/home/CategoryGrid.astro';
+import Testimonials from '../components/home/Testimonials.tsx';
+import ProductCarousel from '../components/home/ProductCarousel.tsx';
+import USPSection from '../components/home/USPSection.astro';
+import PraianoSection from '../components/home/PraianoSection.astro';
+import NaturarteSection from '../components/home/NaturarteSection.astro';
+import QuoteSection from '../components/home/QuoteSection.astro';
+import CraftsmenSection from '../components/home/CraftsmenSection.astro';
+import PhotoMosaic from '../components/home/PhotoMosaic.astro';
+import InstagramCTA from '../components/home/InstagramCTA.astro';
+import HighlightedText from '../components/ui/HighlightedText.astro';
+import { getCollection } from 'astro:content';
+import { getImage } from '../utils/images';
+import testimonials from '../data/testimonials.json';
+import slidesData from '../data/slides.json';
+
+// Prepare hero slider images
+const heroSlides = await Promise.all(
+  slidesData.map(async (slide) => {
+    const img = await getImage(slide.image);
+    return {
+      title: slide.title,
+      subtitle: slide.subtitle,
+      imageSrc: img?.src || '',
+    };
+  })
+);
+
+// Prepare product carousel — 8 latest products with images
+const allProducts = await getCollection('products');
+const latestProducts = allProducts
+  .filter(p => p.data.featuredImage)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 8);
+
+const carouselProducts = await Promise.all(
+  latestProducts.map(async (p) => {
+    const img = await getImage(p.data.featuredImage!);
+    return {
+      slug: p.data.slug,
+      title: p.data.title,
+      price: p.data.price,
+      imageSrc: img?.src || '',
+    };
+  })
+);
+
+// Testimonials photo (ID 6149)
+const testimonialPhoto = await getImage('/src/assets/images/site/5Bg-logo-ceramiche-damario.jpg');
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Ceramiche Da Mario",
+  "url": "https://ceramichedamario.com",
+  "description": "One of the best authentic ceramics shops in Amalfi Coast, famous ceramics of Vietri sul Mare.",
+};
+---
+
+<Layout
+  title="Ceramiche Da Mario – fine ceramics shop in Praiano, Amalfi Coast, Italy"
+  description="One of the best authentic ceramics shops in Amalfi Coast, famous ceramics of Vietri sul Mare. Traditional quality italian presents"
+  jsonLd={jsonLd}
+>
+  {/* 1. Hero Slider */}
+  <HeroSlider slides={heroSlides} client:load />
+
+  {/* 2. Highlighted Text */}
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="page-subtitle text-heading-blue text-[clamp(34px,3.5vw,48px)] leading-tight">
+          From 1960 we produce best{' '}
+          <HighlightedText>ceramics</HighlightedText>{' '}
+          you can find in Amalfi Coast
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Category Grid */}
+  <CategoryGrid />
+
+  {/* 4. Testimonials */}
+  <Testimonials
+    testimonials={testimonials}
+    photoSrc={testimonialPhoto?.src}
+    client:visible
+  />
+
+  {/* 5. Product Carousel */}
+  <ProductCarousel products={carouselProducts} client:visible />
+
+  {/* 6. USP */}
+  <USPSection />
+
+  {/* 7. Praiano */}
+  <PraianoSection />
+
+  {/* 8. Naturarte */}
+  <NaturarteSection />
+
+  {/* 9. Quote */}
+  <QuoteSection />
+
+  {/* 10. Craftsmen */}
+  <CraftsmenSection />
+
+  {/* 11. Photo Mosaic */}
+  <PhotoMosaic />
+
+  {/* 12. Instagram CTA */}
+  <InstagramCTA />
+</Layout>

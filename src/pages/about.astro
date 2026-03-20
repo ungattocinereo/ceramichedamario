@@ -1,0 +1,65 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { Image } from 'astro:assets';
+import { House } from '@phosphor-icons/react';
+import { getImage } from '../utils/images';
+
+// About page photo (ID 6122)
+const aboutImg = await getImage('/src/assets/images/site/ceramichedamario-new-sunset.jpg');
+---
+
+<Layout
+  title="About - Ceramiche Da Mario"
+  description="Ceramiche Da Mario is a family ceramic shop in Praiano, founded in 1960. Discover our story of passion for handmade Vietri ceramics."
+>
+  <div class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> Home</a>
+      <span class="mx-2">/</span>
+      <span>About</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <!-- Photo -->
+      <div>
+        {aboutImg ? (
+          <Image
+            src={aboutImg}
+            alt="Ceramiche Da Mario shop in Praiano"
+            class="rounded-[10px] card-shadow-lg w-full"
+            widths={[500, 800]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        ) : (
+          <div class="bg-gray-200 rounded-[10px] aspect-[4/3]" />
+        )}
+      </div>
+
+      <!-- Story -->
+      <div>
+        <h1 class="page-subtitle mb-6">Our Story</h1>
+
+        <div class="space-y-4 text-muted leading-relaxed">
+          <p>
+            Ceramiche da Mario is a shop born in 1960, whose name was chosen by the person who started this activity: Mario, a lovable, sweet and respectful person who knew how to enter everyone's heart. 'Don Mario' was short in stature but with a big heart, which is still remembered today by those who knew him.
+          </p>
+          <p>
+            He began to work as a tailor in Positano, but, having his own premises in Piazzetta Gagliano in Praiano, he decided to move and set up his own shop. Initially the shop had a slightly different image from the current one and 'Don Mario' immediately, alongside the sale of clothes, also included that of porcelain and terracotta objects, and then a few years later turned to Vietri ceramics, full of bright and cheerful colours.
+          </p>
+          <p>
+            The transition from clothes to ceramics for Mario was natural because at that time the Amalfi Coast was beginning to be an increasingly popular destination for tourists from abroad, especially from Germany and Mario self-taught conversed with these with properties of language just as if he were one of them.
+          </p>
+          <p>
+            After Mario's untimely death, the inheritance passed to his daughters, who proudly carried and continue to carry on the business that their father had left them, investing precisely in the Vietri ceramics which still today occupies almost the entire collection of the shop, rigorously produced and hand painted by skilled local artisans, making it accessible anywhere in the world.
+          </p>
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-gray-100">
+          <h2 class="page-subtitle text-[clamp(28px,3vw,40px)] mb-2">Quality Over Quantity</h2>
+          <p class="text-lg text-muted italic">Committed to quality. Committed to you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

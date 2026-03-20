@@ -1,0 +1,28 @@
+{
+  "id": 6351,
+  "title": "Handpainted Breakfast Cup and Saucer",
+  "slug": "breakfast-cup",
+  "description": "In Italian, this is a tazza da colazione — a breakfast cup, a little wider and shorter than an espresso cup, with a matching saucer. Our artisans in Vietri sul Mare shape each one on the wheel, glaze it, and paint it freehand.\n\nThe cup has a yellow rim and handle, with a painted band that wraps around the body showing clusters of grapes in purple and golden-green, red apples, and green leaves on a yellow background. Below the fruit, the lower body transitions into a deep cobalt blue. The saucer picks up the same colour scheme — concentric rings of blue, white, and yellow that complement the cup without competing with it.\n\nIt's sized for a cappuccino, a caffe latte, or tea. The handle has a comfortable curve and the cup sits firmly on its saucer. People use them every morning, and they hold up well to daily use. The glazes are food-safe and the colours stay true after washing.\n\nBecause everything is painted by hand, the grapes and fruit on your cup will look slightly different from the photo. Small variations in brushwork are part of what makes each cup individual.",
+  "excerpt": "A ceramic breakfast cup and saucer painted with grapes and fruit on yellow and blue. Made by hand in Vietri sul Mare.",
+  "price": 21.5,
+  "regularPrice": 21.5,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": ".5",
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/tazza-colazione-16-euro.jpg",
+  "galleryImages": [],
+  "seoTitle": "Ceramic Breakfast Cup and Saucer — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic breakfast cup and saucer with fruit motif, painted freehand by artisans in Vietri sul Mare. From Ceramiche Da Mario in Praiano.",
+  "date": "2021-05-19T08:30:10"
+}

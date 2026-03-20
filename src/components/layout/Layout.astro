@@ -1,0 +1,97 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import '../../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title = 'Ceramiche Da Mario – fine ceramics shop in Praiano, Amalfi Coast, Italy',
+  description = 'One of the best authentic ceramics shops in Amalfi Coast, famous ceramics of Vietri sul Mare. Traditional quality italian presents',
+  ogImage = '/src/assets/images/site/3Linea-Praia-pesci.jpg',
+  canonicalUrl,
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = 'https://ceramichedamario.com';
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:site_name" content="Ceramiche Da Mario" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,700;1,9..40,400&family=Pacifico&family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD -->
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    <!-- Default Organization JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Ceramiche Da Mario",
+      "description": "Fine ceramics shop in Praiano, Amalfi Coast",
+      "url": siteUrl,
+      "telephone": "+39 338 361 2306",
+      "email": "ceramichedamario@hotmail.it",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Piazzetta Gennaro Gagliano 108",
+        "addressLocality": "Praiano",
+        "addressRegion": "SA",
+        "postalCode": "84010",
+        "addressCountry": "IT"
+      },
+      "foundingDate": "1960",
+      "sameAs": [
+        "https://www.instagram.com/ceramichedamariopraiano/",
+        "https://www.facebook.com/ceramichedamario"
+      ]
+    })} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <script src="../../scripts/scroll-animations.ts"></script>
+  </body>
+</html>

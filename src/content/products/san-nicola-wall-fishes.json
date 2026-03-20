@@ -1,0 +1,30 @@
+{
+  "id": 6500,
+  "title": "Set of Three Ceramic Wall Fishes",
+  "slug": "san-nicola-wall-fishes",
+  "description": "A set of three ceramic fish made to hang on the wall. Our artisans in Vietri sul Mare sculpt each one by hand — they're three-dimensional, not flat tiles — with fins, tails, and little open mouths that give them real personality. Each fish in the set is a slightly different size and shape, so when you arrange them together they look like a small school swimming across your wall.\n\nThe colour palette is all blues and whites, which feels right for a piece inspired by the sea. The bodies are painted in washes of cobalt and pale blue, with white bellies and small painted eyes. The fins and tails have visible brush strokes that follow the natural flow of the form. Up close, you can see the texture of the glaze and the subtle shifts in blue from lighter to deeper tones.\n\nPeople hang these in bathrooms, kitchens, and covered outdoor areas — anywhere you want a nod to the coast. They come with hooks on the back so they're ready to mount. You can arrange them however you like: in a line, in a cluster, swimming up or swimming across.\n\nEach fish is sculpted and painted individually by hand in Vietri sul Mare, so every set has its own character. The sizes within a set will vary slightly, and that's intentional — it gives the group a more natural, lively feel.",
+  "excerpt": "Three handmade ceramic fish for wall display, painted in blue and white. Sculpted and glazed by hand in Vietri sul Mare.",
+  "price": 75,
+  "regularPrice": 75,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": "2",
+  "categories": [
+    {
+      "name": "Decoration",
+      "slug": "decor"
+    },
+    {
+      "name": "Fishes Decor",
+      "slug": "pesci"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Pesci-San-Nicola-da-muro-.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/247.jpg"
+  ],
+  "seoTitle": "Ceramic Wall Fishes (Set of 3) — Ceramiche Da Mario",
+  "seoDescription": "Set of three handmade ceramic wall fish, sculpted and painted in blue and white by artisans in Vietri sul Mare. From Ceramiche Da Mario, Praiano.",
+  "date": "2021-05-19T10:31:14"
+}

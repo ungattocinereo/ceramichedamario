@@ -1,0 +1,69 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import ContactForm from '../components/ui/ContactForm.tsx';
+import { MapPin, Phone, Envelope, ArrowRight, House } from '@phosphor-icons/react';
+import siteConfig from '../data/site-config.json';
+
+const productParam = Astro.url.searchParams.get('product') || '';
+---
+
+<Layout
+  title="Contact - Ceramiche Da Mario"
+  description="Get in touch with Ceramiche Da Mario in Praiano. Request a quote, ask about products, or plan your visit to our shop on the Amalfi Coast."
+>
+  <div class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> Home</a>
+      <span class="mx-2">/</span>
+      <span>Contact</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold mb-8">Contact Us</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      <!-- Form -->
+      <div class="lg:col-span-2">
+        <ContactForm prefilledProduct={productParam} client:visible />
+      </div>
+
+      <!-- Contact Card -->
+      <div>
+        <div class="rounded-xl p-6 text-white shadow-lg" style="background: rgba(255,144,0,0.95);">
+          <h3 class="font-bold text-lg mb-4">Visit Our Shop</h3>
+
+          <div class="space-y-3 text-sm">
+            <p>
+              <MapPin size={14} className="inline -mt-0.5 mr-0.5" /> <strong>Address:</strong><br />
+              {siteConfig.address.street},<br />
+              {siteConfig.address.postalCode} {siteConfig.address.city} ({siteConfig.address.province}), {siteConfig.address.country}
+            </p>
+
+            <p>
+              <Phone size={14} className="inline -mt-0.5 mr-0.5" /> <strong>Phone:</strong><br />
+              <a href={`tel:${siteConfig.phone}`} class="hover:underline">{siteConfig.phone}</a>
+            </p>
+
+            <p>
+              <Envelope size={14} className="inline -mt-0.5 mr-0.5" /> <strong>Email:</strong><br />
+              <a href={`mailto:${siteConfig.email}`} class="hover:underline">{siteConfig.email}</a>
+            </p>
+
+            <p class="text-white/90 text-xs mt-4">
+              Or you can place your order here in case if you saw something it is not on our website or you want to ask if there are colours and sizes available.
+            </p>
+
+            <a
+              href={siteConfig.googleMaps}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block mt-3 bg-white text-orange-600 font-bold text-sm px-4 py-2 rounded hover:bg-white/90 transition-colors"
+            >
+              Get Directions <ArrowRight size={14} className="inline ml-0.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

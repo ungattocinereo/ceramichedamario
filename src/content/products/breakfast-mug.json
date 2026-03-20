@@ -1,0 +1,33 @@
+{
+  "id": 6714,
+  "title": "Handpainted Breakfast Mug",
+  "slug": "breakfast-mug",
+  "description": "We make these breakfast mugs in Vietri sul Mare in the classic style you'll recognise from the old ceramic workshops along the Amalfi Coast. Each one is shaped on the wheel, glazed, and painted freehand — and each one comes in a different colour with its own animal motif. They're part of our Vietri Collection.\n\nThe mug has a straight-sided, slightly tapered body with a teal-green handle and matching green bands at the rim and base. Around the middle runs a wide painted band — the background colour changes depending on which version you get. We have them in orange with a donkey, purple with a bird, green with a rabbit, red with a chicken and with a fish, yellow with a rooster, blue with a cow, and light blue with another bird. Each animal is painted in a folk-art style with bold, loose brushstrokes. A row of small red dots runs below the rim on every colour.\n\nThey're sized for a morning cappuccino, tea, or hot chocolate. The handle is easy to grip and the mug has a good weight to it — solid enough to feel substantial without being too heavy. People often collect several colours to have a mixed set at the breakfast table.\n\nEvery mug is painted by one of our artisans, so the animals and colours will vary slightly from the photos. That's the nature of handmade work — no two mugs are exactly the same.",
+  "excerpt": "A classic Vietri-style ceramic mug with folk animal motifs, available in eight colours. Shaped on the wheel and painted freehand.",
+  "price": 16.5,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": null,
+  "categories": [
+    {
+      "name": "Vietri Collection",
+      "slug": "vietri-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Bicchiere-colazione-vietri-arancio_.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/Bicchiere-colazione-vietri-viola_.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-verde_1.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-verde_.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-rosso_1.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-rosso_.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-giallo_.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-blu_.jpg",
+    "/src/assets/images/products/Bicchiere-colazione-vietri-azzurro_.jpg"
+  ],
+  "seoTitle": "Handpainted Breakfast Mug — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic breakfast mug with folk animal motifs in eight colours, painted by artisans in Vietri sul Mare. Vietri Collection by Ceramiche Da Mario.",
+  "date": "2021-07-01T10:29:50"
+}

@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import { getImage } from '../../utils/images';
+
+// Photo mosaic images from spec (IDs: 6003, 6010, 6002, 6011, 6004)
+const images = await Promise.all([
+  getImage('/src/assets/images/site/ceramichedamario-111.jpg'),    // 6003
+  getImage('/src/assets/images/site/table-ceramica.jpg'),          // 6010
+  getImage('/src/assets/images/site/14-fish-ceramicadamario.jpg'), // 6002
+  getImage('/src/assets/images/site/da-mario-fountain.jpg'),       // 6011
+  getImage('/src/assets/images/site/ceramichedamario00111.jpg'),   // 6004
+]);
+---
+
+<section class="relative py-16 lg:py-24" data-animate="fade-in">
+  <!-- Shape divider -->
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] rotate-180">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-[50px]">
+      <path d="M0,0V120H1200V0Z" fill="#f5b74a" />
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 pt-8">
+    <!-- Row 1 -->
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+      {images[0] && (
+        <div class="lg:col-span-2 overflow-hidden rounded-[10px]">
+          <Image
+            src={images[0]}
+            alt="Ceramiche Da Mario shop interior"
+            class="w-full h-full object-cover"
+            widths={[400, 800]}
+            sizes="(max-width: 1024px) 100vw, 66vw"
+          />
+        </div>
+      )}
+      {images[1] && (
+        <div class="overflow-hidden rounded-[10px]">
+          <Image
+            src={images[1]}
+            alt="Ceramic art in Praiano"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="(max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
+    </div>
+
+    <!-- Row 2 -->
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      {images[2] && (
+        <div class="overflow-hidden rounded-[10px] card-shadow-lg">
+          <Image
+            src={images[2]}
+            alt="Hand-painted ceramics"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="(max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
+      {images[3] && (
+        <div class="overflow-hidden rounded-[10px] card-shadow-lg">
+          <Image
+            src={images[3]}
+            alt="Praiano village view"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="(max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
+      {images[4] && (
+        <div class="hidden lg:block overflow-hidden rounded-[10px] card-shadow-lg">
+          <Image
+            src={images[4]}
+            alt="Ceramic craftsmanship"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="33vw"
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+{
+  "id": 6425,
+  "title": "Handpainted Lemon Bowl",
+  "slug": "bowl-piazetta",
+  "description": "We call this our ciotola Piazzetta — a salad bowl in the classic blue-and-yellow lemon pattern that runs through our Piazzetta Collection. Our artisans in Vietri sul Mare shape it on the wheel and paint every lemon, leaf, and vine by hand.\n\nThe inside of the bowl has a deep cobalt blue background with a ring of lemons on green leafy branches running around the upper walls. Small white curling vines fill the spaces between the fruit. The centre of the bowl has a white base ringed with a yellow band. From the side, you can see the exterior is white with horizontal stripes in blue and yellow — clean and simple, a nice contrast to the detailed interior.\n\nIt's a good size for a family salad, a bowl of pasta, or for tossing vegetables. The blue interior makes green salads look particularly good. When it's not on the dinner table, it sits nicely on a counter or shelf as a decorative piece. The shape is a straightforward round bowl with gently curved sides — practical and easy to serve from.\n\nAs with everything in our Piazzetta Collection, the lemons and brushwork will vary slightly from piece to piece. Food-safe glazes throughout.",
+  "excerpt": "A round ceramic salad bowl with hand-painted lemons on cobalt blue. Part of our Piazzetta Collection, made in Vietri sul Mare.",
+  "price": null,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": null,
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Piazzetta Collection",
+      "slug": "linea-piazzetta"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/CIOTOLE-PIAZZETTA.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/ciotola.jpg"
+  ],
+  "seoTitle": "Handpainted Lemon Bowl — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic salad bowl with lemons on cobalt blue, painted freehand by artisans in Vietri sul Mare. Piazzetta Collection by Ceramiche Da Mario.",
+  "date": "2021-05-19T09:26:00"
+}

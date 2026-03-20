@@ -1,0 +1,30 @@
+{
+  "id": 6458,
+  "title": "Ruffled Lemon Bowl",
+  "slug": "plate-with-decorative-borders-praiano",
+  "description": "A deep, ruffled bowl with a mottled green glaze on the outside and a cluster of hand-painted lemons at the centre. Our artisans in Vietri sul Mare shape the wavy, petal-like rim by hand — folding and pinching the soft clay into those flowing curves before the piece dries. Three small yellow handles are set into the rim for a secure grip.\n\nThe inside of the bowl tells the story. Looking down from above, you see a ring of fruit — big yellow lemons, golden grapes, red apples, and peaches — connected by green leaves and delicate blue scrollwork, all circling a clean white centre. From the side, you see the sponged green glaze on the exterior and those cheerful yellow handles standing out against it. The bottom of the bowl is painted with a bold lemon branch.\n\nIt's a generous size and plenty deep, so it works well as a fruit bowl, a salad bowl, or a centrepiece on a dining table. The ruffled shape gives it a lot of character — it's the kind of piece that draws your eye when you walk into the room.\n\nPart of our Praiano Collection. Everything is glazed with food-safe enamels and made to be used, not just displayed.",
+  "excerpt": "A deep, ruffled bowl with a green sponge-glazed exterior and hand-painted lemons inside. From our Praiano Collection.",
+  "price": 49.5,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": "2",
+  "categories": [
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Praiano Collection",
+      "slug": "praiano-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/110.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/111.jpg"
+  ],
+  "seoTitle": "Ruffled Lemon Bowl — Ceramiche Da Mario",
+  "seoDescription": "Handmade ruffled ceramic bowl with green glaze and painted lemons, by artisans in Vietri sul Mare. Praiano Collection, Ceramiche Da Mario.",
+  "date": "2021-05-19T09:46:15"
+}

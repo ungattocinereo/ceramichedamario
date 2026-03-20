@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import MobileNav from './MobileNav.tsx';
+import navigation from '../../data/navigation.json';
+import { CaretDown, CaretRight, List } from '@phosphor-icons/react';
+
+const logoBlack = (await import('../../assets/images/site/logo-black-ceramica-da-mario.png')).default;
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-white relative z-50">
+  <!-- Logo row -->
+  <div class="flex justify-center py-4 px-6">
+    <a href="/" aria-label="Ceramiche Da Mario — Home">
+      <Image
+        src={logoBlack}
+        alt="Ceramiche Da Mario"
+        height={60}
+        class="h-[60px] w-auto"
+      />
+    </a>
+  </div>
+
+  <!-- Desktop nav -->
+  <nav class="hidden lg:block border-t border-gray-100" aria-label="Main navigation">
+    <ul class="flex justify-center items-center gap-8 py-3 text-base">
+      {navigation.main.map((item) => (
+        <li class="relative group">
+          <a
+            href={item.href}
+            class:list={[
+              'px-2 py-1 transition-colors hover:text-primary',
+              currentPath === item.href && 'text-primary font-bold',
+            ]}
+          >
+            {item.label}
+            {item.children && (
+              <CaretDown size={12} className="inline-block ml-1 -mt-0.5" />
+            )}
+          </a>
+
+          {/* Dropdown */}
+          {item.children && (
+            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <ul class="bg-white shadow-lg rounded-lg py-2 min-w-[200px] border border-gray-100">
+                {item.children.map((child) => (
+                  <li>
+                    {child.children ? (
+                      <div class="relative group/sub">
+                        <span class="block px-4 py-2 text-sm hover:bg-gray-50 cursor-default flex justify-between items-center">
+                          {child.label}
+                          <CaretRight size={12} />
+                        </span>
+                        <ul class="absolute left-full top-0 bg-white shadow-lg rounded-lg py-2 min-w-[180px] border border-gray-100 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                          {child.children.map((sub) => (
+                            <li>
+                              <a href={sub.href} class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-primary transition-colors">
+                                {sub.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <a href={child.href} class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-primary transition-colors">
+                        {child.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Mobile hamburger button -->
+  <button
+    id="mobile-menu-toggle"
+    class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 p-2 z-50"
+    aria-label="Open menu"
+    aria-expanded="false"
+  >
+    <List size={24} />
+  </button>
+
+  <!-- Mobile nav (React island) -->
+  <MobileNav client:load />
+</header>
+
+<script>
+  function setupMobileMenu() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('toggle-mobile-nav'));
+    });
+  }
+  setupMobileMenu();
+  document.addEventListener('astro:page-load', setupMobileMenu);
+</script>

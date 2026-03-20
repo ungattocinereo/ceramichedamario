@@ -1,0 +1,34 @@
+{
+  "id": 6113,
+  "title": "Handpainted Sea Creature Plate",
+  "slug": "plate-with-fish",
+  "description": "Small, round plates with scalloped edges, each one painted with a different sea creature from the waters off the Amalfi Coast. Our artisans in Vietri sul Mare shape them on the wheel and paint every detail freehand — each fish, octopus, shrimp, or squid is a little different from the next.\n\nThe featured plate shows a cheerful tropical-looking fish with purple, blue, and orange colouring, swimming among yellow seaweed on a teal-green background. Other plates in the set include: a fish with blue-green and red scales on a yellow background with purple coral, an octopus in purple on an orange ground, a shrimp or lobster in orange on a deep blue background, and a squid on a pink background with yellow seaweed. Each plate has its own colour world.\n\nThey're the right size for a side dish, an appetiser, or for olives and snacks with drinks. A lot of customers buy the full set and use them together — the sea theme and scalloped edge tie them together even though the colours are all different. They also look great hung on a kitchen wall.\n\nPart of our Praia Collection. All painted with food-safe glazes in Vietri sul Mare.",
+  "excerpt": "Small scalloped plates, each painted with a different sea creature — fish, octopus, shrimp, squid. From our Praia Collection.",
+  "price": 15,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "outofstock",
+  "weight": ".5",
+  "categories": [
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Praia Collection",
+      "slug": "praia-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/2Linea-Praia-pesci.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/5Linea-Praia-pesci.jpg",
+    "/src/assets/images/products/Linea-Praia-pesci.jpg",
+    "/src/assets/images/products/2Linea-Praia-pesci.jpg",
+    "/src/assets/images/products/3Linea-Praia-pesci.jpg",
+    "/src/assets/images/products/4Linea-Praia-pesci.jpg"
+  ],
+  "seoTitle": "Handpainted Sea Creature Plate — Ceramiche Da Mario",
+  "seoDescription": "Small handmade ceramic plates with sea creatures painted freehand by artisans in Vietri sul Mare. Praia Collection by Ceramiche Da Mario.",
+  "date": "2020-12-22T15:11:00"
+}

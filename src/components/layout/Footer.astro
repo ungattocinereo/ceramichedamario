@@ -1,0 +1,95 @@
+---
+import siteConfig from '../../data/site-config.json';
+import { InstagramLogo, FacebookLogo, MapPin, Phone, Envelope, ArrowRight, ForkKnife, FrameCorners, FlowerLotus, Crown, Lamp, Storefront, CirclesFour } from '@phosphor-icons/react';
+---
+
+<footer class="bg-footer text-black">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <!-- Col 1: Brand -->
+      <div>
+        <h3 class="text-xl font-bold mb-2">Ceramiche Da Mario</h3>
+        <p class="text-sm text-footer-secondary mb-4">Fine ceramics since 1960</p>
+        <div class="flex gap-4">
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow us on Instagram"
+            class="hover:opacity-70 transition-opacity"
+          >
+            <InstagramLogo size={20} weight="fill" />
+          </a>
+          <a
+            href={siteConfig.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow us on Facebook"
+            class="hover:opacity-70 transition-opacity"
+          >
+            <FacebookLogo size={20} weight="fill" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Shop categories -->
+      <div>
+        <h4 class="eyebrow mb-3">Shop</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/shop/kitchen" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><ForkKnife size={14} /> Kitchen</a></li>
+          <li><a href="/shop/piatti-murali" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><FrameCorners size={14} /> Wall Plates</a></li>
+          <li><a href="/shop/decor" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><FlowerLotus size={14} /> Decoration</a></li>
+          <li><a href="/shop/teste-di-moro" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><Crown size={14} /> Moro's Heads</a></li>
+          <li><a href="/shop/lampadine" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><Lamp size={14} /> Table Lamps</a></li>
+          <li><a href="/shop/linea-piazzetta" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><CirclesFour size={14} /> Collections</a></li>
+          <li><a href="/shop" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><Storefront size={14} /> All Products</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Info -->
+      <div>
+        <h4 class="eyebrow mb-3">Info</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="text-footer-secondary hover:text-black transition-colors">About Us</a></li>
+          <li><a href="/news" class="text-footer-secondary hover:text-black transition-colors">News</a></li>
+          <li><a href="/contact" class="text-footer-secondary hover:text-black transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div>
+        <h4 class="eyebrow mb-3">Contact</h4>
+        <address class="not-italic text-sm text-footer-secondary space-y-2">
+          <p>
+            <MapPin size={16} className="inline -mt-0.5 mr-1" />
+            {siteConfig.address.street},<br />
+            {siteConfig.address.postalCode} {siteConfig.address.city} ({siteConfig.address.province})
+          </p>
+          <p>
+            <Phone size={16} className="inline -mt-0.5 mr-1" />
+            <a href={`tel:${siteConfig.phone}`} class="hover:text-black transition-colors">{siteConfig.phone}</a>
+          </p>
+          <p>
+            <Envelope size={16} className="inline -mt-0.5 mr-1" />
+            <a href={`mailto:${siteConfig.email}`} class="hover:text-black transition-colors">{siteConfig.email}</a>
+          </p>
+          <p class="pt-1">
+            <a
+              href={siteConfig.googleMaps}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary hover:underline text-sm font-medium"
+            >
+              Get Directions <ArrowRight size={14} className="inline ml-0.5" />
+            </a>
+          </p>
+        </address>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-black/10 py-4 text-center text-xs text-footer-secondary">
+    <p>&copy; 2020-{new Date().getFullYear()} Ceramiche Da Mario. Praiano, Amalfi Coast, Italy.</p>
+  </div>
+</footer>

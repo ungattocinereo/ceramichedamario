@@ -1,0 +1,34 @@
+---
+interface Props {
+  price: number | null;
+  regularPrice?: number | null;
+  salePrice?: number | null;
+  class?: string;
+}
+
+const { price, regularPrice, salePrice, class: className } = Astro.props;
+
+function fmt(val: number): string {
+  return new Intl.NumberFormat('en-EU', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: val % 1 === 0 ? 0 : 2,
+    maximumFractionDigits: 2,
+  }).format(val);
+}
+
+const hasSale = salePrice != null && regularPrice != null && salePrice < regularPrice;
+---
+
+<div class:list={['price-display', className]}>
+  {price === null ? (
+    <span class="text-muted italic">Price on request</span>
+  ) : hasSale ? (
+    <>
+      <span class="line-through text-muted mr-2">{fmt(regularPrice!)}</span>
+      <span class="text-red-600 font-bold">{fmt(salePrice!)}</span>
+    </>
+  ) : (
+    <span class="font-bold">{fmt(price)}</span>
+  )}
+</div>

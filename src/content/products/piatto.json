@@ -1,0 +1,38 @@
+{
+  "id": 5988,
+  "title": "Handpainted Solid Colour Plate",
+  "slug": "piatto",
+  "description": "In Italian, piatto just means plate — and these are about as honest as a plate gets. Each one is shaped on the wheel by our artisans in Vietri sul Mare, glazed in a single colour, and left to speak for itself. The spiral of the wheel shows through the glaze, giving every plate a subtle swirl pattern from centre to rim. The edges have a gentle scalloped shape, soft and slightly irregular because they're formed by hand.\n\nWe carry these in a full range of colours: orange, red, cobalt blue, lilac, green, yellow, sky blue, and more. Because the colour is brushed on by hand rather than dipped or sprayed, you'll notice the tone is richer toward the edges and lighter near the centre. No two plates have exactly the same depth of colour.\n\nAvailable in small, medium, and large sizes, they work well for everyday meals, as side plates, or mixed and matched across the table. The glossy finish is food-safe and easy to clean. A lot of people buy several colours and build their own set — the scalloped shape ties them all together even when the colours are different.\n\nPart of our Arcobaleno Collection, which means \"rainbow\" in Italian. It's a simple idea: traditional Amalfi Coast ceramics, made by hand, in colours that look good together on any table.",
+  "excerpt": "Wheel-thrown plates glazed in a single bold colour. Available in many shades and three sizes, from our Arcobaleno Collection.",
+  "price": 11.5,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": "1.5",
+  "categories": [
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Arcobaleno Collection",
+      "slug": "arcobaleno"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/arancione-9-euro-.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/Rosso-Vietri-9-euro-.jpg",
+    "/src/assets/images/products/blu-9-euro-.jpg",
+    "/src/assets/images/products/Lilla-9-euro-.jpg",
+    "/src/assets/images/products/giallo-9-euro-.jpg",
+    "/src/assets/images/products/circolare-arancione-9-euro.jpg",
+    "/src/assets/images/products/celeste-9-euro-.jpg",
+    "/src/assets/images/products/rosso-selenio-9-euro.jpg",
+    "/src/assets/images/products/verde-ramino-9-euro.jpg",
+    "/src/assets/images/products/verde-mela-9-euro-.jpg"
+  ],
+  "seoTitle": "Handpainted Solid Colour Plate — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic plate in solid colour, wheel-thrown and glazed by artisans in Vietri sul Mare. Arcobaleno Collection by Ceramiche Da Mario.",
+  "date": "2020-12-21T20:51:04"
+}

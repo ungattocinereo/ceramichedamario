@@ -1,0 +1,22 @@
+{
+  "name": "Ceramiche Da Mario",
+  "tagline": "Fine ceramics of Amalfi Coast",
+  "foundedYear": 1960,
+  "address": {
+    "street": "Piazzetta Gennaro Gagliano 108",
+    "city": "Praiano",
+    "province": "SA",
+    "postalCode": "84010",
+    "country": "Italy"
+  },
+  "phone": "+39 338 361 2306",
+  "email": "ceramichedamario@hotmail.it",
+  "googleMaps": "https://g.page/ceramiche-da-mario",
+  "instagram": "https://www.instagram.com/ceramichedamariopraiano/",
+  "facebook": "https://www.facebook.com/ceramichedamario",
+  "currency": "EUR",
+  "seo": {
+    "title": "Ceramiche Da Mario – fine ceramics shop in Praiano, Amalfi Coast, Italy",
+    "description": "One of the best authentic ceramics shops in Amalfi Coast, famous ceramics of Vietri sul Mare. Traditional quality italian presents"
+  }
+}

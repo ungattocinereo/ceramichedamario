@@ -1,0 +1,26 @@
+{
+  "main": [
+    { "label": "Home", "href": "/" },
+    {
+      "label": "Shop",
+      "href": "/shop",
+      "children": [
+        { "label": "Fine Ceramics", "href": "/shop/ceramics" },
+        { "label": "Kitchen Objects", "href": "/shop/kitchen" },
+        { "label": "Decoration", "href": "/shop/decor" },
+        {
+          "label": "Collections",
+          "children": [
+            { "label": "Linea Arcobaleno", "href": "/shop/arcobaleno" },
+            { "label": "Linea Piazzetta", "href": "/shop/linea-piazzetta" },
+            { "label": "Moro's Heads", "href": "/shop/teste-di-moro" }
+          ]
+        },
+        { "label": "All Products", "href": "/shop" }
+      ]
+    },
+    { "label": "About", "href": "/about" },
+    { "label": "News", "href": "/news" },
+    { "label": "Contact", "href": "/contact" }
+  ]
+}

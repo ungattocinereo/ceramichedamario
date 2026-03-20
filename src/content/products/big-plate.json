@@ -1,0 +1,30 @@
+{
+  "id": 6365,
+  "title": "Handpainted Ceramic Fruit Bowl",
+  "slug": "big-plate",
+  "description": "Our artisans in Vietri sul Mare shape this fruit bowl by hand, giving it a wide ruffled rim and four bold blue handles that curve inward. The shape is generous and organic — no two ruffles are exactly the same, which is part of the charm of a piece that's never touched a mould.\n\nThe inside is painted with clusters of grapes, apples, oranges, and lemons on green leafy branches, all set against a deep blue centre and a warm yellow outer band. From above, you get the full picture — a ring of Mediterranean fruit surrounding that rich cobalt pool in the middle. The outside has a clean blue-and-yellow band that picks up the same palette.\n\nIt's big enough to hold a generous pile of fruit on a kitchen counter or dining table, and it works well as a serving bowl for salads or pasta too. The ruffled edge and handles give it a look that goes beyond a simple bowl, so plenty of people use it as a centrepiece even when it's empty.\n\nEverything is painted freehand — no stencils, no transfers. The colours and brushwork will vary slightly from piece to piece. That's the hand of the artisan, not a defect.",
+  "excerpt": "A wide ceramic fruit bowl with ruffled edge, blue handles, and hand-painted Mediterranean fruit. Made by artisans in Vietri sul Mare.",
+  "price": 52,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": ".5",
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/101.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/100.jpg"
+  ],
+  "seoTitle": "Handpainted Ceramic Fruit Bowl — Ceramiche Da Mario",
+  "seoDescription": "Large handmade ceramic fruit bowl with ruffled rim and painted Mediterranean fruit, made by artisans in Vietri sul Mare. By Ceramiche Da Mario.",
+  "date": "2021-05-19T08:46:09"
+}

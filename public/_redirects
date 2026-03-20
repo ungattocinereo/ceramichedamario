@@ -1,0 +1,8 @@
+# WordPress → Astro redirects
+/product-category/*  /shop/:splat  301
+/product/*           /shop/:splat  301
+/categoria-prodotto/* /shop/:splat 301
+/cart                /shop         301
+/checkout            /shop         301
+/my-account          /contact      301
+/home                /             301

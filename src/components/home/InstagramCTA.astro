@@ -1,0 +1,34 @@
+---
+import HighlightedText from '../ui/HighlightedText.astro';
+import siteConfig from '../../data/site-config.json';
+import { InstagramLogo } from '@phosphor-icons/react';
+---
+
+<section class="py-16 lg:py-20 text-center">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="page-subtitle mb-4">
+      Our{' '}
+      <HighlightedText>
+        <a
+          href={siteConfig.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:opacity-80 transition-opacity"
+        >
+          instagram
+        </a>
+      </HighlightedText>
+    </h2>
+    <p class="text-muted max-w-lg mx-auto mb-6">
+      Be first to know the news and get deals. Follow us!
+    </p>
+    <a
+      href={siteConfig.instagram}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-underline inline-block font-bold"
+    >
+      <InstagramLogo size={18} weight="fill" className="inline -mt-0.5 mr-1" /> @CeramicheDaMarioPraiano
+    </a>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+{
+  "id": 6362,
+  "title": "Fruit Mug",
+  "slug": "coffeemug",
+  "description": "A cheerful tazza that wakes you up before the coffee does. Our artisans in Vietri sul Mare shape this mug on the wheel and paint it completely freehand — every lemon, every leaf, every brushstroke done by hand.\n\nThe top half of the mug is painted in warm yellow with hand-drawn fruit wrapping around the body. You can see lemons with green leaves, what looks like a red pomegranate or apple peeking around the side, and small green leaf details scattered across the yellow background. The bottom half is painted in a deep brushy blue, and the handle and rim are both glazed in that same sunny yellow. The inside is left clean white.\n\nPeople use these for morning coffee, afternoon tea, or even as a small pencil holder on a desk. The shape is a classic straight-sided mug with a good-sized handle, comfortable to hold.\n\nBecause everything is painted freehand, no two mugs come out identical. Small differences in the brushwork or colour are normal — that is what tells you a person made it, not a machine.",
+  "excerpt": "A colourful ceramic mug with hand-painted fruit on yellow and blue, made by artisans in Vietri sul Mare.",
+  "price": 16.5,
+  "regularPrice": 16.5,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": ".5",
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/mug-10-euro-.jpg",
+  "galleryImages": [],
+  "seoTitle": "Fruit Mug — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic mug with fruit painted freehand on yellow and blue glaze, by artisans in Vietri sul Mare. Ceramiche Da Mario.",
+  "date": "2021-05-19T08:40:50"
+}

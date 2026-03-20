@@ -1,0 +1,32 @@
+{
+  "id": 6521,
+  "title": "Moor's Head Vase - Aisha",
+  "slug": "head-aisha",
+  "description": "In Italian we call these teste di Moro — Moor's heads. They are one of the oldest and most recognised forms in Sicilian and southern Italian ceramics, and every piece we carry is made by hand in Vietri sul Mare. Aisha is a female head, about 30 cm tall, with a white glazed face and a wrapped turban topped by a crown with red ceramic spheres.\n\nLooking at her closely, you will notice the details our artisans paint by hand: dark, arched eyebrows, warm golden-brown eyes, and soft orange lips. She wears teal drop earrings, a yellow beaded necklace, and a round golden medallion centred on the forehead with a small flower motif. Blue and teal gems are scattered along the turban, and the crown has a geometric cut-out pattern edged in gold.\n\nThese heads are hollow at the top, so you can use them as vases for dried flowers or small arrangements. Most customers place them on a shelf, a mantelpiece, or a console table as a decorative piece. They also work well in pairs — one male, one female — flanking a doorway or on either end of a sideboard.\n\nBecause each Aisha is sculpted and painted entirely by hand, you will find small variations in the expression, the colour intensity, and the placement of the jewels. That is what tells you it was made by a person, not a machine.",
+  "excerpt": "A 30 cm female Moor's head vase, hand-sculpted and painted with a crowned turban, teal earrings, and golden medallion.",
+  "price": 175,
+  "regularPrice": 175,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": "3",
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Decoration",
+      "slug": "decor"
+    },
+    {
+      "name": "Moro's heads Collection",
+      "slug": "teste-di-moro"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Aisha-DA-RIASSORTIRE-NO-SITO.jpg",
+  "galleryImages": [],
+  "seoTitle": "Moor's Head Vase Aisha — Ceramiche Da Mario",
+  "seoDescription": "Handmade 30 cm ceramic Moor's head (testa di Moro) painted by artisans in Vietri sul Mare. Female head with crown. Ceramiche Da Mario.",
+  "date": "2021-05-19T10:39:36"
+}

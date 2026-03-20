@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1440e0;
+  --color-gold: #f1bc1a;
+  --color-orange: #f77f00;
+  --color-dark-orange: #ad3f00;
+  --color-dark: #272729;
+  --color-hero-overlay: #0a0a0a;
+  --color-highlight-yellow: #ffc300;
+  --color-heading-blue: #273a80;
+  --color-orange-section-start: #ffbd3a;
+  --color-orange-section-end: #f29900;
+  --color-gold-divider: #f5b74a;
+  --color-footer: #FFB526;
+  --color-footer-secondary: #494949;
+  --color-muted: #7a7a7a;
+
+  --font-family-body: 'DM Sans', sans-serif;
+  --font-family-accent: 'Pacifico', cursive;
+  --font-family-slider: 'Poppins', sans-serif;
+  --font-family-mono: 'DM Mono', monospace;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: 16px;
+  line-height: 1.375;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography
+   DESIGN NOTE: Pacifico font must NEVER be bold or italic.
+   It only ships with weight 400 normal. Applying bold/italic
+   triggers faux rendering which breaks the design. */
+h1, .h1 {
+  font-family: var(--font-family-accent);
+  font-size: clamp(45px, 5vw, 70px);
+  line-height: 1.19;
+  font-weight: 400;
+}
+
+h2, .h2 {
+  font-family: var(--font-family-body);
+  font-size: clamp(34px, 3.5vw, 48px);
+  line-height: 1.17;
+  font-weight: 700;
+}
+
+h2.hero-title,
+.hero-title {
+  font-family: var(--font-family-accent) !important;
+  font-size: clamp(64px, 9vw, 120px) !important;
+  font-weight: 400 !important;
+  line-height: 1.05 !important;
+}
+
+h3, .h3 {
+  font-family: var(--font-family-body);
+  font-size: clamp(14px, 1.3vw, 18px);
+  line-height: 1.44;
+  font-weight: 400;
+}
+
+h4, .h4 {
+  font-family: var(--font-family-body);
+  font-weight: 700;
+  font-size: clamp(14px, 1.1vw, 16px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h5, .h5 {
+  font-family: var(--font-family-body);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Eyebrow labels (small monospace text above headings) */
+.eyebrow {
+  font-family: var(--font-family-mono);
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Page subtitle (Pacifico 55px) */
+.page-subtitle {
+  font-family: var(--font-family-accent);
+  font-size: clamp(36px, 4vw, 55px);
+  line-height: 1.27;
+  font-weight: 400;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  line-height: 25px;
+  text-transform: capitalize;
+  border-radius: 4px;
+  padding: 12px 28px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(20, 64, 224, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: #1035c0;
+  box-shadow: 0 4px 12px rgba(20, 64, 224, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-underline {
+  color: var(--color-primary);
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  border-bottom: 2px solid var(--color-primary);
+  font-weight: 700;
+}
+
+.btn-underline:hover {
+  border-bottom-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+/* Cards */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-shadow {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.card-shadow-lg {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-orange), var(--color-dark-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Highlighted text (half-height background) */
+.highlight-text {
+  background: linear-gradient(to top, var(--color-highlight-yellow) 40%, transparent 40%);
+  display: inline;
+  padding: 0 4px;
+}
+
+/* Pacifico accent underline */
+.underline-pacifico-accent {
+  background: linear-gradient(to top, #FFB526 40%, transparent 40%);
+  display: inline;
+  padding: 0;
+}
+
+.underline-pacifico-accent--white {
+  background: linear-gradient(to top, #fff 40%, transparent 40%);
+  display: inline;
+  padding: 0 4px;
+}
+
+/* Scroll animations */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate="fade-in-from-bottom"] {
+  transform: translateY(40px);
+}
+
+[data-animate="fade-in-from-left"] {
+  transform: translateX(-40px);
+}
+
+[data-animate="fade-in"] {
+  transform: none;
+}
+
+[data-animate="reveal-from-right"] {
+  transform: translateX(60px);
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Shape divider */
+.shape-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.shape-divider svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 50px;
+}

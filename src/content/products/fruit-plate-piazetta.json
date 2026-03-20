@@ -1,0 +1,34 @@
+{
+  "id": 6424,
+  "title": "Lemon Scalloped Fruit Bowl",
+  "slug": "fruit-plate-piazetta",
+  "description": "We call this a centrotavola — a centrepiece. Our artisans in Vietri sul Mare shape it on the wheel, then hand-form the scalloped, wavy rim before painting everything freehand. It is a piece that is meant to sit in the middle of your table and hold fruit, but honestly, it looks just as good empty.\n\nThe bowl has a deep cobalt blue background with yellow lemons and green leaves painted around the interior, connected by curling vines and small white scroll details. The rim undulates in a natural, organic way — not perfectly symmetrical, because it is shaped by hand. At the peaks of the scalloped edge, you will see raised yellow accents that pick up the lemon colour from inside. The centre has a yellow ring around a white base. Seen from above, the lemon-and-vine pattern forms a wreath around the bowl.\n\nThe bowl is wide and shallow enough to display oranges, lemons, or whatever fruit you have on hand. Many customers use it as a bread bowl at dinner, or simply leave it on a sideboard as decoration. The weight keeps it stable, and the glossy glaze is easy to wipe clean.\n\nPart of our Piazzetta Collection. Each bowl is painted individually, so expect small variations in the leaf positions and the depth of the blue from piece to piece.",
+  "excerpt": "A scalloped ceramic fruit bowl with lemons on cobalt blue, shaped and painted by hand in Vietri sul Mare.",
+  "price": null,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": null,
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Piazzetta Collection",
+      "slug": "linea-piazzetta"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/103.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/fruttiera.jpg"
+  ],
+  "seoTitle": "Lemon Scalloped Fruit Bowl — Ceramiche Da Mario",
+  "seoDescription": "Handmade scalloped ceramic fruit bowl with lemons on cobalt blue, painted freehand in Vietri sul Mare. Ceramiche Da Mario.",
+  "date": "2021-05-19T09:24:29"
+}

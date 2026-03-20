@@ -1,0 +1,12 @@
+---
+interface Props {
+  tag?: string;
+  class?: string;
+}
+
+const { tag: Tag = 'span', class: className } = Astro.props;
+---
+
+<Tag class:list={['underline-pacifico-accent', className]}>
+  <slot />
+</Tag>

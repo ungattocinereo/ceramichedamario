@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { CalendarBlank } from '@phosphor-icons/react';
+import { getImage } from '../../utils/images';
+
+interface Props {
+  slug: string;
+  title: string;
+  date: string;
+  featuredImage?: string;
+  excerpt?: string;
+}
+
+const { slug, title, date, featuredImage, excerpt } = Astro.props;
+
+const img = featuredImage ? await getImage(featuredImage) : null;
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<article class="group">
+  <a href={`/news/${slug}`} class="block">
+    {img ? (
+      <div class="rounded-[10px] overflow-hidden mb-4 aspect-[3/2]">
+        <Image
+          src={img}
+          alt={title}
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          widths={[400, 600]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          loading="lazy"
+        />
+      </div>
+    ) : (
+      <div class="bg-gray-100 rounded-[10px] aspect-[3/2] mb-4 flex items-center justify-center text-muted text-sm">
+        No image
+      </div>
+    )}
+    <time class="text-xs text-muted inline-flex items-center gap-1"><CalendarBlank size={12} /> {formattedDate}</time>
+    <h3 class="text-lg font-bold mt-1 group-hover:text-primary transition-colors line-clamp-2">
+      {title}
+    </h3>
+  </a>
+</article>

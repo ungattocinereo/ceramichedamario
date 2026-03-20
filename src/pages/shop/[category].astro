@@ -1,0 +1,72 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import ProductCard from '../../components/shop/ProductCard.astro';
+import ProductGrid from '../../components/shop/ProductGrid.astro';
+import CategoryFilter from '../../components/shop/CategoryFilter.tsx';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((cat) => ({
+    params: { category: cat.data.slug },
+    props: { category: cat.data },
+  }));
+}
+
+const { category } = Astro.props;
+
+const allProducts = await getCollection('products');
+const products = allProducts
+  .filter(p => p.data.categories.some(c => c.slug === category.slug))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const allCategories = await getCollection('categories');
+const categories = allCategories
+  .map(c => ({ name: c.data.name, slug: c.data.slug, count: c.data.count }))
+  .sort((a, b) => b.count - a.count);
+---
+
+<Layout
+  title={`${category.name} - Ceramiche Da Mario`}
+  description={category.description || `Browse ${category.name} from Ceramiche Da Mario, handmade ceramics from the Amalfi Coast.`}
+>
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/shop" class="hover:text-primary">Shop</a>
+      <span class="mx-2">/</span>
+      <span>{category.name}</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold mb-2">{category.name}</h1>
+    {category.description && (
+      <p class="text-muted mb-8">{category.description}</p>
+    )}
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar -->
+      <div class="lg:w-56 shrink-0">
+        <CategoryFilter categories={categories} currentSlug={category.slug} client:load />
+      </div>
+
+      <!-- Products -->
+      <div class="flex-1">
+        <p class="text-sm text-muted mb-6">{products.length} products</p>
+        <ProductGrid>
+          {products.map((product) => (
+            <ProductCard
+              slug={product.data.slug}
+              title={product.data.title}
+              price={product.data.price}
+              regularPrice={product.data.regularPrice}
+              salePrice={product.data.salePrice}
+              featuredImage={product.data.featuredImage}
+            />
+          ))}
+        </ProductGrid>
+      </div>
+    </div>
+  </div>
+</Layout>

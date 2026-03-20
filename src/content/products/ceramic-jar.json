@@ -1,0 +1,30 @@
+{
+  "id": 6734,
+  "title": "Handpainted Ceramic Pitcher",
+  "slug": "ceramic-jar",
+  "description": "In Italian we call it caraffa. Our artisans in Vietri sul Mare shape each one on the wheel by hand, glaze it with food-safe enamels, and paint every detail freehand — no stencils, no transfers. That's why no two pitchers are ever exactly alike.\n\nThe blue one has a deep cobalt background with a fish swimming across it, red dots running along the rim, and those green and pink bands at the base that you'll recognise from the classic Vietri style. The red version swaps the palette — a warm rose body with green leaves and little abstract flowers, but keeps the same teal handle and rim.\n\nWe see people use these for water at the dinner table, for wine, sometimes even for a jug of fresh limoncello. But honestly, a lot of them just end up on a shelf looking beautiful — and that's fine too. The shape sits well in your hand, the spout pours clean, and the handle has a good grip.\n\nThis pitcher is part of our Vietri Collection. Everything here is made in small batches by local artisans who've been doing this for decades. If you notice tiny differences in the brushwork or colour — that's not a defect. That's someone's hand at work.",
+  "excerpt": "A classic Italian caraffa, shaped on the wheel and painted freehand by artisans in Vietri sul Mare. Fish motif on blue, floral on red — no two are exactly the same. From our Vietri Collection.",
+  "price": 27.5,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": null,
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Vietri Collection",
+      "slug": "vietri-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Caraffa-vietri-blu_.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/Caraffa-vietri-rossa_.jpg"
+  ],
+  "seoTitle": "Handpainted Ceramic Pitcher — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic pitcher (caraffa) painted freehand by artisans in Vietri sul Mare. Fish motif in blue, floral in red — no two alike. Vietri Collection by Ceramiche Da Mario.",
+  "date": "2021-07-01T10:35:28"
+}

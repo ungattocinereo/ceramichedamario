@@ -1,0 +1,28 @@
+{
+  "id": 6502,
+  "title": "Ceramic Wall Fish",
+  "slug": "monte-tunno-ceramic-wall-fish",
+  "description": "We call this one the tonno — the tuna. Our artisans in Vietri sul Mare sculpt it entirely by hand, shaping the body, fins, and forked tail from a single slab of clay before painting it freehand. The result is a wall-hung fish with real personality: a deep cobalt blue body, yellow-green fins edged in gold, a big round eye, and that little red mouth that always makes people smile.\n\nThe colours are layered on by brush — dark blue along the back, lighter strokes on the belly, with yellow running along the edges of the dorsal and tail fins. Every fish comes out slightly different depending on who painted it and how the glaze settled in the kiln. You can see the brushwork up close, and that is part of the charm.\n\nMost customers hang these on a kitchen wall or in a bathroom, sometimes grouped with other fish from our collection. It has a hole on the back for hanging. At about 30 cm long, it makes a real presence without taking over the wall.\n\nMade in our partner workshop in Vietri sul Mare using traditional ceramic techniques that have been passed down for generations. If you notice slight variations in the colour or shape compared to the photo — that is the hand of the artisan, not a defect.",
+  "excerpt": "A hand-sculpted ceramic tuna for the wall, painted freehand in cobalt blue and yellow-green by artisans in Vietri sul Mare.",
+  "price": 185,
+  "regularPrice": 185,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "outofstock",
+  "weight": null,
+  "categories": [
+    {
+      "name": "Decoration",
+      "slug": "decor"
+    },
+    {
+      "name": "Fishes Decor",
+      "slug": "pesci"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Pesce-Monte-Tunno.jpg",
+  "galleryImages": [],
+  "seoTitle": "Ceramic Wall Fish — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic wall fish (tonno) sculpted and painted freehand by artisans in Vietri sul Mare. Blue and yellow glaze. By Ceramiche Da Mario, Praiano.",
+  "date": "2021-05-19T10:32:15"
+}

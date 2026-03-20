@@ -1,0 +1,32 @@
+{
+  "id": 6762,
+  "title": "Handpainted Ceramic Soup Bowl",
+  "slug": "soup-plate",
+  "description": "We call these ciotole — deep ceramic bowls made for soup, pasta, or anything you want to eat with a spoon. Our artisans in Vietri sul Mare shape each one on the wheel and paint every detail freehand, so you'll notice small differences from bowl to bowl. That's the whole point of handmade work.\n\nThe orange version has a warm, sun-coloured band around the inside with blue and yellow spiral scrolls, small green leaves, and a ring of burgundy dots just below the green rim. Flip it over and you'll see orange and green stripes running around the white exterior. The blue version takes a different approach — a deep cobalt band decorated with little fish in yellow and white, green dots, and red leaf shapes, with the same burgundy dot border and green rim. The outside carries blue and green stripes on white.\n\nThese bowls have a good depth to them, wide enough for a generous portion of minestrone or pasta e fagioli. The glaze is food-safe, so they're meant to be used every day, not just admired. That said, a pair of these stacked on an open shelf looks pretty great too.\n\nPart of our Vietri Collection, made in small batches by artisans who've been working with these patterns for years. If the colours or brushstrokes vary slightly from what you see in the photos, that's the hand of the person who made yours.",
+  "excerpt": "Deep ceramic soup bowl, wheel-thrown and painted freehand in Vietri sul Mare. Orange with scrolls or blue with fish — each one slightly different.",
+  "price": 74.5,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": null,
+  "categories": [
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Vietri Collection",
+      "slug": "vietri-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Zuppiera-vietri-arancio_1.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/Zuppiera-vietri-arancio_.jpg",
+    "/src/assets/images/products/Zuppiera-vietri-blu_.jpg",
+    "/src/assets/images/products/Zuppiera-vietri-blu_1.jpg"
+  ],
+  "seoTitle": "Handpainted Ceramic Soup Bowl — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic soup bowl painted freehand by artisans in Vietri sul Mare. Fish or scroll motifs, food-safe glaze. Vietri Collection by Ceramiche Da Mario.",
+  "date": "2021-07-01T10:54:31"
+}

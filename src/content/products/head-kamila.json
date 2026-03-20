@@ -1,0 +1,28 @@
+{
+  "id": 6520,
+  "title": "Moor's Head Vase - Kamila",
+  "slug": "head-kamila",
+  "description": "Kamila is a female testa di Moro — a Moor's head — hand-sculpted and painted by our artisans in Vietri sul Mare. She stands about 30 cm tall and has a warm, distinctive colour palette built around red, gold, and white.\n\nHer face is glazed in a soft white with carefully painted features: arched black eyebrows, golden-brown eyes, and full red lips. The turban wraps around her head and is decorated with red and yellow floral motifs — almost like hibiscus flowers — and topped with a crown bearing glossy red ceramic spheres. She wears small golden earrings, a red teardrop pendant on the forehead, and a beaded necklace in red and yellow tones.\n\nLike all our teste di Moro, Kamila is hollow at the top and can hold dried flowers or a small plant. But honestly, most people just let her stand on her own. She looks good on a bookshelf, a console table, or as part of a collected group of heads in different sizes and colours.\n\nEvery detail on Kamila is applied freehand, so each piece will have its own subtle differences in the brushwork and glaze. That is the nature of handmade ceramics from the Amalfi Coast.",
+  "excerpt": "A hand-sculpted female Moor's head in red and gold, crowned with ceramic spheres. Made by artisans in Vietri sul Mare.",
+  "price": 175,
+  "regularPrice": 175,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": "3",
+  "categories": [
+    {
+      "name": "Ceramics",
+      "slug": "ceramics"
+    },
+    {
+      "name": "Moro's heads Collection",
+      "slug": "teste-di-moro"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Kamila-30-CM-145-EURO-.jpg",
+  "galleryImages": [],
+  "seoTitle": "Moor's Head Vase Kamila — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic Moor's head (testa di Moro) in red and gold, sculpted and painted by artisans in Vietri sul Mare. Ceramiche Da Mario.",
+  "date": "2021-05-19T10:38:56"
+}

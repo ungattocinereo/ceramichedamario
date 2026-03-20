@@ -1,0 +1,39 @@
+{
+  "id": 6678,
+  "title": "Handpainted Decorative Plate",
+  "slug": "plate-vietri-collection",
+  "description": "Each of these plates is shaped on the wheel and painted freehand by our artisans in Vietri sul Mare. They have a scalloped edge, a white centre, and a wide decorative band around the rim — all painted with small motifs that change depending on the colour you choose. A ring of hand-dotted circles runs along the outer edge of every plate.\n\nWe carry them in a range of colours. The purple one has butterflies and small leaf shapes on a lilac background. The orange version has abstract geometric fish on a warm ochre ground. Green features the same little fish motifs on a grassy green wash. Red has birds — small, stylised, with dots and dashes — on a deep rose background. Yellow shows butterflies and flowers on a sunny ground. Blue has abstract roses and clover shapes on a dark cobalt background. And the sky-blue version has birds on a soft, pale blue field. Each colour has its own personality.\n\nThe inner ring is finished with a thin teal or green band, and the centre is left clean white. They're a good size for side plates, dessert, or aperitivo snacks. Many customers collect several colours and mix them on the table — the scalloped shape and dotted border tie them together.\n\nPart of our Vietri Collection. Made with food-safe glazes, and built to be used every day.",
+  "excerpt": "Scalloped plates with hand-painted motifs on coloured bands — birds, butterflies, or fish. Available in many colours from our Vietri Collection.",
+  "price": 11.5,
+  "regularPrice": null,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": ".5",
+  "categories": [
+    {
+      "name": "Vietri Collection",
+      "slug": "vietri-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/Vietri-viola_.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/Vietri-arancio_.jpg",
+    "/src/assets/images/products/Vietri-verde_1.jpg",
+    "/src/assets/images/products/Vietri-verde_.jpg",
+    "/src/assets/images/products/Vietri-verde-vietri_1.jpg",
+    "/src/assets/images/products/Vietri-verde-vietri_.jpg",
+    "/src/assets/images/products/Vietri-rosso.jpg",
+    "/src/assets/images/products/Vietri-rosso_1.jpg",
+    "/src/assets/images/products/Vietri-rosso_.jpg",
+    "/src/assets/images/products/Vietri-giallo_1.jpg",
+    "/src/assets/images/products/Vietri-giallo_.jpg",
+    "/src/assets/images/products/Vietri-blu_1.jpg",
+    "/src/assets/images/products/Vietri-blu_.jpg",
+    "/src/assets/images/products/Vietri-azzurro_.jpg",
+    "/src/assets/images/products/Vietri-arancio_1.jpg"
+  ],
+  "seoTitle": "Handpainted Decorative Plate — Ceramiche Da Mario",
+  "seoDescription": "Handmade scalloped ceramic plate with painted motifs, available in many colours. Vietri Collection by Ceramiche Da Mario, Praiano.",
+  "date": "2021-07-01T10:06:35"
+}

@@ -1,0 +1,30 @@
+{
+  "id": 6457,
+  "title": "Handpainted Lemon Bowl on Green",
+  "slug": "bowl-praiano",
+  "description": "Our ciotola Praiano is named after our hometown on the Amalfi Coast. It's a salad bowl from our Praiano Collection, shaped on the wheel and painted entirely freehand by our artisans in Vietri sul Mare.\n\nThe inside of the bowl has a soft green background — a sponged, mottled wash that gives it texture and depth. Sitting in the centre is a cluster of large lemons with dark green leaves, painted boldly with visible brushstrokes. The rim is banded in bright yellow. From the side, the exterior is plain white with thin horizontal stripes in green and yellow, keeping things simple and letting the painted interior be the focus.\n\nIt's sized for a family salad, a big pasta, or a fruit display on the kitchen counter. The green interior gives it a different feel from the blue bowls in our Piazzetta line — a bit warmer, a bit more informal. From above, looking down into the bowl, the lemons fill the centre generously, surrounded by leaves and that green wash.\n\nLike everything in our shop, the lemons and brushwork on your bowl will be slightly different from the photo. Our artisans don't use stencils or transfers — every detail is painted by brush. The glazes are food-safe.",
+  "excerpt": "A ceramic salad bowl with lemons on a green sponged background, rimmed in bright yellow. Part of our Praiano Collection, made in Vietri sul Mare.",
+  "price": 74.5,
+  "regularPrice": 74.5,
+  "salePrice": null,
+  "sku": null,
+  "stockStatus": "instock",
+  "weight": "5",
+  "categories": [
+    {
+      "name": "Kitchen",
+      "slug": "kitchen"
+    },
+    {
+      "name": "Praiano Collection",
+      "slug": "praiano-collection"
+    }
+  ],
+  "featuredImage": "/src/assets/images/products/131.jpg",
+  "galleryImages": [
+    "/src/assets/images/products/ciotola-1.jpg"
+  ],
+  "seoTitle": "Lemon Bowl on Green — Ceramiche Da Mario",
+  "seoDescription": "Handmade ceramic salad bowl with lemons on a green background, painted by artisans in Vietri sul Mare. Praiano Collection by Ceramiche Da Mario.",
+  "date": "2021-05-19T09:45:20"
+}
