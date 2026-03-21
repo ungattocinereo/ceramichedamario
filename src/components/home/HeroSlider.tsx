@@ -34,7 +34,7 @@ function RingIndicator({
   const SIZE = (R + STROKE) * 2;
 
   return (
-    <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-4">
+    <div className="absolute z-20 bottom-8 left-1/2 -translate-x-1/2 flex flex-row gap-4 md:flex-col md:bottom-auto md:left-auto md:translate-x-0 md:right-8 md:top-1/2 md:-translate-y-1/2">
       {Array.from({ length: total }).map((_, i) => {
         const isActive = i === activeIndex;
         return (
@@ -142,9 +142,9 @@ export default function HeroSlider({ slides }: Props) {
               {/* Overlay */}
               <div className="absolute inset-0 bg-[#0a0a0a]/50" />
               {/* Content */}
-              <div className="relative h-full flex items-center">
+              <div className="relative h-full flex items-center pt-[140px]">
                 <div className="max-w-7xl mx-auto px-6 w-full">
-                  <div>
+                  <div className="text-center md:text-left">
                     <h2 className="hero-title text-white mb-4">
                       {slide.title.map((line, i) => (
                         <span
@@ -157,7 +157,7 @@ export default function HeroSlider({ slides }: Props) {
                       ))}
                     </h2>
                     <p
-                      className="hero-text-line text-white/90 text-lg leading-relaxed max-w-lg"
+                      className="hero-text-line text-white/90 text-lg leading-relaxed max-w-lg mx-auto md:mx-0"
                       style={{
                         fontFamily: "'Poppins', sans-serif",
                         fontWeight: 500,

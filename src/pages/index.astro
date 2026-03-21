@@ -48,8 +48,9 @@ const carouselProducts = await Promise.all(
   })
 );
 
-// Testimonials photo (ID 6149)
-const testimonialPhoto = await getImage('/src/assets/images/site/5Bg-logo-ceramiche-damario.jpg');
+// Testimonials icon
+import testimonialIconRaw from '../assets/images/index/big-icon.svg';
+const testimonialIcon = typeof testimonialIconRaw === 'string' ? testimonialIconRaw : testimonialIconRaw.src;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -88,7 +89,7 @@ const jsonLd = {
   {/* 4. Testimonials */}
   <Testimonials
     testimonials={testimonials}
-    photoSrc={testimonialPhoto?.src}
+    photoSrc={testimonialIcon}
     client:visible
   />
 

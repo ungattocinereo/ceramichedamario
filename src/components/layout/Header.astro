@@ -6,7 +6,9 @@ import {
   CaretDown,
   List,
   InstagramLogo,
-  Phone,
+  WhatsappLogo,
+  FacebookLogo,
+  GlobeHemisphereWest,
   Flower,
   ForkKnife,
   FlowerLotus,
@@ -45,6 +47,14 @@ const iconMap: Record<string, any> = {
 };
 
 const shopItem = navigation.main.find((i: any) => i.megaMenu);
+
+const languages = [
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+  { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'zh', label: '中文', flag: '🇨🇳' },
+];
 ---
 
 <header
@@ -143,14 +153,42 @@ const shopItem = navigation.main.find((i: any) => i.megaMenu);
         </ul>
       </nav>
 
-      <!-- Right icons (white) -->
-      <div class="hidden lg:flex absolute right-6 top-6 items-center gap-4">
+      <!-- Left: social icons (white) -->
+      <div class="hidden lg:flex absolute left-6 top-6 items-center gap-4">
         <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener" aria-label="Instagram" class="text-white/80 hover:text-white transition-colors">
-          <InstagramLogo size={22} weight="bold" />
+          <InstagramLogo size={26} weight="bold" />
         </a>
-        <a href="/contact" aria-label="Contact" class="text-white/80 hover:text-white transition-colors">
-          <Phone size={22} weight="bold" />
+        <a href="https://www.facebook.com/ceramichedamario" target="_blank" rel="noopener" aria-label="Facebook" class="text-white/80 hover:text-white transition-colors">
+          <FacebookLogo size={26} weight="bold" />
         </a>
+        <a href="https://wa.me/393383612306" target="_blank" rel="noopener" aria-label="WhatsApp" class="text-white/80 hover:text-white transition-colors">
+          <WhatsappLogo size={26} weight="bold" />
+        </a>
+      </div>
+
+      <!-- Right: language switcher (white) -->
+      <div class="hidden lg:flex absolute right-6 top-6 items-center">
+        <div class="relative group/lang">
+          <button class="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors py-1 px-1" aria-label="Change language">
+            <GlobeHemisphereWest size={24} weight="bold" />
+            <span class="text-xs font-semibold uppercase lang-current">EN</span>
+          </button>
+          <div class="absolute right-0 top-full pt-2 opacity-0 invisible translate-y-2 group-hover/lang:opacity-100 group-hover/lang:visible group-hover/lang:translate-y-0 transition-all duration-300 ease-out z-50">
+            <div class="bg-white rounded-lg shadow-xl py-1.5 min-w-[150px] border border-gray-100 origin-top scale-[0.97] group-hover/lang:scale-100 transition-transform duration-300 ease-out">
+              {languages.map((lang) => (
+                <button
+                  data-lang={lang.code}
+                  class:list={[
+                    'lang-option w-full flex items-center gap-2.5 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors',
+                  ]}
+                >
+                  <span class="text-base leading-none">{lang.flag}</span>
+                  <span>{lang.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Mobile hamburger (white) -->
@@ -250,14 +288,42 @@ const shopItem = navigation.main.find((i: any) => i.megaMenu);
           </ul>
         </nav>
 
-        <!-- Right: icons (dark) -->
+        <!-- Right: social icons + language switcher (dark) -->
         <div class="hidden lg:flex items-center gap-4">
           <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-primary transition-colors">
             <InstagramLogo size={22} weight="bold" />
           </a>
-          <a href="/contact" aria-label="Contact" class="text-gray-500 hover:text-primary transition-colors">
-            <Phone size={22} weight="bold" />
+          <a href="https://www.facebook.com/ceramichedamario" target="_blank" rel="noopener" aria-label="Facebook" class="text-gray-500 hover:text-primary transition-colors">
+            <FacebookLogo size={22} weight="bold" />
           </a>
+          <a href="https://wa.me/393383612306" target="_blank" rel="noopener" aria-label="WhatsApp" class="text-gray-500 hover:text-primary transition-colors">
+            <WhatsappLogo size={22} weight="bold" />
+          </a>
+
+          <div class="w-px h-5 bg-gray-200 mx-1"></div>
+
+          <!-- Language switcher -->
+          <div class="relative group/lang">
+            <button class="flex items-center gap-1.5 text-gray-500 hover:text-primary transition-colors py-1 px-1" aria-label="Change language">
+              <GlobeHemisphereWest size={20} weight="bold" />
+              <span class="text-xs font-semibold uppercase lang-current">EN</span>
+            </button>
+            <div class="absolute right-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover/lang:opacity-100 group-hover/lang:visible group-hover/lang:translate-y-0 transition-all duration-200 z-50">
+              <div class="bg-white rounded-lg shadow-xl py-1.5 min-w-[150px] border border-gray-100">
+                {languages.map((lang) => (
+                  <button
+                    data-lang={lang.code}
+                    class:list={[
+                      'lang-option w-full flex items-center gap-2.5 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors',
+                    ]}
+                  >
+                    <span class="text-base leading-none">{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Mobile hamburger (dark) -->
@@ -322,6 +388,37 @@ const shopItem = navigation.main.find((i: any) => i.megaMenu);
     });
   }
 
+  // Language switcher
+  function setupLangSwitcher() {
+    const saved = localStorage.getItem('lang') || 'en';
+    const labels = document.querySelectorAll('.lang-current');
+    labels.forEach((el) => { el.textContent = saved.toUpperCase(); });
+
+    // Highlight active language
+    document.querySelectorAll('.lang-option').forEach((btn) => {
+      const code = (btn as HTMLElement).dataset.lang;
+      if (code === saved) {
+        btn.classList.add('text-primary', 'font-semibold');
+        btn.classList.remove('text-gray-600');
+      }
+      btn.addEventListener('click', () => {
+        localStorage.setItem('lang', code!);
+        labels.forEach((el) => { el.textContent = code!.toUpperCase(); });
+        // Reset all highlights
+        document.querySelectorAll('.lang-option').forEach((b) => {
+          b.classList.remove('text-primary', 'font-semibold');
+          b.classList.add('text-gray-600');
+        });
+        btn.classList.add('text-primary', 'font-semibold');
+        btn.classList.remove('text-gray-600');
+      });
+    });
+  }
+
   setupHeader();
-  document.addEventListener('astro:page-load', setupHeader);
+  setupLangSwitcher();
+  document.addEventListener('astro:page-load', () => {
+    setupHeader();
+    setupLangSwitcher();
+  });
 </script>

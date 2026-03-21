@@ -1,17 +1,17 @@
 [
   {
     "title": ["Nice and Cosy", "Ceramics Shop"],
-    "subtitle": "We located in Praiano, the Heart of the Amalfi Coast and sell fine ceramics and quality souvenirs",
+    "subtitle": "Located in Praiano, the heart of the Amalfi Coast, our family-run shop has been crafting fine Italian ceramics since 1960. Discover handmade pottery, decorative plates, and unique souvenirs inspired by Mediterranean tradition.",
     "image": "/src/assets/images/site/foto-main-new-ceramica.jpg"
   },
   {
     "title": ["An open-air museum", "hiding as a shop"],
-    "subtitle": "It's Praiano, where art meets nature",
+    "subtitle": "Step inside and explore hundreds of original ceramics displayed among lemon trees and sea views. Every piece tells a story of Praiano, where Amalfi Coast art and nature come together.",
     "image": "/src/assets/images/site/shop-praiano-ceramiche.jpg"
   },
   {
     "title": ["Hand painted", "and hand made"],
-    "subtitle": "Everything is a heart and soul of ancient masters of Vietri, bring home the authentic Italian craftsmanship",
+    "subtitle": "Each piece is shaped and painted by hand in the centuries-old tradition of Vietri sul Mare. Bring home authentic Italian craftsmanship — from colorful plates to sculptural Moro's heads.",
     "image": "/src/assets/images/site/3-foto-main-new-ceramica.jpg"
   }
 ]

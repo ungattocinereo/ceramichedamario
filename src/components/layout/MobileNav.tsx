@@ -4,8 +4,10 @@ import {
   CaretRight,
   ArrowLeft,
   InstagramLogo,
-  Phone,
+  WhatsappLogo,
+  FacebookLogo,
   MapPin,
+  GlobeHemisphereWest,
   Flower,
   ForkKnife,
   FlowerLotus,
@@ -33,11 +35,24 @@ const iconMap: Record<string, any> = {
   Mountains, LampPendant, Umbrella, Lamp, FrameCorners,
 };
 
+const languages = [
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+  { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'zh', label: '中文', flag: '🇨🇳' },
+];
+
 type View = 'main' | 'shop';
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentView, setCurrentView] = useState<View>('main');
+  const [activeLang, setActiveLang] = useState('en');
+
+  useEffect(() => {
+    setActiveLang(localStorage.getItem('lang') || 'en');
+  }, [isOpen]);
 
   useEffect(() => {
     const handler = () => setIsOpen((prev) => !prev);
@@ -107,13 +122,47 @@ export default function MobileNav() {
               <InstagramLogo size={20} weight="bold" />
               <span className="text-sm">Instagram</span>
             </a>
-            <a href="tel:+393383612306" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
-              <Phone size={20} weight="bold" />
+            <a href="https://www.facebook.com/ceramichedamario" target="_blank" rel="noopener" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
+              <FacebookLogo size={20} weight="bold" />
+              <span className="text-sm">Facebook</span>
+            </a>
+            <a href="https://wa.me/393383612306" target="_blank" rel="noopener" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
+              <WhatsappLogo size={20} weight="bold" />
               <span className="text-sm">+39 338 361 2306</span>
             </a>
             <div className="flex items-center gap-3 text-white/50">
               <MapPin size={20} weight="bold" />
               <span className="text-sm">Praiano, Amalfi Coast</span>
+            </div>
+
+            {/* Language switcher */}
+            <div className="pt-4">
+              <div className="flex items-center gap-2 text-white/40 mb-3">
+                <GlobeHemisphereWest size={16} weight="bold" />
+                <span className="text-xs font-bold uppercase tracking-wider">Language</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setActiveLang(lang.code);
+                      localStorage.setItem('lang', lang.code);
+                      document.querySelectorAll('.lang-current').forEach((el) => {
+                        el.textContent = lang.code.toUpperCase();
+                      });
+                    }}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition-colors ${
+                      activeLang === lang.code
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/50 hover:text-white/80'
+                    }`}
+                  >
+                    <span className="text-base leading-none">{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </nav>

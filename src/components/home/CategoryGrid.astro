@@ -7,50 +7,51 @@ const categories = [
   {
     name: 'Ceramics',
     slug: 'ceramics',
-    image: '/src/assets/images/site/ceramichedamario-new-sunset.jpg',
+    image: '/src/assets/images/index/ceramics.webp',
     icon: CirclesFour,
     gridClass: 'col-span-2 row-span-2',
   },
   {
-    name: 'Decoration',
-    slug: 'decor',
-    image: '/src/assets/images/site/14-fish-ceramicadamario.jpg',
-    icon: FlowerLotus,
-    gridClass: '',
-  },
-  {
-    name: 'Kitchen',
-    slug: 'kitchen',
-    image: '/src/assets/images/site/table-ceramica.jpg',
-    icon: ForkKnife,
-    gridClass: '',
-  },
-  {
     name: "Moro's Heads",
     slug: 'teste-di-moro',
-    image: '/src/assets/images/site/ceramichedamario00111.jpg',
+    image: '/src/assets/images/index/moros-heads.webp',
     icon: Crown,
+    gridClass: 'col-span-2',
+    imgClass: 'object-bottom',
+  },
+  {
+    name: 'Table Lamps',
+    slug: 'lampadine',
+    image: '/src/assets/images/index/table-lamp.webp',
+    icon: Lamp,
     gridClass: '',
   },
   {
     name: 'Wall Plates',
     slug: 'piatti-murali',
-    image: '/src/assets/images/site/da-mario-fountain.jpg',
+    image: '/src/assets/images/index/wallplates.webp',
     icon: FrameCorners,
     gridClass: '',
   },
   {
     name: 'Fishes Decor',
     slug: 'pesci',
-    image: '/src/assets/images/site/3Linea-Praia-pesci.jpg',
+    image: '/src/assets/images/index/fishes.webp',
     icon: Fish,
     gridClass: 'col-span-2',
   },
   {
-    name: 'Table Lamps',
-    slug: 'lampadine',
-    image: '/src/assets/images/site/ceramichedamario-111.jpg',
-    icon: Lamp,
+    name: 'Decoration',
+    slug: 'decor',
+    image: '/src/assets/images/index/decoration.webp',
+    icon: FlowerLotus,
+    gridClass: '',
+  },
+  {
+    name: 'Kitchen',
+    slug: 'kitchen',
+    image: '/src/assets/images/index/kitchen.webp',
+    icon: ForkKnife,
     gridClass: '',
   },
 ];
@@ -80,7 +81,7 @@ const loaded = await Promise.all(
               <Image
                 src={cat.img}
                 alt={cat.name}
-                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                class:list={["absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105", cat.imgClass]}
                 widths={[400, 700]}
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
@@ -90,7 +91,7 @@ const loaded = await Promise.all(
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent group-hover:from-black/60 transition-all duration-300" />
             <div class="absolute bottom-0 left-0 p-4 flex items-center gap-2">
               <Icon size={18} className="text-white/80" weight="bold" />
-              <h3 class="text-white text-base font-bold drop-shadow-lg">{cat.name}</h3>
+              <h3 class="text-white text-base font-black drop-shadow-lg">{cat.name}</h3>
             </div>
           </a>
         );
