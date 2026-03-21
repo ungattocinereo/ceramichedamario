@@ -1,33 +1,30 @@
 ---
 import siteConfig from '../../data/site-config.json';
-import { InstagramLogo, FacebookLogo, MapPin, Phone, Envelope, ArrowRight, ForkKnife, FrameCorners, FlowerLotus, Crown, Lamp, Storefront, CirclesFour } from '@phosphor-icons/react';
+import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin, Phone, ArrowRight, ForkKnife, FrameCorners, FlowerLotus, Crown, Lamp, Storefront, CirclesFour } from '@phosphor-icons/react';
 ---
 
-<footer class="bg-footer text-black">
+<footer class="bg-[#3a3a3a] text-white">
   <div class="max-w-7xl mx-auto px-6 py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <!-- Col 1: Brand -->
       <div>
         <h3 class="text-xl font-bold mb-2">Ceramiche Da Mario</h3>
-        <p class="text-sm text-footer-secondary mb-4">Fine ceramics since 1960</p>
+        <p class="text-sm text-white/60 mb-4">Fine ceramics since 1960</p>
         <div class="flex gap-4">
-          <a
-            href={siteConfig.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Follow us on Instagram"
-            class="hover:opacity-70 transition-opacity"
-          >
+          <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:opacity-70 transition-opacity">
             <InstagramLogo size={20} weight="fill" />
           </a>
-          <a
-            href={siteConfig.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Follow us on Facebook"
-            class="hover:opacity-70 transition-opacity"
-          >
+          <a href="https://www.facebook.com/ceramichedamario" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:opacity-70 transition-opacity">
             <FacebookLogo size={20} weight="fill" />
+          </a>
+          <a href="https://wa.me/+393383612306" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="hover:opacity-70 transition-opacity">
+            <WhatsappLogo size={20} weight="fill" />
+          </a>
+          <a href="https://g.page/ceramiche-da-mario" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" class="hover:opacity-70 transition-opacity">
+            <GoogleLogo size={20} weight="fill" />
+          </a>
+          <a href="mailto:Ceramichedamario@hotmail.it" aria-label="Email" class="hover:opacity-70 transition-opacity">
+            <Envelope size={20} weight="fill" />
           </a>
         </div>
       </div>
@@ -36,13 +33,13 @@ import { InstagramLogo, FacebookLogo, MapPin, Phone, Envelope, ArrowRight, ForkK
       <div>
         <h4 class="eyebrow mb-3">Shop</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="/shop/kitchen" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><ForkKnife size={14} /> Kitchen</a></li>
-          <li><a href="/shop/piatti-murali" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><FrameCorners size={14} /> Wall Plates</a></li>
-          <li><a href="/shop/decor" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><FlowerLotus size={14} /> Decoration</a></li>
-          <li><a href="/shop/teste-di-moro" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><Crown size={14} /> Moro's Heads</a></li>
-          <li><a href="/shop/lampadine" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><Lamp size={14} /> Table Lamps</a></li>
-          <li><a href="/shop/linea-piazzetta" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><CirclesFour size={14} /> Collections</a></li>
-          <li><a href="/shop" class="text-footer-secondary hover:text-black transition-colors inline-flex items-center gap-1.5"><Storefront size={14} /> All Products</a></li>
+          <li><a href="/shop/kitchen" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><ForkKnife size={14} /> Kitchen</a></li>
+          <li><a href="/shop/piatti-murali" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><FrameCorners size={14} /> Wall Plates</a></li>
+          <li><a href="/shop/decor" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><FlowerLotus size={14} /> Decoration</a></li>
+          <li><a href="/shop/teste-di-moro" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Crown size={14} /> Moro's Heads</a></li>
+          <li><a href="/shop/lampadine" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Lamp size={14} /> Table Lamps</a></li>
+          <li><a href="/shop/linea-piazzetta" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><CirclesFour size={14} /> Collections</a></li>
+          <li><a href="/shop" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Storefront size={14} /> All Products</a></li>
         </ul>
       </div>
 
@@ -50,20 +47,19 @@ import { InstagramLogo, FacebookLogo, MapPin, Phone, Envelope, ArrowRight, ForkK
       <div>
         <h4 class="eyebrow mb-3">Info</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="text-footer-secondary hover:text-black transition-colors">About Us</a></li>
-          <li><a href="/news" class="text-footer-secondary hover:text-black transition-colors">News</a></li>
-          <li><a href="/contact" class="text-footer-secondary hover:text-black transition-colors">Contact</a></li>
+          <li><a href="/about" class="text-white/60 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/news" class="text-white/60 hover:text-white transition-colors">News</a></li>
+          <li><a href="/contact" class="text-white/60 hover:text-white transition-colors">Contact</a></li>
         </ul>
       </div>
 
       <!-- Col 4: Contact -->
       <div>
         <h4 class="eyebrow mb-3">Contact</h4>
-        <address class="not-italic text-sm text-footer-secondary space-y-2">
-          <p>
-            <MapPin size={16} className="inline -mt-0.5 mr-1" />
-            {siteConfig.address.street},<br />
-            {siteConfig.address.postalCode} {siteConfig.address.city} ({siteConfig.address.province})
+        <address class="not-italic text-sm text-white/60 space-y-2">
+          <p class="flex gap-1.5">
+            <MapPin size={16} className="shrink-0 mt-0.5" />
+            <span>{siteConfig.address.street},<br />{siteConfig.address.postalCode} {siteConfig.address.city} ({siteConfig.address.province})</span>
           </p>
           <p>
             <Phone size={16} className="inline -mt-0.5 mr-1" />
@@ -78,7 +74,7 @@ import { InstagramLogo, FacebookLogo, MapPin, Phone, Envelope, ArrowRight, ForkK
               href={siteConfig.googleMaps}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-primary hover:underline text-sm font-medium"
+              class="text-white/80 hover:text-white hover:underline text-sm font-medium"
             >
               Get Directions <ArrowRight size={14} className="inline ml-0.5" />
             </a>
@@ -89,7 +85,7 @@ import { InstagramLogo, FacebookLogo, MapPin, Phone, Envelope, ArrowRight, ForkK
   </div>
 
   <!-- Copyright -->
-  <div class="border-t border-black/10 py-4 text-center text-xs text-footer-secondary">
+  <div class="border-t border-white/10 py-4 text-center text-xs text-white/40">
     <p>&copy; 2020-{new Date().getFullYear()} Ceramiche Da Mario. Praiano, Amalfi Coast, Italy.</p>
   </div>
 </footer>
