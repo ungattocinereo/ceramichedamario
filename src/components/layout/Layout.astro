@@ -14,13 +14,14 @@ interface Props {
 const {
   title = 'Ceramiche Da Mario – fine ceramics shop in Praiano, Amalfi Coast, Italy',
   description = 'One of the best authentic ceramics shops in Amalfi Coast, famous ceramics of Vietri sul Mare. Traditional quality italian presents',
-  ogImage = '/src/assets/images/site/3Linea-Praia-pesci.jpg',
+  ogImage = '/og-image.jpg',
   canonicalUrl,
   jsonLd,
 } = Astro.props;
 
 const siteUrl = 'https://ceramichedamario.it';
 const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
 ---
 
 <!doctype html>
@@ -28,7 +29,12 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#F5B749" />
 
     <!-- SEO -->
     <title>{title}</title>
@@ -40,7 +46,9 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Ceramiche Da Mario" />
     <meta property="og:locale" content="en_US" />
 
@@ -48,6 +56,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
