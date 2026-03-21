@@ -1,23 +1,31 @@
 ---
-import Layout from '../../components/layout/Layout.astro';
+import Layout from '../../../components/layout/Layout.astro';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
-import { getImage } from '../../utils/images';
+import { getImage } from '../../../utils/images';
+import { useTranslations, localizedPath } from '../../../i18n/utils';
+import { defaultLocale, locales, localeConfig, type Locale } from '../../../i18n/config';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { slug: post.data.slug },
-    props: { post },
-  }));
+  return locales.flatMap((locale) =>
+    posts.map((post) => ({
+      params: {
+        locale: locale === defaultLocale ? undefined : locale,
+        slug: post.data.slug,
+      },
+      props: { locale, post },
+    }))
+  );
 }
 
-const { post } = Astro.props;
+const { locale, post } = Astro.props as { locale: Locale; post: any };
+const t = useTranslations(locale);
 const { Content } = await render(post);
 
 const featuredImg = post.data.featuredImage ? await getImage(post.data.featuredImage) : null;
 
-const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+const formattedDate = new Date(post.data.date).toLocaleDateString(localeConfig[locale].dateLocale, {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -28,14 +36,8 @@ const jsonLd = {
   "@type": "BlogPosting",
   "headline": post.data.title,
   "datePublished": post.data.date,
-  "author": {
-    "@type": "Organization",
-    "name": "Ceramiche Da Mario"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Ceramiche Da Mario"
-  }
+  "author": { "@type": "Organization", "name": "Ceramiche Da Mario" },
+  "publisher": { "@type": "Organization", "name": "Ceramiche Da Mario" },
 };
 ---
 
@@ -43,13 +45,14 @@ const jsonLd = {
   title={post.data.seoTitle || `${post.data.title} - Ceramiche Da Mario`}
   description={post.data.seoDescription || ''}
   jsonLd={jsonLd}
+  locale={locale}
 >
   <article class="max-w-3xl mx-auto px-6 py-12">
     <!-- Breadcrumbs -->
     <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
-      <a href="/" class="hover:text-primary">Home</a>
+      <a href={localizedPath(locale, '/')} class="hover:text-primary">{t('news.breadcrumbHome')}</a>
       <span class="mx-2">/</span>
-      <a href="/news" class="hover:text-primary">News</a>
+      <a href={localizedPath(locale, '/news')} class="hover:text-primary">{t('nav.news')}</a>
       <span class="mx-2">/</span>
       <span>{post.data.title}</span>
     </nav>
@@ -61,13 +64,7 @@ const jsonLd = {
 
     {featuredImg && (
       <div class="rounded-[10px] overflow-hidden mb-8">
-        <Image
-          src={featuredImg}
-          alt={post.data.title}
-          class="w-full"
-          widths={[600, 900]}
-          sizes="(max-width: 768px) 100vw, 720px"
-        />
+        <Image src={featuredImg} alt={post.data.title} class="w-full" widths={[600, 900]} sizes="(max-width: 768px) 100vw, 720px" />
       </div>
     )}
 
@@ -76,7 +73,7 @@ const jsonLd = {
     </div>
 
     <div class="mt-12 pt-8 border-t border-gray-100">
-      <a href="/news" class="btn-underline">&larr; Back to News</a>
+      <a href={localizedPath(locale, '/news')} class="btn-underline">{t('news.backToNews')}</a>
     </div>
   </article>
 </Layout>

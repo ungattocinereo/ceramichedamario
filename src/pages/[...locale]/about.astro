@@ -1,0 +1,72 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import WaveDivider from '../../components/ui/WaveDivider.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../../assets/images/about/shop.webp';
+import tableLamp from '../../assets/images/index/table-lamp.webp';
+import { getLocaleStaticPaths, useTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+---
+
+<Layout
+  title={t('about.metaTitle')}
+  description={t('about.metaDescription')}
+  isHeroPage={true}
+  locale={locale}
+>
+  <!-- HERO (50vh) -->
+  <section class="relative h-[50vh] min-h-[360px] flex items-center justify-center overflow-hidden">
+    <Image
+      src={heroImage}
+      alt="Ceramiche Da Mario shop in Praiano"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 to-transparent"></div>
+  </section>
+
+  <WaveDivider fill="#ffffff" class="-mt-[50px] relative z-10" />
+
+  <!-- MAIN CONTENT -->
+  <section class="bg-white py-14 lg:py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+
+        <!-- Left: Image -->
+        <div data-animate="fade-in-from-bottom">
+          <Image
+            src={tableLamp}
+            alt="Handmade Vietri ceramic table lamp from Ceramiche Da Mario"
+            class="rounded-2xl w-full h-auto"
+            widths={[500, 800]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+
+        <!-- Right: Text -->
+        <div data-animate="fade-in-from-bottom" style="transition-delay:0.15s">
+          <p class="eyebrow text-orange mb-2">{t('about.eyebrow')}</p>
+          <h1 class="page-subtitle text-heading-blue text-[clamp(28px,3vw,40px)] mb-6">{t('about.heading')}</h1>
+
+          <div class="space-y-4 text-muted leading-relaxed">
+            <p>{t('about.paragraph1')}</p>
+            <p>{t('about.paragraph2')}</p>
+            <p>{t('about.paragraph3')}</p>
+            <p>{t('about.paragraph4')}</p>
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-gray-100">
+            <p class="eyebrow text-orange mb-2">{t('about.promiseEyebrow')}</p>
+            <h2 class="page-subtitle text-heading-blue text-[clamp(28px,3vw,40px)] mb-4">{t('about.promiseHeading')}</h2>
+            <p class="text-muted leading-relaxed">{t('about.promiseText')}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>

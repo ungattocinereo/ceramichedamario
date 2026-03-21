@@ -1,0 +1,75 @@
+---
+import Layout from '../../../components/layout/Layout.astro';
+import ProductCard from '../../../components/shop/ProductCard.astro';
+import ProductGrid from '../../../components/shop/ProductGrid.astro';
+import CategoryFilter from '../../../components/shop/CategoryFilter.tsx';
+import { getCollection } from 'astro:content';
+import { getLocaleStaticPaths, useTranslations, localizedPath } from '../../../i18n/utils';
+import type { Locale } from '../../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+const allProducts = await getCollection('products');
+const products = allProducts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const allCategories = await getCollection('categories');
+const categories = allCategories
+  .map(c => ({ name: c.data.name, slug: c.data.slug, count: c.data.count }))
+  .sort((a, b) => b.count - a.count);
+
+const categoryLinks = categories.map(c => ({
+  ...c,
+  href: localizedPath(locale, `/shop/${c.slug}`),
+}));
+---
+
+<Layout
+  title={t('shop.metaTitle')}
+  description={t('shop.metaDescription')}
+  locale={locale}
+>
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-6" aria-label="Breadcrumb">
+      <a href={localizedPath(locale, '/')} class="hover:text-primary">{t('shop.breadcrumbHome')}</a>
+      <span class="mx-2">/</span>
+      <span>{t('shop.breadcrumbShop')}</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold mb-8">{t('nav.shop')}</h1>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar -->
+      <div class="lg:w-56 shrink-0">
+        <CategoryFilter
+          categories={categoryLinks}
+          allProductsLabel={t('cat.allProducts')}
+          categoriesLabel={t('nav.categories')}
+          shopHref={localizedPath(locale, '/shop')}
+          client:load
+        />
+      </div>
+
+      <!-- Products -->
+      <div class="flex-1">
+        <p class="text-sm text-muted mb-6">{t('shop.productsCount').replace('{count}', String(products.length))}</p>
+        <ProductGrid>
+          {products.map((product) => (
+            <ProductCard
+              slug={product.data.slug}
+              title={product.data.title}
+              price={product.data.price}
+              regularPrice={product.data.regularPrice}
+              salePrice={product.data.salePrice}
+              featuredImage={product.data.featuredImage}
+              locale={locale}
+            />
+          ))}
+        </ProductGrid>
+      </div>
+    </div>
+  </div>
+</Layout>

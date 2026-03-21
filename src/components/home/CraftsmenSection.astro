@@ -1,32 +1,25 @@
 ---
 import GradientText from '../ui/GradientText.astro';
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <section class="py-16 lg:py-24" data-animate="fade-in-from-bottom">
   <div class="max-w-7xl mx-auto px-6">
     <GradientText tag="h2" class="page-subtitle text-center mb-12 max-w-4xl mx-auto">
-      Our Pieces are hand made by illustrious master craftsmen of Vietri sul Mare,
-      where the ceramics tradition was born.
+      {t('craftsmen.heading')}
     </GradientText>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto">
       <div class="text-muted leading-relaxed">
-        <p>
-          The vibrant colours of our ceramics are inspired by the nature of the Amalfi Coast:
-          the deep blue of the Tyrrhenian Sea, the lush green of the terraced gardens,
-          the warm red and orange of Mediterranean sunsets, and the bright yellow of the
-          famous Amalfi lemons. Each colour is carefully mixed and applied by hand,
-          following recipes passed down through generations.
-        </p>
+        <p>{t('craftsmen.textLeft')}</p>
       </div>
       <div class="text-muted leading-relaxed">
-        <p>
-          Our master craftsmen use ancient techniques that date back centuries: hand-forging
-          each piece on the potter's wheel, applying multiple layers of glaze, and painting
-          intricate designs with fine brushes. Every ceramic piece that leaves our shop
-          carries the unmistakable mark of genuine Italian craftsmanship — no two pieces
-          are exactly alike.
-        </p>
+        <p>{t('craftsmen.textRight')}</p>
       </div>
     </div>
   </div>

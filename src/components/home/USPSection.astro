@@ -2,44 +2,42 @@
 import SplitLineHeading from '../ui/SplitLineHeading.astro';
 import Button from '../ui/Button.astro';
 import { Package, SealCheck } from '@phosphor-icons/react';
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations, localizedPath } from '../../i18n/utils';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <section class="py-16 lg:py-24" data-animate="fade-in-from-bottom">
   <div class="max-w-7xl mx-auto px-6">
     <SplitLineHeading
-      lines={['Bring home the Amalfi Coast,', 'gift an emotion from Praiano.']}
+      lines={[t('usp.headingLine1'), t('usp.headingLine2')]}
       tag="h2"
       class="page-subtitle text-center mb-12 text-heading-blue"
     />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-      <!-- Shipping -->
       <div class="text-center">
         <div class="w-16 h-16 mx-auto mb-4 text-orange">
           <Package size={64} />
         </div>
-        <h3 class="font-bold text-lg uppercase tracking-wide mb-3">Shipping Worldwide</h3>
-        <p class="text-muted leading-relaxed">
-          After your order we can talk all the details and will arrange the shipment.
-          We carefully pack each ceramic piece to ensure it arrives safely to your doorstep, anywhere in the world.
-        </p>
+        <h3 class="font-bold text-lg uppercase tracking-wide mb-3">{t('usp.shippingTitle')}</h3>
+        <p class="text-muted leading-relaxed">{t('usp.shippingText')}</p>
       </div>
 
-      <!-- Quality -->
       <div class="text-center">
         <div class="w-16 h-16 mx-auto mb-4 text-orange">
           <SealCheck size={64} />
         </div>
-        <h3 class="font-bold text-lg uppercase tracking-wide mb-3">Traditional Quality Products</h3>
-        <p class="text-muted leading-relaxed">
-          Ceramiche da Mario is located in the heart of Praiano, on the beautiful Amalfi Coast.
-          Every piece is handmade and hand-painted by skilled local artisans from Vietri sul Mare.
-        </p>
+        <h3 class="font-bold text-lg uppercase tracking-wide mb-3">{t('usp.qualityTitle')}</h3>
+        <p class="text-muted leading-relaxed">{t('usp.qualityText')}</p>
       </div>
     </div>
 
     <div class="text-center mt-10">
-      <Button href="/shop" variant="underline">To the shop</Button>
+      <Button href={localizedPath(locale, '/shop')} variant="underline">{t('usp.shopLink')}</Button>
     </div>
   </div>
 </section>

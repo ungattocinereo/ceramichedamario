@@ -1,0 +1,47 @@
+---
+import Layout from '../../../components/layout/Layout.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import { House } from '@phosphor-icons/react';
+import { getCollection } from 'astro:content';
+import { getLocaleStaticPaths, useTranslations, localizedPath } from '../../../i18n/utils';
+import type { Locale } from '../../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<Layout
+  title={t('news.metaTitle')}
+  description={t('news.metaDescription')}
+  locale={locale}
+>
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
+      <a href={localizedPath(locale, '/')} class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> {t('news.breadcrumbHome')}</a>
+      <span class="mx-2">/</span>
+      <span>{t('nav.news')}</span>
+    </nav>
+
+    <h1 class="text-3xl font-bold mb-8">{t('nav.news')}</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {sortedPosts.map((post) => (
+        <PostCard
+          slug={post.data.slug}
+          title={post.data.title}
+          date={post.data.date}
+          featuredImage={post.data.featuredImage}
+          locale={locale}
+        />
+      ))}
+    </div>
+  </div>
+</Layout>

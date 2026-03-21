@@ -1,0 +1,142 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import HeroSlider from '../../components/home/HeroSlider.tsx';
+import CategoryGrid from '../../components/home/CategoryGrid.astro';
+import Testimonials from '../../components/home/Testimonials.tsx';
+import ProductCarousel from '../../components/home/ProductCarousel.tsx';
+import USPSection from '../../components/home/USPSection.astro';
+import PraianoSection from '../../components/home/PraianoSection.astro';
+import NaturarteSection from '../../components/home/NaturarteSection.astro';
+import QuoteSection from '../../components/home/QuoteSection.astro';
+import CraftsmenSection from '../../components/home/CraftsmenSection.astro';
+import PhotoMosaic from '../../components/home/PhotoMosaic.astro';
+import InstagramCTA from '../../components/home/InstagramCTA.astro';
+import HighlightedText from '../../components/ui/HighlightedText.astro';
+import { getCollection } from 'astro:content';
+import { getImage } from '../../utils/images';
+import testimonials from '../../data/testimonials.json';
+import slidesData from '../../data/slides.json';
+import { getLocaleStaticPaths, useTranslations, getTranslations, localizedPath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+const tr = getTranslations(locale);
+
+// Prepare hero slider images with translated content
+const heroSlides = await Promise.all(
+  slidesData.map(async (slide, i) => {
+    const img = await getImage(slide.image);
+    const translated = tr.heroSlides[i];
+    return {
+      title: translated?.title ?? slide.title,
+      subtitle: translated?.subtitle ?? slide.subtitle,
+      imageSrc: img?.src || '',
+    };
+  })
+);
+
+// Prepare product carousel — 8 latest products with images
+const allProducts = await getCollection('products');
+const latestProducts = allProducts
+  .filter(p => p.data.featuredImage)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 8);
+
+const carouselProducts = await Promise.all(
+  latestProducts.map(async (p) => {
+    const img = await getImage(p.data.featuredImage!);
+    return {
+      slug: p.data.slug,
+      title: p.data.title,
+      price: p.data.price,
+      imageSrc: img?.src || '',
+      href: localizedPath(locale, `/shop/${p.data.slug}`),
+    };
+  })
+);
+
+// Testimonials icon
+import testimonialIconRaw from '../../assets/images/index/big-icon.svg';
+const testimonialIcon = typeof testimonialIconRaw === 'string' ? testimonialIconRaw : testimonialIconRaw.src;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Ceramiche Da Mario",
+  "url": "https://ceramichedamario.it",
+  "description": t('site.description'),
+};
+
+// Split tagline around {ceramics} placeholder
+const taglineParts = t('home.tagline').split('{ceramics}');
+---
+
+<Layout
+  title={t('site.title')}
+  description={t('site.description')}
+  jsonLd={jsonLd}
+  isHeroPage={true}
+  locale={locale}
+>
+  {/* 1. Hero Slider */}
+  <HeroSlider slides={heroSlides} client:load />
+
+  {/* 2. Highlighted Text */}
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="page-subtitle text-heading-blue text-[clamp(34px,3.5vw,48px)] leading-tight">
+          {taglineParts[0]}
+          <HighlightedText>{t('home.taglineCeramics')}</HighlightedText>
+          {taglineParts[1]}
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Category Grid */}
+  <CategoryGrid locale={locale} />
+
+  {/* 4. Testimonials */}
+  <Testimonials
+    testimonials={testimonials}
+    photoSrc={testimonialIcon}
+    eyebrow={t('testimonials.eyebrow')}
+    headingStart="Costumers"
+    headingHighlight={t('testimonials.headingHighlight')}
+    headingEnd="about us"
+    googleReviewsLabel={t('testimonials.googleReviews')}
+    client:visible
+  />
+
+  {/* 5. Product Carousel */}
+  <ProductCarousel
+    products={carouselProducts}
+    priceOnRequestLabel={t('shop.priceOnRequest')}
+    client:visible
+  />
+
+  {/* 6. USP */}
+  <USPSection locale={locale} />
+
+  {/* 7. Praiano */}
+  <PraianoSection locale={locale} />
+
+  {/* 8. Naturarte */}
+  <NaturarteSection locale={locale} />
+
+  {/* 9. Quote */}
+  <QuoteSection locale={locale} />
+
+  {/* 10. Craftsmen */}
+  <CraftsmenSection locale={locale} />
+
+  {/* 11. Photo Mosaic */}
+  <PhotoMosaic />
+
+  {/* 12. Instagram CTA */}
+  <InstagramCTA locale={locale} />
+</Layout>

@@ -26,7 +26,6 @@ import {
   Lamp,
   FrameCorners,
 } from '@phosphor-icons/react';
-import navigation from '../../data/navigation.json';
 
 const iconMap: Record<string, any> = {
   Flower, ForkKnife, FlowerLotus, Storefront,
@@ -35,24 +34,45 @@ const iconMap: Record<string, any> = {
   Mountains, LampPendant, Umbrella, Lamp, FrameCorners,
 };
 
-const languages = [
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'zh', label: '中文', flag: '🇨🇳' },
-];
+interface NavItem {
+  label: string;
+  href: string;
+  megaMenu?: boolean;
+  categories?: { label: string; href: string; icon: string }[];
+  collections?: { label: string; href: string; icon: string }[];
+}
+
+interface Language {
+  code: string;
+  label: string;
+  flag: string;
+  href: string;
+  active: boolean;
+}
+
+interface Props {
+  navigation: { main: NavItem[] };
+  languages: Language[];
+  categoriesLabel: string;
+  collectionsLabel: string;
+  languageLabel: string;
+  backLabel: string;
+  homeHref: string;
+}
 
 type View = 'main' | 'shop';
 
-export default function MobileNav() {
+export default function MobileNav({
+  navigation,
+  languages,
+  categoriesLabel,
+  collectionsLabel,
+  languageLabel,
+  backLabel,
+  homeHref,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentView, setCurrentView] = useState<View>('main');
-  const [activeLang, setActiveLang] = useState('en');
-
-  useEffect(() => {
-    setActiveLang(localStorage.getItem('lang') || 'en');
-  }, [isOpen]);
 
   useEffect(() => {
     const handler = () => setIsOpen((prev) => !prev);
@@ -68,15 +88,14 @@ export default function MobileNav() {
 
   if (!isOpen) return null;
 
-  const shopItem = navigation.main.find((i: any) => i.megaMenu) as any;
-
+  const shopItem = navigation.main.find((i) => i.megaMenu);
   const close = () => setIsOpen(false);
 
   return (
     <div className="fixed inset-0 z-[1000] bg-black/95 text-white overflow-y-auto">
       {/* Header row */}
       <div className="flex items-center justify-between px-6 py-5">
-        <a href="/" onClick={close} aria-label="Home">
+        <a href={homeHref} onClick={close} aria-label="Home">
           <img src="/logo-sign-white.svg" alt="" className="h-[36px] w-auto brightness-0 invert" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
         </a>
         <button onClick={close} className="p-2 text-white/80 hover:text-white" aria-label="Close menu">
@@ -88,7 +107,7 @@ export default function MobileNav() {
       {currentView === 'main' && (
         <nav className="px-8 pt-4 animate-fade-in">
           <ul className="space-y-1">
-            {navigation.main.map((item: any) => (
+            {navigation.main.map((item) => (
               <li key={item.label}>
                 {item.megaMenu ? (
                   <button
@@ -113,12 +132,7 @@ export default function MobileNav() {
 
           {/* Bottom info */}
           <div className="mt-10 pt-8 border-t border-white/10 space-y-4">
-            <a
-              href="https://www.instagram.com/ceramichedamariopraiano/"
-              target="_blank"
-              rel="noopener"
-              className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
-            >
+            <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
               <InstagramLogo size={20} weight="bold" />
               <span className="text-sm">Instagram</span>
             </a>
@@ -139,28 +153,23 @@ export default function MobileNav() {
             <div className="pt-4">
               <div className="flex items-center gap-2 text-white/40 mb-3">
                 <GlobeHemisphereWest size={16} weight="bold" />
-                <span className="text-xs font-bold uppercase tracking-wider">Language</span>
+                <span className="text-xs font-bold uppercase tracking-wider">{languageLabel}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {languages.map((lang) => (
-                  <button
+                  <a
                     key={lang.code}
-                    onClick={() => {
-                      setActiveLang(lang.code);
-                      localStorage.setItem('lang', lang.code);
-                      document.querySelectorAll('.lang-current').forEach((el) => {
-                        el.textContent = lang.code.toUpperCase();
-                      });
-                    }}
+                    href={lang.href}
+                    onClick={close}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition-colors ${
-                      activeLang === lang.code
+                      lang.active
                         ? 'bg-white/15 text-white'
                         : 'text-white/50 hover:text-white/80'
                     }`}
                   >
                     <span className="text-base leading-none">{lang.flag}</span>
                     <span>{lang.label}</span>
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>
@@ -176,13 +185,13 @@ export default function MobileNav() {
             className="flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-6"
           >
             <ArrowLeft size={18} />
-            <span className="text-sm">Back</span>
+            <span className="text-sm">{backLabel}</span>
           </button>
 
           {/* Categories */}
-          <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-3">Categories</h3>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-3">{categoriesLabel}</h3>
           <ul className="space-y-1 mb-8">
-            {shopItem?.categories?.map((cat: any) => {
+            {shopItem?.categories?.map((cat) => {
               const Icon = iconMap[cat.icon];
               return (
                 <li key={cat.label}>
@@ -200,9 +209,9 @@ export default function MobileNav() {
           </ul>
 
           {/* Collections */}
-          <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-3">Collections</h3>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-white/40 mb-3">{collectionsLabel}</h3>
           <ul className="space-y-0.5">
-            {shopItem?.collections?.map((col: any) => {
+            {shopItem?.collections?.map((col) => {
               const Icon = iconMap[col.icon];
               return (
                 <li key={col.label}>

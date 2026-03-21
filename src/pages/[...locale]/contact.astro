@@ -1,8 +1,9 @@
 ---
-import Layout from '../components/layout/Layout.astro';
-import ContactForm from '../components/ui/ContactForm.tsx';
+import Layout from '../../components/layout/Layout.astro';
+import ContactForm from '../../components/ui/ContactForm.tsx';
+import WaveDivider from '../../components/ui/WaveDivider.astro';
 import { Image } from 'astro:assets';
-import heroImage from '../assets/images/site/4-contacts.webp';
+import heroImage from '../../assets/images/site/4-contacts.webp';
 import {
   WhatsappLogo,
   Phone,
@@ -11,16 +12,43 @@ import {
   ArrowRight,
   Clock,
   InstagramLogo,
-  PaperPlaneTilt,
 } from '@phosphor-icons/react';
-import siteConfig from '../data/site-config.json';
+import siteConfig from '../../data/site-config.json';
+import { getLocaleStaticPaths, useTranslations, getTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+const tr = getTranslations(locale);
 
 const productParam = Astro.url.searchParams.get('product') || '';
 const whatsappNumber = '393383612306';
 const defaultWhatsappText = productParam
-  ? `Hi! I'm interested in: ${productParam}. Could you help me?`
-  : `Hi! I'd like to know more about your ceramics.`;
+  ? t('contact.whatsappProductText').replace('{product}', productParam)
+  : t('contact.whatsappDefaultText');
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultWhatsappText)}`;
+
+const formLabels = {
+  yourName: tr.form.yourName,
+  namePlaceholder: tr.form.namePlaceholder,
+  email: tr.form.email,
+  emailPlaceholder: tr.form.emailPlaceholder,
+  emailError: tr.form.emailError,
+  phone: tr.form.phone,
+  phonePlaceholder: tr.form.phonePlaceholder,
+  phoneError: tr.form.phoneError,
+  yourMessage: tr.form.yourMessage,
+  messagePlaceholder: tr.form.messagePlaceholder,
+  sendMessage: tr.form.sendMessage,
+  sending: tr.form.sending,
+  messageSent: tr.form.messageSent,
+  thankYou: tr.form.thankYou,
+  alsoWhatsapp: tr.form.alsoWhatsapp,
+  error: tr.form.error,
+  interestedIn: tr.form.interestedIn,
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -31,59 +59,43 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Contact Us — Ceramiche Da Mario"
-  description="Get in touch with Ceramiche Da Mario in Praiano. Request a quote, ask about products, or plan your visit to our shop on the Amalfi Coast."
+  title={t('contact.metaTitle')}
+  description={t('contact.metaDescription')}
   jsonLd={jsonLd}
   isHeroPage={true}
+  locale={locale}
 >
-  <!-- ==================== HERO (50vh) ==================== -->
+  <!-- HERO (50vh) -->
   <section class="relative h-[50vh] min-h-[360px] flex items-center justify-center overflow-hidden">
     <Image
       src={heroImage}
       alt="Handcrafted ceramics displayed in the garden at Ceramiche Da Mario"
       class="absolute inset-0 w-full h-full object-cover"
     />
-    <!-- Top gradient for menu readability -->
     <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent"></div>
-
-    <!-- Wave divider -->
-    <div class="shape-divider">
-      <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,48 L0,20 C360,48 1080,0 1440,20 L1440,48 Z" fill="#faf7f2" />
-      </svg>
-    </div>
   </section>
 
-  <!-- ==================== MAIN CONTENT ==================== -->
+  <WaveDivider fill="#faf7f2" class="-mt-[50px] relative z-10" />
+
+  <!-- MAIN CONTENT -->
   <section class="bg-[#faf7f2] py-14 lg:py-20">
     <div class="max-w-7xl mx-auto px-6">
 
       <!-- Mobile quick-contact buttons -->
       <div class="grid grid-cols-3 gap-3 mb-10 lg:hidden" data-animate="fade-in-from-bottom">
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
           <div class="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center">
             <WhatsappLogo size={24} weight="fill" className="text-[#25D366]" />
           </div>
           <span class="text-xs font-bold text-gray-700">WhatsApp</span>
         </a>
-        <a
-          href={`tel:${siteConfig.phone}`}
-          class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href={`tel:${siteConfig.phone}`} class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
           <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
             <Phone size={24} weight="fill" className="text-primary" />
           </div>
-          <span class="text-xs font-bold text-gray-700">Call Us</span>
+          <span class="text-xs font-bold text-gray-700">{t('contact.callUs')}</span>
         </a>
-        <a
-          href={`mailto:${siteConfig.email}`}
-          class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-        >
+        <a href={`mailto:${siteConfig.email}`} class="flex flex-col items-center gap-2 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
           <div class="w-12 h-12 rounded-full bg-orange/10 flex items-center justify-center">
             <Envelope size={24} weight="fill" className="text-orange" />
           </div>
@@ -94,38 +106,37 @@ const jsonLd = {
       <!-- Two-column grid -->
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
 
-        <!-- ====== LEFT: FORM CARD (3/5) ====== -->
+        <!-- LEFT: FORM CARD (3/5) -->
         <div class="lg:col-span-3" data-animate="fade-in-from-bottom">
           <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm">
-            <p class="eyebrow text-orange mb-2">Send a Request</p>
+            <p class="eyebrow text-orange mb-2">{t('contact.sendRequest')}</p>
             <h2 class="page-subtitle text-heading-blue text-[clamp(28px,3vw,40px)] mb-2">
-              Write to Us
+              {t('contact.writeToUs')}
             </h2>
             <p class="text-muted mb-8 leading-relaxed">
-              Fill out the form and we'll get back to you within a few hours.
-              For a faster reply, message us directly on WhatsApp.
+              {t('contact.formDescription')}
             </p>
 
-            <ContactForm prefilledProduct={productParam} whatsappUrl={whatsappUrl} client:visible />
+            <ContactForm
+              prefilledProduct={productParam}
+              whatsappUrl={whatsappUrl}
+              labels={formLabels}
+              client:visible
+            />
           </div>
         </div>
 
-        <!-- ====== RIGHT: CONTACT INFO (2/5) ====== -->
+        <!-- RIGHT: CONTACT INFO (2/5) -->
         <div class="lg:col-span-2 space-y-4" data-animate="fade-in-from-bottom" style="transition-delay:0.15s">
 
           <!-- WhatsApp hero card (desktop) -->
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden lg:flex items-center gap-4 bg-[#25D366] text-white rounded-2xl p-6 shadow-lg hover:shadow-xl hover:bg-[#20bd5a] transition-all group"
-          >
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-4 bg-[#25D366] text-white rounded-2xl p-6 shadow-lg hover:shadow-xl hover:bg-[#20bd5a] transition-all group">
             <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <WhatsappLogo size={28} weight="fill" />
             </div>
             <div>
-              <p class="font-bold text-lg">Message on WhatsApp</p>
-              <p class="text-white/85 text-sm">Quick replies, photos &amp; quotes</p>
+              <p class="font-bold text-lg">{t('contact.whatsappCard')}</p>
+              <p class="text-white/85 text-sm">{t('contact.whatsappCardSub')}</p>
             </div>
             <ArrowRight size={20} className="ml-auto opacity-60 group-hover:translate-x-1 transition-transform" />
           </a>
@@ -133,74 +144,56 @@ const jsonLd = {
           <!-- Contact details card -->
           <div class="bg-white rounded-2xl p-6 shadow-sm">
             <div class="space-y-5">
-              <!-- Phone -->
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center shrink-0 mt-0.5">
                   <Phone size={20} weight="fill" className="text-primary" />
                 </div>
                 <div>
-                  <p class="font-bold text-sm text-gray-800 mb-0.5">Call Us</p>
-                  <a href={`tel:${siteConfig.phone}`} class="text-primary hover:underline">
-                    {siteConfig.phone}
-                  </a>
+                  <p class="font-bold text-sm text-gray-800 mb-0.5">{t('contact.callUs')}</p>
+                  <a href={`tel:${siteConfig.phone}`} class="text-primary hover:underline">{siteConfig.phone}</a>
                 </div>
               </div>
 
               <div class="border-t border-gray-100"></div>
 
-              <!-- Email -->
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-full bg-orange/8 flex items-center justify-center shrink-0 mt-0.5">
                   <Envelope size={20} weight="fill" className="text-orange" />
                 </div>
                 <div>
-                  <p class="font-bold text-sm text-gray-800 mb-0.5">Email Us</p>
-                  <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline text-sm break-all">
-                    {siteConfig.email}
-                  </a>
+                  <p class="font-bold text-sm text-gray-800 mb-0.5">{t('contact.emailUs')}</p>
+                  <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline text-sm break-all">{siteConfig.email}</a>
                 </div>
               </div>
 
               <div class="border-t border-gray-100"></div>
 
-              <!-- Address -->
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin size={20} weight="fill" className="text-[#c49000]" />
                 </div>
                 <div>
-                  <p class="font-bold text-sm text-gray-800 mb-0.5">Visit Our Shop</p>
+                  <p class="font-bold text-sm text-gray-800 mb-0.5">{t('contact.visitShop')}</p>
                   <p class="text-muted text-sm leading-relaxed">
                     {siteConfig.address.street}<br />
                     {siteConfig.address.postalCode} {siteConfig.address.city} ({siteConfig.address.province})<br />
                     {siteConfig.address.country}
                   </p>
-                  <a
-                    href={siteConfig.googleMaps}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1 text-primary text-sm font-bold mt-2 hover:underline"
-                  >
-                    Get Directions <ArrowRight size={14} />
+                  <a href={siteConfig.googleMaps} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary text-sm font-bold mt-2 hover:underline">
+                    {t('contact.getDirections')} <ArrowRight size={14} />
                   </a>
                 </div>
               </div>
 
               <div class="border-t border-gray-100"></div>
 
-              <!-- Instagram -->
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-full bg-[#E1306C]/8 flex items-center justify-center shrink-0 mt-0.5">
                   <InstagramLogo size={20} weight="fill" className="text-[#E1306C]" />
                 </div>
                 <div>
-                  <p class="font-bold text-sm text-gray-800 mb-0.5">Follow Us</p>
-                  <a
-                    href={siteConfig.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-primary hover:underline text-sm"
-                  >
+                  <p class="font-bold text-sm text-gray-800 mb-0.5">{t('contact.followUs')}</p>
+                  <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline text-sm">
                     @ceramichedamariopraiano
                   </a>
                 </div>
@@ -212,47 +205,36 @@ const jsonLd = {
           <div class="bg-heading-blue rounded-2xl p-6 text-white">
             <div class="flex items-center gap-3 mb-4">
               <Clock size={20} weight="fill" />
-              <p class="font-bold">Opening Hours</p>
+              <p class="font-bold">{t('contact.openingHours')}</p>
             </div>
             <div class="space-y-2 text-sm text-white/85">
               <div class="flex justify-between">
-                <span>Monday – Saturday</span>
+                <span>{t('contact.mondaySaturday')}</span>
                 <span class="font-bold text-white">9:00 – 20:00</span>
               </div>
               <div class="flex justify-between">
-                <span>Sunday</span>
+                <span>{t('contact.sunday')}</span>
                 <span class="font-bold text-white">10:00 – 18:00</span>
               </div>
             </div>
-            <p class="text-xs text-white/50 mt-4">
-              Hours may vary by season. Contact us to confirm.
-            </p>
+            <p class="text-xs text-white/50 mt-4">{t('contact.hoursNote')}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== DIRECTIONS STRIP ==================== -->
+  <!-- DIRECTIONS STRIP -->
   <section class="bg-gradient-to-r from-[#ffbd3a] to-[#f29900] py-12 lg:py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-6" data-animate="fade-in-from-bottom">
         <div class="text-center lg:text-left">
-          <p class="font-accent text-white text-[clamp(24px,3vw,36px)] mb-1">
-            Find Us in Praiano
-          </p>
-          <p class="text-white/85">
-            On the heart of the Amalfi Coast, between Amalfi and Positano
-          </p>
+          <p class="font-accent text-white text-[clamp(24px,3vw,36px)] mb-1">{t('contact.findUs')}</p>
+          <p class="text-white/85">{t('contact.findUsSub')}</p>
         </div>
-        <a
-          href={siteConfig.googleMaps}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-white text-heading-blue font-bold px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm"
-        >
+        <a href={siteConfig.googleMaps} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white text-heading-blue font-bold px-8 py-3.5 rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm">
           <MapPin size={18} weight="fill" />
-          Open in Google Maps
+          {t('contact.openMaps')}
         </a>
       </div>
     </div>

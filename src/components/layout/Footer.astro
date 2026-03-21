@@ -1,6 +1,15 @@
 ---
 import siteConfig from '../../data/site-config.json';
 import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin, Phone, ArrowRight, ForkKnife, FlowerLotus, Flower, Storefront, CirclesFour } from '@phosphor-icons/react';
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations, localizedPath } from '../../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <footer class="bg-[#3a3a3a] text-white">
@@ -9,7 +18,7 @@ import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin
       <!-- Col 1: Brand -->
       <div>
         <h3 class="text-xl font-bold mb-2">Ceramiche Da Mario</h3>
-        <p class="text-sm text-white/60 mb-4">Family-run ceramics shop in Praiano since 1960. Handmade and hand-painted Vietri ceramics — plates, décor, table lamps, and more. We ship worldwide.</p>
+        <p class="text-sm text-white/60 mb-4">{t('footer.description')}</p>
         <div class="flex gap-4">
           <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:opacity-70 transition-opacity">
             <InstagramLogo size={20} weight="fill" />
@@ -31,29 +40,29 @@ import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin
 
       <!-- Col 2: Shop categories -->
       <div>
-        <h4 class="eyebrow mb-3">Shop</h4>
+        <h4 class="eyebrow mb-3">{t('footer.shopHeading')}</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="/shop/fine-ceramics" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><FlowerLotus size={14} /> Fine Ceramics</a></li>
-          <li><a href="/shop/kitchen" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><ForkKnife size={14} /> Kitchen Objects</a></li>
-          <li><a href="/shop/decor" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Flower size={14} /> Decoration</a></li>
-          <li><a href="/shop/linea-piazzetta" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><CirclesFour size={14} /> Collections</a></li>
-          <li><a href="/shop" class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Storefront size={14} /> All Products</a></li>
+          <li><a href={localizedPath(locale, '/shop/fine-ceramics')} class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><FlowerLotus size={14} /> {t('cat.fineCeramics')}</a></li>
+          <li><a href={localizedPath(locale, '/shop/kitchen')} class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><ForkKnife size={14} /> {t('cat.kitchenObjects')}</a></li>
+          <li><a href={localizedPath(locale, '/shop/decor')} class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Flower size={14} /> {t('cat.decoration')}</a></li>
+          <li><a href={localizedPath(locale, '/shop/linea-piazzetta')} class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><CirclesFour size={14} /> {t('nav.collections')}</a></li>
+          <li><a href={localizedPath(locale, '/shop')} class="text-white/60 hover:text-white transition-colors inline-flex items-center gap-1.5"><Storefront size={14} /> {t('cat.allProducts')}</a></li>
         </ul>
       </div>
 
       <!-- Col 3: Info -->
       <div>
-        <h4 class="eyebrow mb-3">Info</h4>
+        <h4 class="eyebrow mb-3">{t('footer.infoHeading')}</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="text-white/60 hover:text-white transition-colors">— About Us</a></li>
-          <li><a href="/news" class="text-white/60 hover:text-white transition-colors">— News</a></li>
-          <li><a href="/contact" class="text-white/60 hover:text-white transition-colors">— Contact</a></li>
+          <li><a href={localizedPath(locale, '/about')} class="text-white/60 hover:text-white transition-colors">&mdash; {t('footer.aboutUs')}</a></li>
+          <li><a href={localizedPath(locale, '/news')} class="text-white/60 hover:text-white transition-colors">&mdash; {t('nav.news')}</a></li>
+          <li><a href={localizedPath(locale, '/contact')} class="text-white/60 hover:text-white transition-colors">&mdash; {t('nav.contact')}</a></li>
         </ul>
       </div>
 
       <!-- Col 4: Contact -->
       <div>
-        <h4 class="eyebrow mb-3">Contact</h4>
+        <h4 class="eyebrow mb-3">{t('footer.contactHeading')}</h4>
         <address class="not-italic text-sm text-white/60 space-y-2">
           <p class="flex gap-1.5">
             <MapPin size={16} className="shrink-0 mt-0.5" />
@@ -74,7 +83,7 @@ import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin
               rel="noopener noreferrer"
               class="text-white/80 hover:text-white hover:underline text-sm font-medium"
             >
-              Get Directions <ArrowRight size={14} className="inline ml-0.5" />
+              {t('footer.getDirections')} <ArrowRight size={14} className="inline ml-0.5" />
             </a>
           </p>
         </address>
@@ -88,14 +97,14 @@ import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin
       <div class="space-y-0.5">
         <p>&copy; 2020-{new Date().getFullYear()} Ceramiche Da Mario. Praiano, Amalfi Coast, Italy.</p>
         <p>{siteConfig.legal.companyName}</p>
-        <p>{siteConfig.legal.registeredOffice} — Italy</p>
+        <p>{siteConfig.legal.registeredOffice} &mdash; Italy</p>
         <p>P.IVA / C.F.: {siteConfig.legal.vatId} | REA: {siteConfig.legal.rea}</p>
       </div>
       <div class="md:text-right space-y-1">
         <div>
-          <a href="/privacy" class="hover:text-white transition-colors underline">Privacy Policy</a>
+          <a href={localizedPath(locale, '/privacy')} class="hover:text-white transition-colors underline">{t('footer.privacyPolicy')}</a>
           <span class="mx-2">|</span>
-          <a href="/return-policy" class="hover:text-white transition-colors underline">Return Policy</a>
+          <a href={localizedPath(locale, '/return-policy')} class="hover:text-white transition-colors underline">{t('footer.returnPolicy')}</a>
         </div>
         <p class="font-mono">Design &amp; Development Gregory '<a href="https://cinereo.it" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline">Cinereo</a>' Smirnov</p>
       </div>

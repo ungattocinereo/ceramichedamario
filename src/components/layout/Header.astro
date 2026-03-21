@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import MobileNav from './MobileNav.tsx';
-import navigation from '../../data/navigation.json';
 import {
   CaretDown,
   List,
@@ -27,17 +26,24 @@ import {
   Lamp,
   FrameCorners,
 } from '@phosphor-icons/react';
+import { defaultLocale, localeConfig, type Locale } from '../../i18n/config';
+import { getLocalizedNavigation } from '../../i18n/navigation';
+import { useTranslations, localizedPath, stripLocaleFromPath } from '../../i18n/utils';
 
 interface Props {
   isHeroPage?: boolean;
+  locale?: Locale;
 }
 
-const { isHeroPage = false } = Astro.props;
+const { isHeroPage = false, locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
+const nav = getLocalizedNavigation(locale);
 
 const logoWhite = (await import('../../assets/logo-white.svg')).default;
 const logoSign = (await import('../../assets/logo-sign.svg')).default;
 const textMono = (await import('../../assets/text-monocolor.svg')).default;
 const currentPath = Astro.url.pathname;
+const canonicalPath = stripLocaleFromPath(currentPath);
 
 const iconMap: Record<string, any> = {
   Flower, ForkKnife, FlowerLotus, Storefront,
@@ -46,15 +52,26 @@ const iconMap: Record<string, any> = {
   Mountains, LampPendant, Umbrella, Lamp, FrameCorners,
 };
 
-const shopItem = navigation.main.find((i: any) => i.megaMenu);
+const shopItem = nav.main.find((i: any) => i.megaMenu);
 
-const languages = [
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'zh', label: '中文', flag: '🇨🇳' },
-];
+const languages = Object.entries(localeConfig).map(([code, config]) => ({
+  code: code as Locale,
+  label: config.label,
+  flag: config.flag,
+  href: localizedPath(code as Locale, canonicalPath),
+  active: code === locale,
+}));
+
+// Props for MobileNav (React component)
+const mobileNavData = {
+  navigation: nav,
+  languages,
+  locale,
+  categoriesLabel: t('nav.categories'),
+  collectionsLabel: t('nav.collections'),
+  languageLabel: t('nav.language'),
+  backLabel: t('nav.back'),
+};
 ---
 
 <header
@@ -76,7 +93,7 @@ const languages = [
     <div class="relative">
       <!-- Logo row -->
       <div class="flex justify-center pt-5 pb-2 px-6">
-        <a href="/" aria-label="Ceramiche Da Mario — Home">
+        <a href={localizedPath(locale, '/')} aria-label="Ceramiche Da Mario — Home">
           <Image
             src={logoWhite}
             alt="Ceramiche Da Mario"
@@ -89,7 +106,7 @@ const languages = [
       <!-- Desktop nav -->
       <nav class="hidden lg:block" aria-label="Main navigation">
         <ul class="flex justify-center items-center gap-8 py-2 text-base">
-          {navigation.main.map((item: any) => (
+          {nav.main.map((item: any) => (
             <li class:list={['relative', item.megaMenu && 'group']}>
               <a
                 href={item.href}
@@ -104,16 +121,13 @@ const languages = [
                 )}
               </a>
 
-              {/* Mega dropdown (shared markup, rendered inside top state) */}
               {item.megaMenu && (
                 <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-50">
-                  {/* Hover bridge */}
                   <div class="absolute -top-3 left-0 right-0 h-3"></div>
                   <div class="mega-dropdown bg-white shadow-2xl rounded-xl p-6 w-[min(1100px,92vw)] origin-top scale-[0.97] group-hover:scale-100 transition-transform duration-300 ease-out">
                     <div class="flex gap-8">
-                      {/* Categories */}
                       <div class="w-[240px] shrink-0 border-r border-gray-100 pr-6">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Categories</h3>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">{t('nav.categories')}</h3>
                         <ul class="space-y-1">
                           {shopItem?.categories?.map((cat: any) => {
                             const Icon = iconMap[cat.icon];
@@ -128,10 +142,8 @@ const languages = [
                           })}
                         </ul>
                       </div>
-
-                      {/* Collections */}
                       <div class="flex-1">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Collections</h3>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">{t('nav.collections')}</h3>
                         <div class="grid grid-cols-3 xl:grid-cols-4 gap-1">
                           {shopItem?.collections?.map((col: any) => {
                             const Icon = iconMap[col.icon];
@@ -171,20 +183,21 @@ const languages = [
         <div class="relative group/lang">
           <button class="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors py-1 px-1" aria-label="Change language">
             <GlobeHemisphereWest size={24} weight="bold" />
-            <span class="text-xs font-semibold uppercase lang-current">EN</span>
+            <span class="text-xs font-semibold uppercase">{locale}</span>
           </button>
           <div class="absolute right-0 top-full pt-2 opacity-0 invisible translate-y-2 group-hover/lang:opacity-100 group-hover/lang:visible group-hover/lang:translate-y-0 transition-all duration-300 ease-out z-50">
             <div class="bg-white rounded-lg shadow-xl py-1.5 min-w-[150px] border border-gray-100 origin-top scale-[0.97] group-hover/lang:scale-100 transition-transform duration-300 ease-out">
               {languages.map((lang) => (
-                <button
-                  data-lang={lang.code}
+                <a
+                  href={lang.href}
                   class:list={[
-                    'lang-option w-full flex items-center gap-2.5 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors',
+                    'w-full flex items-center gap-2.5 px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-primary',
+                    lang.active ? 'text-primary font-semibold' : 'text-gray-600',
                   ]}
                 >
                   <span class="text-base leading-none">{lang.flag}</span>
                   <span>{lang.label}</span>
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -217,7 +230,7 @@ const languages = [
     <div class="bg-white/95 backdrop-blur-md shadow-sm">
       <div class="flex items-center justify-between h-[72px] px-6 max-w-7xl mx-auto">
         <!-- Left: logo -->
-        <a href="/" aria-label="Ceramiche Da Mario — Home" class="flex items-center gap-2">
+        <a href={localizedPath(locale, '/')} aria-label="Ceramiche Da Mario — Home" class="flex items-center gap-2">
           <Image src={logoSign} alt="" height={36} class="h-[36px] w-auto" />
           <Image src={textMono} alt="Ceramiche Da Mario" height={30} class="h-[30px] w-auto hidden sm:block" />
         </a>
@@ -225,7 +238,7 @@ const languages = [
         <!-- Center: desktop nav -->
         <nav class="hidden lg:block" aria-label="Main navigation">
           <ul class="flex items-center gap-7 text-[15px]">
-            {navigation.main.map((item: any) => (
+            {nav.main.map((item: any) => (
               <li class:list={['relative', item.megaMenu && 'group']}>
                 <a
                   href={item.href}
@@ -240,15 +253,13 @@ const languages = [
                   )}
                 </a>
 
-                {/* Mega dropdown (scrolled version) */}
                 {item.megaMenu && (
                   <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible z-50">
                     <div class="absolute -top-3 left-0 right-0 h-3"></div>
                     <div class="mega-dropdown bg-white shadow-2xl rounded-xl p-6 w-[min(1100px,92vw)]">
                       <div class="flex gap-8">
-                        {/* Categories */}
                         <div class="w-[240px] shrink-0 border-r border-gray-100 pr-6">
-                          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Categories</h3>
+                          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">{t('nav.categories')}</h3>
                           <ul class="space-y-1">
                             {shopItem?.categories?.map((cat: any) => {
                               const Icon = iconMap[cat.icon];
@@ -263,10 +274,8 @@ const languages = [
                             })}
                           </ul>
                         </div>
-
-                        {/* Collections */}
                         <div class="flex-1">
-                          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Collections</h3>
+                          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">{t('nav.collections')}</h3>
                           <div class="grid grid-cols-3 xl:grid-cols-4 gap-1">
                             {shopItem?.collections?.map((col: any) => {
                               const Icon = iconMap[col.icon];
@@ -306,20 +315,21 @@ const languages = [
           <div class="relative group/lang">
             <button class="flex items-center gap-1.5 text-gray-500 hover:text-primary transition-colors py-1 px-1" aria-label="Change language">
               <GlobeHemisphereWest size={20} weight="bold" />
-              <span class="text-xs font-semibold uppercase lang-current">EN</span>
+              <span class="text-xs font-semibold uppercase">{locale}</span>
             </button>
             <div class="absolute right-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover/lang:opacity-100 group-hover/lang:visible group-hover/lang:translate-y-0 transition-all duration-200 z-50">
               <div class="bg-white rounded-lg shadow-xl py-1.5 min-w-[150px] border border-gray-100">
                 {languages.map((lang) => (
-                  <button
-                    data-lang={lang.code}
+                  <a
+                    href={lang.href}
                     class:list={[
-                      'lang-option w-full flex items-center gap-2.5 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors',
+                      'w-full flex items-center gap-2.5 px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-primary',
+                      lang.active ? 'text-primary font-semibold' : 'text-gray-600',
                     ]}
                   >
                     <span class="text-base leading-none">{lang.flag}</span>
                     <span>{lang.label}</span>
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>
@@ -340,7 +350,16 @@ const languages = [
   </div>
 
   <!-- Mobile nav (React island) -->
-  <MobileNav client:load />
+  <MobileNav
+    navigation={mobileNavData.navigation}
+    languages={languages}
+    categoriesLabel={mobileNavData.categoriesLabel}
+    collectionsLabel={mobileNavData.collectionsLabel}
+    languageLabel={mobileNavData.languageLabel}
+    backLabel={mobileNavData.backLabel}
+    homeHref={localizedPath(locale, '/')}
+    client:load
+  />
 </header>
 
 <script>
@@ -388,37 +407,8 @@ const languages = [
     });
   }
 
-  // Language switcher
-  function setupLangSwitcher() {
-    const saved = localStorage.getItem('lang') || 'en';
-    const labels = document.querySelectorAll('.lang-current');
-    labels.forEach((el) => { el.textContent = saved.toUpperCase(); });
-
-    // Highlight active language
-    document.querySelectorAll('.lang-option').forEach((btn) => {
-      const code = (btn as HTMLElement).dataset.lang;
-      if (code === saved) {
-        btn.classList.add('text-primary', 'font-semibold');
-        btn.classList.remove('text-gray-600');
-      }
-      btn.addEventListener('click', () => {
-        localStorage.setItem('lang', code!);
-        labels.forEach((el) => { el.textContent = code!.toUpperCase(); });
-        // Reset all highlights
-        document.querySelectorAll('.lang-option').forEach((b) => {
-          b.classList.remove('text-primary', 'font-semibold');
-          b.classList.add('text-gray-600');
-        });
-        btn.classList.add('text-primary', 'font-semibold');
-        btn.classList.remove('text-gray-600');
-      });
-    });
-  }
-
   setupHeader();
-  setupLangSwitcher();
   document.addEventListener('astro:page-load', () => {
     setupHeader();
-    setupLangSwitcher();
   });
 </script>

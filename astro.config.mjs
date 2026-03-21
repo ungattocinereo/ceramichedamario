@@ -6,9 +6,19 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://ceramichedamario.it',
   output: 'static',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'it', 'de', 'es', 'zh'],
+    routing: 'manual',
+  },
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en', it: 'it', de: 'de', es: 'es', zh: 'zh' },
+      },
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],

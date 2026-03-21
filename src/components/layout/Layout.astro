@@ -1,7 +1,12 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import WaveDivider from '../ui/WaveDivider.astro';
+import CookieBanner from '../ui/CookieBanner.tsx';
+import HreflangTags from '../seo/HreflangTags.astro';
 import '../../styles/global.css';
+import { defaultLocale, localeConfig, type Locale } from '../../i18n/config';
+import { stripLocaleFromPath, useTranslations, getTranslations, localizedPath } from '../../i18n/utils';
 
 interface Props {
   title?: string;
@@ -10,24 +15,38 @@ interface Props {
   canonicalUrl?: string;
   jsonLd?: Record<string, unknown>;
   isHeroPage?: boolean;
+  locale?: Locale;
 }
 
 const {
-  title = 'Ceramiche Da Mario – fine ceramics shop in Praiano, Amalfi Coast, Italy',
+  title = 'Ceramiche Da Mario \u2013 fine ceramics shop in Praiano, Amalfi Coast, Italy',
   description = 'One of the best authentic ceramics shops in Amalfi Coast, famous ceramics of Vietri sul Mare. Traditional quality italian presents',
   ogImage = '/og-image.jpg',
   canonicalUrl,
   jsonLd,
   isHeroPage = false,
+  locale = defaultLocale,
 } = Astro.props;
 
+const t = useTranslations(locale);
+const tr = getTranslations(locale);
 const siteUrl = 'https://ceramichedamario.it';
 const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
+const currentPath = stripLocaleFromPath(Astro.url.pathname);
+const ogLocale = localeConfig[locale].ogLocale;
+
+const cookieLabels = {
+  message: tr.cookie.message,
+  accept: tr.cookie.accept,
+  reject: tr.cookie.reject,
+  privacyPolicy: tr.cookie.privacyPolicy,
+  privacyHref: localizedPath(locale, '/privacy'),
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,6 +62,9 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteU
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    <!-- Hreflang -->
+    <HreflangTags locale={locale} path={currentPath} />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -52,7 +74,7 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteU
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Ceramiche Da Mario" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -98,11 +120,13 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteU
     })} />
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header isHeroPage={isHeroPage} />
+    <Header isHeroPage={isHeroPage} locale={locale} />
     <main class:list={['flex-1', !isHeroPage && 'pt-[72px]']}>
       <slot />
     </main>
-    <Footer />
+    <WaveDivider fill="#3a3a3a" class="-mt-[50px] -mb-px relative z-10" />
+    <Footer locale={locale} />
+    <CookieBanner labels={cookieLabels} client:load />
     <script src="../../scripts/scroll-animations.ts"></script>
   </body>
 </html>

@@ -1,12 +1,17 @@
 ---
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+
 interface Props {
   price: number | null;
   regularPrice?: number | null;
   salePrice?: number | null;
   class?: string;
+  locale?: Locale;
 }
 
-const { price, regularPrice, salePrice, class: className } = Astro.props;
+const { price, regularPrice, salePrice, class: className, locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 
 function fmt(val: number): string {
   return new Intl.NumberFormat('en-EU', {
@@ -22,7 +27,7 @@ const hasSale = salePrice != null && regularPrice != null && salePrice < regular
 
 <div class:list={['price-display', className]}>
   {price === null ? (
-    <span class="text-muted italic">Price on request</span>
+    <span class="text-muted italic">{t('shop.priceOnRequest')}</span>
   ) : hasSale ? (
     <>
       <span class="line-through text-muted mr-2">{fmt(regularPrice!)}</span>

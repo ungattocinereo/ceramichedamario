@@ -1,11 +1,39 @@
 ---
 import Layout from '../components/layout/Layout.astro';
+import { locales } from '../i18n/config';
+import { useTranslations } from '../i18n/utils';
+
+// Pre-render all locale translations for client-side detection
+const allTranslations = Object.fromEntries(
+  locales.map(loc => {
+    const t = useTranslations(loc);
+    return [loc, {
+      message: t('notFound.message'),
+      backHome: t('notFound.backHome'),
+    }];
+  })
+);
 ---
 
 <Layout title="Page Not Found - Ceramiche Da Mario">
   <div class="max-w-7xl mx-auto px-6 py-20 lg:py-32 text-center">
     <h1 class="page-subtitle mb-4">404</h1>
-    <p class="text-xl text-muted mb-8">The page you're looking for doesn't exist.</p>
-    <a href="/" class="btn btn-primary">Back to Home</a>
+    <p class="text-xl text-muted mb-8" id="nf-message">The page you're looking for doesn't exist.</p>
+    <a href="/" class="btn btn-primary" id="nf-link">Back to Home</a>
   </div>
+
+  <script define:vars={{ allTranslations, locales }}>
+    const segment = window.location.pathname.split('/')[1];
+    const locale = locales.includes(segment) ? segment : 'en';
+    const t = allTranslations[locale];
+    if (t) {
+      const msg = document.getElementById('nf-message');
+      const link = document.getElementById('nf-link');
+      if (msg) msg.textContent = t.message;
+      if (link) {
+        link.textContent = t.backHome;
+        link.href = locale === 'en' ? '/' : `/${locale}`;
+      }
+    }
+  </script>
 </Layout>

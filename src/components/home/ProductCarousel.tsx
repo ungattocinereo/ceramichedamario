@@ -8,14 +8,16 @@ interface Product {
   title: string;
   price: number | null;
   imageSrc: string;
+  href?: string;
 }
 
 interface Props {
   products: Product[];
+  priceOnRequestLabel?: string;
 }
 
-function formatPrice(price: number | null): string {
-  if (price === null || price === undefined) return 'Price on request';
+function formatPrice(price: number | null, label = 'Price on request'): string {
+  if (price === null || price === undefined) return label;
   return new Intl.NumberFormat('en-EU', {
     style: 'currency',
     currency: 'EUR',
@@ -24,7 +26,7 @@ function formatPrice(price: number | null): string {
   }).format(price);
 }
 
-export default function ProductCarousel({ products }: Props) {
+export default function ProductCarousel({ products, priceOnRequestLabel = 'Price on request' }: Props) {
   return (
     <section className="py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -44,7 +46,7 @@ export default function ProductCarousel({ products }: Props) {
         >
           {products.map((product) => (
             <SwiperSlide key={product.slug}>
-              <a href={`/shop/${product.slug}`} className="block group">
+              <a href={product.href || `/shop/${product.slug}`} className="block group">
                 <div className="rounded-[10px] overflow-hidden bg-gray-50 aspect-square mb-3">
                   <img
                     src={product.imageSrc}
@@ -56,7 +58,7 @@ export default function ProductCarousel({ products }: Props) {
                 <h3 className="text-sm font-medium mb-1 group-hover:text-primary transition-colors line-clamp-2">
                   {product.title}
                 </h3>
-                <p className="text-sm text-muted">{formatPrice(product.price)}</p>
+                <p className="text-sm text-muted">{formatPrice(product.price, priceOnRequestLabel)}</p>
               </a>
             </SwiperSlide>
           ))}

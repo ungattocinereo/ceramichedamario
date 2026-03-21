@@ -1,6 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import { getImage } from '../../utils/images';
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 
 const naturarteImg = await getImage('/src/assets/images/site/verticale-tramonto-etc.jpg');
 ---
@@ -8,33 +14,18 @@ const naturarteImg = await getImage('/src/assets/images/site/verticale-tramonto-
 <section class="relative z-10 py-16 lg:py-24">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-      <!-- Photo -->
       <div data-animate="fade-in-from-left">
         {naturarteImg ? (
-          <Image
-            src={naturarteImg}
-            alt="Naturarte Project - ceramic art installation in Praiano"
-            class="rounded-[10px] card-shadow-lg w-full"
-            widths={[400, 700]}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+          <Image src={naturarteImg} alt="Naturarte Project - ceramic art installation in Praiano" class="rounded-[10px] card-shadow-lg w-full" widths={[400, 700]} sizes="(max-width: 1024px) 100vw, 50vw" />
         ) : (
           <div class="bg-gray-200 rounded-[10px] aspect-[4/3]" />
         )}
       </div>
 
-      <!-- Text -->
       <div data-animate="fade-in-from-bottom">
-        <p class="eyebrow text-muted mb-2">Art works installed around the town are part of the</p>
-        <h2 class="page-subtitle mb-6">Naturarte Project</h2>
-        <p class="text-muted leading-relaxed">
-          Artists from around Italy were invited to create works inspired by the local traditions
-          of Praiano and the Amalfi Coast. The result is an extraordinary open-air museum where
-          ceramic art meets nature — a unique "street art" experience that blends contemporary
-          creativity with centuries-old craftsmanship. Walking through Praiano, you'll discover
-          these installations at every turn, each one telling a story of the sea, the land,
-          and the people who have called this place home for generations.
-        </p>
+        <p class="eyebrow text-muted mb-2">{t('naturarte.eyebrow')}</p>
+        <h2 class="page-subtitle mb-6">{t('naturarte.heading')}</h2>
+        <p class="text-muted leading-relaxed">{t('naturarte.text')}</p>
       </div>
     </div>
   </div>

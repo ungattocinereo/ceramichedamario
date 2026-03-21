@@ -1,30 +1,26 @@
 ---
 import { getImage } from '../../utils/images';
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 
 const bg = await getImage('/src/assets/images/index/quote-bg.jpg');
-
-const words = "The reason is that we want visitors and travellers to purchase a real souvenir, something that will remind you of this place forever.".split(' ');
+const words = t('quote.text').split(' ');
 ---
 
-<section
-  class="relative -mt-[15%] overflow-hidden"
->
-  {/* Background image */}
+<section class="relative -mt-[15%] overflow-hidden">
   {bg && (
-    <div
-      class="absolute inset-0 bg-cover bg-center"
-      style={`background-image: url('${bg.src}');`}
-    />
+    <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${bg.src}');`} />
   )}
-
-  {/* Dark overlay */}
   <div class="absolute inset-0 bg-[#1a1a1c]/75" />
 
-  {/* Content */}
   <div class="relative pt-44 lg:pt-56 pb-20 lg:pb-28">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-5xl">
-        <p class="eyebrow text-white/60 mb-6">Words to live by</p>
+        <p class="eyebrow text-white/60 mb-6">{t('quote.eyebrow')}</p>
         <p class="quote-text text-white font-bold" data-quote-reveal>
           {words.map((word, i) => (
             <span class="quote-word" style={`--i: ${i}`}>{word} </span>
@@ -36,25 +32,15 @@ const words = "The reason is that we want visitors and travellers to purchase a 
 </section>
 
 <style>
-  .quote-text {
-    font-size: 36px;
-    line-height: 1.05;
-  }
-
+  .quote-text { font-size: 36px; line-height: 1.05; }
   .quote-word {
-    display: inline-block;
-    margin-right: 0.27em;
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(16px);
+    display: inline-block; margin-right: 0.27em;
+    opacity: 0; filter: blur(8px); transform: translateY(16px);
     transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
     transition-delay: calc(var(--i) * 0.04s);
   }
-
   [data-quote-reveal].is-visible .quote-word {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
+    opacity: 1; filter: blur(0); transform: translateY(0);
   }
 </style>
 
@@ -62,12 +48,7 @@ const words = "The reason is that we want visitors and travellers to purchase a 
   const el = document.querySelector('[data-quote-reveal]');
   if (el) {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('is-visible');
-          observer.disconnect();
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('is-visible'); observer.disconnect(); } },
       { threshold: 0.3 }
     );
     observer.observe(el);

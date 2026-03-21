@@ -1,34 +1,34 @@
 {
   "main": [
-    { "label": "Home", "href": "/" },
+    { "key": "nav.home", "href": "/" },
     {
-      "label": "Shop",
+      "key": "nav.shop",
       "href": "/shop",
       "megaMenu": true,
       "categories": [
-        { "label": "Fine Ceramics", "href": "/shop/ceramics", "icon": "Flower" },
-        { "label": "Kitchen Objects", "href": "/shop/kitchen", "icon": "ForkKnife" },
-        { "label": "Decoration", "href": "/shop/decor", "icon": "FlowerLotus" },
-        { "label": "All Products", "href": "/shop", "icon": "Storefront" }
+        { "key": "cat.fineCeramics", "href": "/shop/ceramics", "icon": "Flower" },
+        { "key": "cat.kitchenObjects", "href": "/shop/kitchen", "icon": "ForkKnife" },
+        { "key": "cat.decoration", "href": "/shop/decor", "icon": "FlowerLotus" },
+        { "key": "cat.allProducts", "href": "/shop", "icon": "Storefront" }
       ],
       "collections": [
-        { "label": "Arcobaleno", "href": "/shop/arcobaleno", "icon": "Rainbow" },
-        { "label": "Piazzetta", "href": "/shop/linea-piazzetta", "icon": "CirclesFour" },
-        { "label": "Moro's Heads", "href": "/shop/teste-di-moro", "icon": "Crown" },
-        { "label": "Barocco", "href": "/shop/barocco", "icon": "Scroll" },
-        { "label": "Cachepot", "href": "/shop/cachepot", "icon": "PottedPlant" },
-        { "label": "Fishes Decor", "href": "/shop/pesci", "icon": "Fish" },
-        { "label": "Vietri", "href": "/shop/vietri-collection", "icon": "Star" },
-        { "label": "Praia", "href": "/shop/praia-collection", "icon": "SunHorizon" },
-        { "label": "Praiano", "href": "/shop/praiano-collection", "icon": "Mountains" },
-        { "label": "Abat-jour", "href": "/shop/abat-jour", "icon": "LampPendant" },
-        { "label": "Umbrella Stands", "href": "/shop/handmade-ceramic-umbrella-stand", "icon": "Umbrella" },
-        { "label": "Table Lamps", "href": "/shop/lampadine", "icon": "Lamp" },
-        { "label": "Wall Plates", "href": "/shop/piatti-murali", "icon": "FrameCorners" }
+        { "key": "cat.arcobaleno", "href": "/shop/arcobaleno", "icon": "Rainbow" },
+        { "key": "cat.piazzetta", "href": "/shop/linea-piazzetta", "icon": "CirclesFour" },
+        { "key": "cat.morosHeads", "href": "/shop/teste-di-moro", "icon": "Crown" },
+        { "key": "cat.barocco", "href": "/shop/barocco", "icon": "Scroll" },
+        { "key": "cat.cachepot", "href": "/shop/cachepot", "icon": "PottedPlant" },
+        { "key": "cat.fishesDecor", "href": "/shop/pesci", "icon": "Fish" },
+        { "key": "cat.vietri", "href": "/shop/vietri-collection", "icon": "Star" },
+        { "key": "cat.praia", "href": "/shop/praia-collection", "icon": "SunHorizon" },
+        { "key": "cat.praiano", "href": "/shop/praiano-collection", "icon": "Mountains" },
+        { "key": "cat.abatJour", "href": "/shop/abat-jour", "icon": "LampPendant" },
+        { "key": "cat.umbrellaStands", "href": "/shop/handmade-ceramic-umbrella-stand", "icon": "Umbrella" },
+        { "key": "cat.tableLamps", "href": "/shop/lampadine", "icon": "Lamp" },
+        { "key": "cat.wallPlates", "href": "/shop/piatti-murali", "icon": "FrameCorners" }
       ]
     },
-    { "label": "About", "href": "/about" },
-    { "label": "News", "href": "/news" },
-    { "label": "Contact", "href": "/contact" }
+    { "key": "nav.about", "href": "/about" },
+    { "key": "nav.news", "href": "/news" },
+    { "key": "nav.contact", "href": "/contact" }
   ]
 }

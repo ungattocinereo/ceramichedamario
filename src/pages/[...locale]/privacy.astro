@@ -1,17 +1,24 @@
 ---
-import Layout from '../components/layout/Layout.astro';
-import siteConfig from '../data/site-config.json';
+import Layout from '../../components/layout/Layout.astro';
+import siteConfig from '../../data/site-config.json';
 import { House } from '@phosphor-icons/react';
+import { getLocaleStaticPaths, localizedPath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.props as { locale: Locale };
 ---
 
 <Layout
   title="Privacy Policy - Ceramiche Da Mario"
   description="Informativa sulla privacy ai sensi del Regolamento UE 2016/679 (GDPR) di Ceramiche Da Mario."
+  locale={locale}
 >
   <div class="max-w-3xl mx-auto px-6 py-12 lg:py-20">
     <!-- Breadcrumbs -->
     <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
-      <a href="/" class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> Home</a>
+      <a href={localizedPath(locale, '/')} class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> Home</a>
       <span class="mx-2">/</span>
       <span>Privacy Policy</span>
     </nav>

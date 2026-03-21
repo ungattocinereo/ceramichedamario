@@ -2,58 +2,24 @@
 import { Image } from 'astro:assets';
 import { getImage } from '../../utils/images';
 import { ForkKnife, FlowerLotus, Fish, Crown, Lamp, CirclesFour, FrameCorners } from '@phosphor-icons/react';
+import { defaultLocale, type Locale } from '../../i18n/config';
+import { useTranslations, localizedPath } from '../../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const t = useTranslations(locale);
 
 const categories = [
-  {
-    name: 'Ceramics',
-    slug: 'ceramics',
-    image: '/src/assets/images/index/ceramics.webp',
-    icon: CirclesFour,
-    gridClass: 'col-span-2 row-span-2',
-  },
-  {
-    name: "Moro's Heads",
-    slug: 'teste-di-moro',
-    image: '/src/assets/images/index/moros-heads.webp',
-    icon: Crown,
-    gridClass: 'col-span-2',
-    imgClass: 'object-bottom',
-  },
-  {
-    name: 'Table Lamps',
-    slug: 'lampadine',
-    image: '/src/assets/images/index/table-lamp.webp',
-    icon: Lamp,
-    gridClass: '',
-  },
-  {
-    name: 'Wall Plates',
-    slug: 'piatti-murali',
-    image: '/src/assets/images/index/wallplates.webp',
-    icon: FrameCorners,
-    gridClass: '',
-  },
-  {
-    name: 'Fishes Decor',
-    slug: 'pesci',
-    image: '/src/assets/images/index/fishes.webp',
-    icon: Fish,
-    gridClass: 'col-span-2',
-  },
-  {
-    name: 'Decoration',
-    slug: 'decor',
-    image: '/src/assets/images/index/decoration.webp',
-    icon: FlowerLotus,
-    gridClass: '',
-  },
-  {
-    name: 'Kitchen',
-    slug: 'kitchen',
-    image: '/src/assets/images/index/kitchen.webp',
-    icon: ForkKnife,
-    gridClass: '',
-  },
+  { name: t('cat.ceramics'), slug: 'ceramics', image: '/src/assets/images/index/ceramics.webp', icon: CirclesFour, gridClass: 'col-span-2 row-span-2' },
+  { name: t('cat.morosHeads'), slug: 'teste-di-moro', image: '/src/assets/images/index/moros-heads.webp', icon: Crown, gridClass: 'col-span-2', imgClass: 'object-bottom' },
+  { name: t('cat.tableLamps'), slug: 'lampadine', image: '/src/assets/images/index/table-lamp.webp', icon: Lamp, gridClass: '' },
+  { name: t('cat.wallPlates'), slug: 'piatti-murali', image: '/src/assets/images/index/wallplates.webp', icon: FrameCorners, gridClass: '' },
+  { name: t('cat.fishesDecor'), slug: 'pesci', image: '/src/assets/images/index/fishes.webp', icon: Fish, gridClass: 'col-span-2' },
+  { name: t('cat.decoration'), slug: 'decor', image: '/src/assets/images/index/decoration.webp', icon: FlowerLotus, gridClass: '' },
+  { name: t('cat.kitchen'), slug: 'kitchen', image: '/src/assets/images/index/kitchen.webp', icon: ForkKnife, gridClass: '' },
 ];
 
 const loaded = await Promise.all(
@@ -71,7 +37,7 @@ const loaded = await Promise.all(
         const Icon = cat.icon;
         return (
           <a
-            href={`/shop/${cat.slug}`}
+            href={localizedPath(locale, `/shop/${cat.slug}`)}
             class:list={[
               'relative group overflow-hidden rounded-xl',
               cat.gridClass,

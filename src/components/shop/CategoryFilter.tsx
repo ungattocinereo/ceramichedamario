@@ -2,32 +2,42 @@ interface Category {
   name: string;
   slug: string;
   count: number;
+  href?: string;
 }
 
 interface Props {
   categories: Category[];
   currentSlug?: string;
+  allProductsLabel?: string;
+  categoriesLabel?: string;
+  shopHref?: string;
 }
 
-export default function CategoryFilter({ categories, currentSlug }: Props) {
+export default function CategoryFilter({
+  categories,
+  currentSlug,
+  allProductsLabel = 'All Products',
+  categoriesLabel = 'Categories',
+  shopHref = '/shop',
+}: Props) {
   return (
     <aside className="w-full">
-      <h3 className="eyebrow mb-3">Categories</h3>
+      <h3 className="eyebrow mb-3">{categoriesLabel}</h3>
       <ul className="space-y-1">
         <li>
           <a
-            href="/shop"
+            href={shopHref}
             className={`block py-1.5 text-sm transition-colors ${
               !currentSlug ? 'text-primary font-bold' : 'text-gray-600 hover:text-primary'
             }`}
           >
-            All Products
+            {allProductsLabel}
           </a>
         </li>
         {categories.map((cat) => (
           <li key={cat.slug}>
             <a
-              href={`/shop/${cat.slug}`}
+              href={cat.href || `/shop/${cat.slug}`}
               className={`block py-1.5 text-sm transition-colors ${
                 currentSlug === cat.slug ? 'text-primary font-bold' : 'text-gray-600 hover:text-primary'
               }`}

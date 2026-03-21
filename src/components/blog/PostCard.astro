@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import { CalendarBlank } from '@phosphor-icons/react';
 import { getImage } from '../../utils/images';
+import { defaultLocale, localeConfig, type Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/utils';
 
 interface Props {
   slug: string;
@@ -9,12 +11,13 @@ interface Props {
   date: string;
   featuredImage?: string;
   excerpt?: string;
+  locale?: Locale;
 }
 
-const { slug, title, date, featuredImage, excerpt } = Astro.props;
+const { slug, title, date, featuredImage, excerpt, locale = defaultLocale } = Astro.props;
 
 const img = featuredImage ? await getImage(featuredImage) : null;
-const formattedDate = new Date(date).toLocaleDateString('en-US', {
+const formattedDate = new Date(date).toLocaleDateString(localeConfig[locale].dateLocale, {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -22,7 +25,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 ---
 
 <article class="group">
-  <a href={`/news/${slug}`} class="block">
+  <a href={localizedPath(locale, `/news/${slug}`)} class="block">
     {img ? (
       <div class="rounded-[10px] overflow-hidden mb-4 aspect-[3/2]">
         <Image

@@ -16,6 +16,11 @@ interface Testimonial {
 interface Props {
   testimonials: Testimonial[];
   photoSrc?: string;
+  eyebrow?: string;
+  headingStart?: string;
+  headingHighlight?: string;
+  headingEnd?: string;
+  googleReviewsLabel?: string;
 }
 
 function Stars({ count }: { count: number }) {
@@ -36,7 +41,13 @@ const langLabels: Record<string, string> = {
   ES: 'Español',
 };
 
-export default function Testimonials({ testimonials, photoSrc }: Props) {
+export default function Testimonials({
+  testimonials,
+  photoSrc,
+  eyebrow = "Opinion\u2019s important",
+  headingHighlight = 'speaking',
+  googleReviewsLabel = 'Google Reviews',
+}: Props) {
   const iconRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -68,7 +79,7 @@ export default function Testimonials({ testimonials, photoSrc }: Props) {
           src={photoSrc}
           alt=""
           aria-hidden="true"
-          className="hidden lg:block absolute top-1/2 right-8 w-[36%] max-w-[420px] pointer-events-none transition-transform duration-100 ease-out"
+          className="hidden lg:block absolute top-1/2 right-8 w-[47%] max-w-[555px] pointer-events-none transition-transform duration-100 ease-out"
           style={{ transform: 'translateY(-50%)' }}
           loading="lazy"
         />
@@ -77,13 +88,13 @@ export default function Testimonials({ testimonials, photoSrc }: Props) {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="max-w-2xl">
           <h5 className="eyebrow mb-2 text-black/70">
-            Opinion's important
+            {eyebrow}
           </h5>
           <h2
             className="text-[clamp(36px,5vw,55px)] font-normal mb-4 text-black"
             style={{ fontFamily: "'Pacifico', cursive", lineHeight: 1.3 }}
           >
-            Costumers <span className="underline-pacifico-accent--white">speaking</span> about us
+            Costumers <span className="underline-pacifico-accent--white">{headingHighlight}</span> about us
           </h2>
 
           <div className="mt-10" />
@@ -106,7 +117,7 @@ export default function Testimonials({ testimonials, photoSrc }: Props) {
                       <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                       <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                     </svg>
-                    <span className="text-xs font-bold text-black/70">Google Reviews</span>
+                    <span className="text-xs font-bold text-black/70">{googleReviewsLabel}</span>
                     <span className="text-black/15">|</span>
                     <Stars count={t.rating} />
                   </div>
