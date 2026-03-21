@@ -1,5 +1,9 @@
 node_modules/
 dist/
+dist-*/
+dist-live
+deploy.log
+.deploy.lock
 .astro/
 .DS_Store
 *.psd

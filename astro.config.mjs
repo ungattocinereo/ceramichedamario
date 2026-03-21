@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://ceramichedamario.com',
+  site: 'https://ceramichedamario.it',
   output: 'static',
   integrations: [
     react(),

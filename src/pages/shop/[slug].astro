@@ -46,7 +46,7 @@ const jsonLd = {
   "@type": "Product",
   "name": product.title,
   "description": product.excerpt || product.description?.replace(/<[^>]*>/g, ''),
-  "url": `https://ceramichedamario.com/shop/${product.slug}`,
+  "url": `https://ceramichedamario.it/shop/${product.slug}`,
   "brand": {
     "@type": "Brand",
     "name": "Ceramiche Da Mario"
@@ -91,9 +91,9 @@ const breadcrumbLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ceramichedamario.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://ceramichedamario.com/shop" },
-    ...(primaryCategory ? [{ "@type": "ListItem", "position": 3, "name": primaryCategory.name, "item": `https://ceramichedamario.com/shop/${primaryCategory.slug}` }] : []),
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ceramichedamario.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://ceramichedamario.it/shop" },
+    ...(primaryCategory ? [{ "@type": "ListItem", "position": 3, "name": primaryCategory.name, "item": `https://ceramichedamario.it/shop/${primaryCategory.slug}` }] : []),
     { "@type": "ListItem", "position": primaryCategory ? 4 : 3, "name": product.title },
   ],
 };

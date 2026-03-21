@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ceramichedamario.com/sitemap-index.xml
+Sitemap: https://ceramichedamario.it/sitemap-index.xml
