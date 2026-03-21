@@ -1,0 +1,107 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import siteConfig from '../data/site-config.json';
+import { House } from '@phosphor-icons/react';
+---
+
+<Layout
+  title="Return Policy - Ceramiche Da Mario"
+  description="Politica di reso e rimborso di Ceramiche Da Mario. Condizioni per il reso di prodotti ceramici artigianali."
+>
+  <div class="max-w-3xl mx-auto px-6 py-12 lg:py-20">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> Home</a>
+      <span class="mx-2">/</span>
+      <span>Return Policy</span>
+    </nav>
+
+    <h1 class="page-subtitle mb-8">Return Policy</h1>
+
+    <div class="prose prose-gray max-w-none space-y-6 text-muted leading-relaxed">
+
+      <p>
+        Politica di reso e rimborso ai sensi del D.Lgs. 206/2005 (Codice del Consumo) e della normativa vigente in materia di vendite a distanza.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">1. Natura del sito</h2>
+      <p>
+        Il sito <strong>ceramichedamario.it</strong> è una vetrina espositiva e <strong>non è un negozio online</strong>. Nessun acquisto avviene direttamente tramite il sito web. I prodotti sono esposti con prezzi indicativi (IVA inclusa) a scopo informativo.
+      </p>
+      <p>
+        Gli ordini vengono effettuati esclusivamente tramite contatto diretto con il negozio:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Telefono: <a href={`tel:${siteConfig.phone}`} class="text-primary hover:underline">{siteConfig.phone}</a></li>
+        <li>Email: <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline">{siteConfig.email}</a></li>
+        <li>Visita in negozio: {siteConfig.legal.registeredOffice}</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">2. Diritto di recesso</h2>
+      <p>
+        Per gli acquisti effettuati a distanza (ad esempio tramite ordine telefonico o via email), il consumatore ha diritto di recedere dal contratto entro <strong>14 giorni</strong> dalla ricezione del prodotto, ai sensi degli artt. 52-59 del D.Lgs. 206/2005 (Codice del Consumo), senza dover fornire alcuna motivazione.
+      </p>
+      <p>
+        Per esercitare il diritto di recesso, il consumatore deve inviare una comunicazione scritta a:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Email: <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline">{siteConfig.email}</a></li>
+        <li>PEC: <a href={`mailto:${siteConfig.legal.pec}`} class="text-primary hover:underline">{siteConfig.legal.pec}</a></li>
+      </ul>
+      <p>
+        La comunicazione deve contenere: nome e cognome, data dell'ordine, descrizione del prodotto e motivo del recesso (facoltativo).
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">3. Condizioni per il reso</h2>
+      <p>Il prodotto può essere restituito a condizione che:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Sia restituito integro e nella confezione originale, ove possibile</li>
+        <li>Non presenti segni di utilizzo, danneggiamento o alterazione</li>
+        <li>Sia rispedito entro 14 giorni dalla comunicazione di recesso</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">4. Prodotti personalizzati e su misura</h2>
+      <p>
+        Ai sensi dell'art. 59, comma 1, lett. c) del Codice del Consumo, il diritto di recesso <strong>non si applica</strong> ai prodotti confezionati su misura o chiaramente personalizzati. Trattandosi di ceramica artigianale, molti prodotti possono rientrare in questa categoria. La natura personalizzata del prodotto verrà comunicata al cliente prima della conferma dell'ordine.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">5. Rimborso</h2>
+      <p>
+        In caso di reso accettato, il rimborso verrà effettuato entro <strong>14 giorni</strong> dalla ricezione del prodotto restituito, utilizzando lo stesso metodo di pagamento impiegato per l'acquisto. Le spese di spedizione per la restituzione sono a carico del consumatore, salvo diverso accordo.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">6. Prodotti danneggiati durante la spedizione</h2>
+      <p>
+        Trattandosi di ceramica artigianale, ogni spedizione viene imballata con la massima cura. In caso di ricezione di un prodotto danneggiato durante il trasporto, il cliente deve:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Segnalare il danno al corriere al momento della consegna, apponendo riserva di controllo</li>
+        <li>Documentare il danno con fotografie del prodotto e dell'imballaggio</li>
+        <li>Contattare il negozio entro <strong>48 ore</strong> dalla ricezione, inviando le foto a <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline">{siteConfig.email}</a></li>
+      </ul>
+      <p>
+        In caso di danno verificato, provvederemo alla sostituzione del prodotto o al rimborso integrale, spese di spedizione incluse.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">7. Acquisti in negozio</h2>
+      <p>
+        Per gli acquisti effettuati direttamente presso il punto vendita di {siteConfig.address.city}, il diritto di recesso previsto dal Codice del Consumo per le vendite a distanza non si applica. Eventuali sostituzioni o resi saranno valutati caso per caso dal personale del negozio.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">8. Contatti</h2>
+      <p>Per qualsiasi domanda relativa alla politica di reso:</p>
+      <p>
+        <strong>{siteConfig.legal.companyName}</strong><br />
+        {siteConfig.legal.registeredOffice} — Italy<br />
+        Telefono: <a href={`tel:${siteConfig.phone}`} class="text-primary hover:underline">{siteConfig.phone}</a><br />
+        Email: <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline">{siteConfig.email}</a><br />
+        PEC: <a href={`mailto:${siteConfig.legal.pec}`} class="text-primary hover:underline">{siteConfig.legal.pec}</a>
+      </p>
+
+      <p class="text-sm text-muted/60 mt-8">
+        Ultimo aggiornamento: marzo 2026
+      </p>
+
+    </div>
+  </div>
+</Layout>

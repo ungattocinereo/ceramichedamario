@@ -9,7 +9,7 @@ import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin
       <!-- Col 1: Brand -->
       <div>
         <h3 class="text-xl font-bold mb-2">Ceramiche Da Mario</h3>
-        <p class="text-sm text-white/60 mb-4">Fine ceramics since 1960</p>
+        <p class="text-sm text-white/60 mb-4">Family-run ceramics shop in Praiano since 1960. Handmade and hand-painted Vietri ceramics — plates, décor, table lamps, and more. We ship worldwide.</p>
         <div class="flex gap-4">
           <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:opacity-70 transition-opacity">
             <InstagramLogo size={20} weight="fill" />
@@ -84,8 +84,20 @@ import { InstagramLogo, FacebookLogo, WhatsappLogo, GoogleLogo, Envelope, MapPin
     </div>
   </div>
 
-  <!-- Copyright -->
-  <div class="border-t border-white/10 py-4 text-center text-xs text-white/40">
-    <p>&copy; 2020-{new Date().getFullYear()} Ceramiche Da Mario. Praiano, Amalfi Coast, Italy.</p>
+  <!-- Copyright & Legal -->
+  <div class="border-t border-white/10 py-6 text-xs text-white/40">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-center gap-3 text-center md:text-left">
+      <div class="space-y-0.5">
+        <p>&copy; 2020-{new Date().getFullYear()} Ceramiche Da Mario. Praiano, Amalfi Coast, Italy.</p>
+        <p>{siteConfig.legal.companyName}</p>
+        <p>{siteConfig.legal.registeredOffice} — Italy</p>
+        <p>P.IVA / C.F.: {siteConfig.legal.vatId} | REA: {siteConfig.legal.rea}</p>
+      </div>
+      <div class="md:text-right">
+        <a href="/privacy" class="hover:text-white transition-colors underline">Privacy Policy</a>
+        <span class="mx-2">|</span>
+        <a href="/return-policy" class="hover:text-white transition-colors underline">Return Policy</a>
+      </div>
+    </div>
   </div>
 </footer>

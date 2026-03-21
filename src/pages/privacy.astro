@@ -1,0 +1,133 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import siteConfig from '../data/site-config.json';
+import { House } from '@phosphor-icons/react';
+---
+
+<Layout
+  title="Privacy Policy - Ceramiche Da Mario"
+  description="Informativa sulla privacy ai sensi del Regolamento UE 2016/679 (GDPR) di Ceramiche Da Mario."
+>
+  <div class="max-w-3xl mx-auto px-6 py-12 lg:py-20">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-muted mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary inline-flex items-center gap-1"><House size={14} /> Home</a>
+      <span class="mx-2">/</span>
+      <span>Privacy Policy</span>
+    </nav>
+
+    <h1 class="page-subtitle mb-8">Privacy Policy</h1>
+
+    <div class="prose prose-gray max-w-none space-y-6 text-muted leading-relaxed">
+
+      <p>
+        Informativa sulla privacy ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003 come modificato dal D.Lgs. 101/2018.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">1. Titolare del trattamento</h2>
+      <p>
+        Il titolare del trattamento dei dati personali è:<br />
+        <strong>{siteConfig.legal.companyName}</strong><br />
+        Sede legale: {siteConfig.legal.registeredOffice} — Italy<br />
+        P.IVA / C.F.: {siteConfig.legal.vatId}<br />
+        REA: {siteConfig.legal.rea}<br />
+        PEC: <a href={`mailto:${siteConfig.legal.pec}`} class="text-primary hover:underline">{siteConfig.legal.pec}</a><br />
+        Email: <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline">{siteConfig.email}</a><br />
+        Telefono: <a href={`tel:${siteConfig.phone}`} class="text-primary hover:underline">{siteConfig.phone}</a>
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">2. Dati raccolti</h2>
+      <p>
+        Questo sito raccoglie dati personali esclusivamente attraverso il modulo di contatto e di richiesta preventivo. I dati raccolti possono includere:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Nome e cognome</li>
+        <li>Indirizzo email</li>
+        <li>Numero di telefono</li>
+        <li>Contenuto del messaggio</li>
+      </ul>
+      <p>
+        Il conferimento dei dati è facoltativo, ma il mancato conferimento può rendere impossibile l'evasione della richiesta.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">3. Finalità del trattamento</h2>
+      <p>I dati personali sono trattati per le seguenti finalità:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Rispondere alle richieste di informazione e di preventivo inviate tramite il modulo di contatto</li>
+        <li>Gestire la comunicazione con il cliente</li>
+      </ul>
+      <p>
+        I dati <strong>non</strong> vengono utilizzati per finalità di marketing, profilazione o comunicazione commerciale non richiesta.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">4. Base giuridica</h2>
+      <p>
+        Il trattamento dei dati si basa sul consenso dell'interessato (Art. 6, comma 1, lett. a del GDPR), espresso al momento dell'invio del modulo di contatto, e sull'esecuzione di misure precontrattuali (Art. 6, comma 1, lett. b del GDPR).
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">5. Cookie e tecnologie di tracciamento</h2>
+      <p>
+        Questo sito <strong>non utilizza cookie di profilazione</strong> né strumenti di analisi del traffico (come Google Analytics). Non vengono installati cookie di terze parti a scopo pubblicitario.
+      </p>
+      <p>
+        Possono essere utilizzati esclusivamente cookie tecnici strettamente necessari al funzionamento del sito, che non richiedono il consenso dell'utente.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">6. Google Fonts</h2>
+      <p>
+        Questo sito utilizza il servizio Google Fonts per il caricamento dei caratteri tipografici. Quando si visita una pagina del sito, il browser potrebbe stabilire una connessione con i server di Google (Google LLC, USA), trasmettendo l'indirizzo IP dell'utente. Per maggiori informazioni, consultare la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Privacy Policy di Google</a>.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">7. Periodo di conservazione dei dati</h2>
+      <p>
+        I dati personali raccolti tramite il modulo di contatto saranno conservati per il tempo strettamente necessario a evadere la richiesta e, in ogni caso, per un periodo non superiore a 24 mesi dalla raccolta, salvo obblighi di legge che ne richiedano una conservazione più lunga.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">8. Comunicazione e diffusione dei dati</h2>
+      <p>
+        I dati personali non saranno comunicati a terzi, venduti o ceduti in alcun modo, salvo quanto necessario per l'adempimento di obblighi di legge. I dati non saranno oggetto di diffusione.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">9. Diritti dell'interessato</h2>
+      <p>
+        Ai sensi degli articoli 15-22 del GDPR, l'interessato ha il diritto di:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Accesso</strong> — ottenere conferma dell'esistenza di dati personali che lo riguardano e la loro comunicazione in forma intelligibile</li>
+        <li><strong>Rettifica</strong> — ottenere l'aggiornamento, la rettifica o l'integrazione dei dati</li>
+        <li><strong>Cancellazione</strong> — ottenere la cancellazione dei dati (diritto all'oblio)</li>
+        <li><strong>Limitazione</strong> — ottenere la limitazione del trattamento</li>
+        <li><strong>Portabilità</strong> — ricevere i dati in un formato strutturato, di uso comune e leggibile da dispositivo automatico</li>
+        <li><strong>Opposizione</strong> — opporsi al trattamento dei propri dati personali</li>
+        <li><strong>Revoca del consenso</strong> — revocare il consenso in qualsiasi momento, senza pregiudicare la liceità del trattamento basato sul consenso prestato prima della revoca</li>
+      </ul>
+      <p>
+        Per esercitare tali diritti, è possibile contattare il titolare del trattamento all'indirizzo email <a href={`mailto:${siteConfig.email}`} class="text-primary hover:underline">{siteConfig.email}</a> o alla PEC <a href={`mailto:${siteConfig.legal.pec}`} class="text-primary hover:underline">{siteConfig.legal.pec}</a>.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">10. Prezzi e IVA</h2>
+      <p>
+        Tutti i prezzi indicati sul sito sono da intendersi IVA inclusa, ove applicabile, ai sensi della normativa vigente.
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">11. Autorità di controllo</h2>
+      <p>
+        L'interessato ha il diritto di proporre reclamo all'autorità di controllo competente:
+      </p>
+      <p>
+        <strong>Garante per la protezione dei dati personali</strong><br />
+        Piazza Venezia 11, 00187 Roma<br />
+        <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">www.garanteprivacy.it</a>
+      </p>
+
+      <h2 class="text-lg font-semibold text-heading-blue mt-8 mb-3">12. Aggiornamenti</h2>
+      <p>
+        La presente informativa può essere soggetta ad aggiornamenti. L'utente è invitato a consultare periodicamente questa pagina per prendere visione dell'informativa più recente.
+      </p>
+      <p class="text-sm text-muted/60 mt-8">
+        Ultimo aggiornamento: marzo 2026
+      </p>
+
+    </div>
+  </div>
+</Layout>
