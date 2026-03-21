@@ -2,102 +2,326 @@
 import { Image } from 'astro:assets';
 import MobileNav from './MobileNav.tsx';
 import navigation from '../../data/navigation.json';
-import { CaretDown, CaretRight, List } from '@phosphor-icons/react';
+import {
+  CaretDown,
+  List,
+  InstagramLogo,
+  Phone,
+  Flower,
+  ForkKnife,
+  FlowerLotus,
+  Storefront,
+  Rainbow,
+  CirclesFour,
+  Crown,
+  Scroll,
+  PottedPlant,
+  Fish,
+  Star,
+  SunHorizon,
+  Mountains,
+  LampPendant,
+  Umbrella,
+  Lamp,
+  FrameCorners,
+} from '@phosphor-icons/react';
 
-const logoBlack = (await import('../../assets/logo-blue-optimized.svg')).default;
+interface Props {
+  isHeroPage?: boolean;
+}
+
+const { isHeroPage = false } = Astro.props;
+
+const logoWhite = (await import('../../assets/logo-white.svg')).default;
+const logoSign = (await import('../../assets/logo-sign.svg')).default;
+const textMono = (await import('../../assets/text-monocolor.svg')).default;
 const currentPath = Astro.url.pathname;
+
+const iconMap: Record<string, any> = {
+  Flower, ForkKnife, FlowerLotus, Storefront,
+  Rainbow, CirclesFour, Crown, Scroll,
+  PottedPlant, Fish, Star, SunHorizon,
+  Mountains, LampPendant, Umbrella, Lamp, FrameCorners,
+};
+
+const shopItem = navigation.main.find((i: any) => i.megaMenu);
 ---
 
-<header class="bg-white relative z-50">
-  <!-- Logo row -->
-  <div class="flex justify-center py-4 px-6">
-    <a href="/" aria-label="Ceramiche Da Mario — Home">
-      <Image
-        src={logoBlack}
-        alt="Ceramiche Da Mario"
-        height={60}
-        class="h-[60px] w-auto"
-      />
-    </a>
-  </div>
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50"
+  data-hero-page={isHeroPage ? 'true' : 'false'}
+>
+  <!-- ====== TOP STATE (transparent, hero pages only) ====== -->
+  <div
+    id="header-top"
+    class:list={[
+      'header-state absolute inset-x-0 top-0',
+      isHeroPage ? 'opacity-100' : 'opacity-0 pointer-events-none',
+    ]}
+  >
+    <!-- Gradient overlay for readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent pointer-events-none"></div>
 
-  <!-- Desktop nav -->
-  <nav class="hidden lg:block border-t border-gray-100" aria-label="Main navigation">
-    <ul class="flex justify-center items-center gap-8 py-3 text-base">
-      {navigation.main.map((item) => (
-        <li class="relative group">
-          <a
-            href={item.href}
-            class:list={[
-              'px-2 py-1 transition-colors hover:text-primary',
-              currentPath === item.href && 'text-primary font-bold',
-            ]}
-          >
-            {item.label}
-            {item.children && (
-              <CaretDown size={12} className="inline-block ml-1 -mt-0.5" />
-            )}
-          </a>
+    <div class="relative">
+      <!-- Logo row -->
+      <div class="flex justify-center pt-5 pb-2 px-6">
+        <a href="/" aria-label="Ceramiche Da Mario — Home">
+          <Image
+            src={logoWhite}
+            alt="Ceramiche Da Mario"
+            height={60}
+            class="h-[60px] w-auto"
+          />
+        </a>
+      </div>
 
-          {/* Dropdown */}
-          {item.children && (
-            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <ul class="bg-white shadow-lg rounded-lg py-2 min-w-[200px] border border-gray-100">
-                {item.children.map((child) => (
-                  <li>
-                    {child.children ? (
-                      <div class="relative group/sub">
-                        <span class="block px-4 py-2 text-sm hover:bg-gray-50 cursor-default flex justify-between items-center">
-                          {child.label}
-                          <CaretRight size={12} />
-                        </span>
-                        <ul class="absolute left-full top-0 bg-white shadow-lg rounded-lg py-2 min-w-[180px] border border-gray-100 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
-                          {child.children.map((sub) => (
-                            <li>
-                              <a href={sub.href} class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-primary transition-colors">
-                                {sub.label}
-                              </a>
-                            </li>
-                          ))}
+      <!-- Desktop nav -->
+      <nav class="hidden lg:block" aria-label="Main navigation">
+        <ul class="flex justify-center items-center gap-8 py-2 text-base">
+          {navigation.main.map((item: any) => (
+            <li class:list={['relative', item.megaMenu && 'group']}>
+              <a
+                href={item.href}
+                class:list={[
+                  'px-2 py-1 text-white/90 transition-colors hover:text-white',
+                  currentPath === item.href && 'text-white font-bold',
+                ]}
+              >
+                {item.label}
+                {item.megaMenu && (
+                  <CaretDown size={12} className="inline-block ml-1 -mt-0.5" />
+                )}
+              </a>
+
+              {/* Mega dropdown (shared markup, rendered inside top state) */}
+              {item.megaMenu && (
+                <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-50">
+                  {/* Hover bridge */}
+                  <div class="absolute -top-3 left-0 right-0 h-3"></div>
+                  <div class="mega-dropdown bg-white shadow-2xl rounded-xl p-6 w-[min(1100px,92vw)] origin-top scale-[0.97] group-hover:scale-100 transition-transform duration-300 ease-out">
+                    <div class="flex gap-8">
+                      {/* Categories */}
+                      <div class="w-[240px] shrink-0 border-r border-gray-100 pr-6">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Categories</h3>
+                        <ul class="space-y-1">
+                          {shopItem?.categories?.map((cat: any) => {
+                            const Icon = iconMap[cat.icon];
+                            return (
+                              <li>
+                                <a href={cat.href} class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-base font-bold text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">
+                                  {Icon && <Icon size={20} className="text-[#263A81]" />}
+                                  {cat.label}
+                                </a>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
-                    ) : (
-                      <a href={child.href} class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-primary transition-colors">
-                        {child.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </li>
-      ))}
-    </ul>
-  </nav>
 
-  <!-- Mobile hamburger button -->
-  <button
-    id="mobile-menu-toggle"
-    class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 p-2 z-50"
-    aria-label="Open menu"
-    aria-expanded="false"
+                      {/* Collections */}
+                      <div class="flex-1">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Collections</h3>
+                        <div class="grid grid-cols-3 xl:grid-cols-4 gap-1">
+                          {shopItem?.collections?.map((col: any) => {
+                            const Icon = iconMap[col.icon];
+                            return (
+                              <a href={col.href} class="flex items-center gap-2.5 px-3 py-2.5 h-[44px] rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors whitespace-nowrap">
+                                {Icon && <Icon size={16} className="text-gray-400 shrink-0" />}
+                                {col.label}
+                              </a>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Right icons (white) -->
+      <div class="hidden lg:flex absolute right-6 top-6 items-center gap-4">
+        <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener" aria-label="Instagram" class="text-white/80 hover:text-white transition-colors">
+          <InstagramLogo size={22} weight="bold" />
+        </a>
+        <a href="/contact" aria-label="Contact" class="text-white/80 hover:text-white transition-colors">
+          <Phone size={22} weight="bold" />
+        </a>
+      </div>
+
+      <!-- Mobile hamburger (white) -->
+      <button
+        id="mobile-menu-toggle-top"
+        class:list={[
+          'lg:hidden absolute right-4 top-6 p-2 z-50 text-white mobile-menu-toggle',
+          !isHeroPage && 'hidden',
+        ]}
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <List size={26} weight="bold" />
+      </button>
+    </div>
+  </div>
+
+  <!-- ====== SCROLLED STATE (compact, always available) ====== -->
+  <div
+    id="header-scrolled"
+    class:list={[
+      'header-state absolute inset-x-0 top-0',
+      isHeroPage ? 'opacity-0 pointer-events-none' : 'opacity-100',
+    ]}
   >
-    <List size={24} />
-  </button>
+    <div class="bg-white/95 backdrop-blur-md shadow-sm">
+      <div class="flex items-center justify-between h-[72px] px-6 max-w-7xl mx-auto">
+        <!-- Left: logo -->
+        <a href="/" aria-label="Ceramiche Da Mario — Home" class="flex items-center gap-2">
+          <Image src={logoSign} alt="" height={36} class="h-[36px] w-auto" />
+          <Image src={textMono} alt="Ceramiche Da Mario" height={30} class="h-[30px] w-auto hidden sm:block" />
+        </a>
+
+        <!-- Center: desktop nav -->
+        <nav class="hidden lg:block" aria-label="Main navigation">
+          <ul class="flex items-center gap-7 text-[15px]">
+            {navigation.main.map((item: any) => (
+              <li class:list={['relative', item.megaMenu && 'group']}>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'px-2 py-1 text-gray-700 transition-colors hover:text-primary',
+                    currentPath === item.href && 'text-primary font-bold',
+                  ]}
+                >
+                  {item.label}
+                  {item.megaMenu && (
+                    <CaretDown size={12} className="inline-block ml-1 -mt-0.5" />
+                  )}
+                </a>
+
+                {/* Mega dropdown (scrolled version) */}
+                {item.megaMenu && (
+                  <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible z-50">
+                    <div class="absolute -top-3 left-0 right-0 h-3"></div>
+                    <div class="mega-dropdown bg-white shadow-2xl rounded-xl p-6 w-[min(1100px,92vw)]">
+                      <div class="flex gap-8">
+                        {/* Categories */}
+                        <div class="w-[240px] shrink-0 border-r border-gray-100 pr-6">
+                          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Categories</h3>
+                          <ul class="space-y-1">
+                            {shopItem?.categories?.map((cat: any) => {
+                              const Icon = iconMap[cat.icon];
+                              return (
+                                <li>
+                                  <a href={cat.href} class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors">
+                                    {Icon && <Icon size={20} className="text-gray-400" />}
+                                    {cat.label}
+                                  </a>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+
+                        {/* Collections */}
+                        <div class="flex-1">
+                          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Collections</h3>
+                          <div class="grid grid-cols-3 xl:grid-cols-4 gap-1">
+                            {shopItem?.collections?.map((col: any) => {
+                              const Icon = iconMap[col.icon];
+                              return (
+                                <a href={col.href} class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors">
+                                  {Icon && <Icon size={16} className="text-gray-400 shrink-0" />}
+                                  {col.label}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <!-- Right: icons (dark) -->
+        <div class="hidden lg:flex items-center gap-4">
+          <a href="https://www.instagram.com/ceramichedamariopraiano/" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-500 hover:text-primary transition-colors">
+            <InstagramLogo size={22} weight="bold" />
+          </a>
+          <a href="/contact" aria-label="Contact" class="text-gray-500 hover:text-primary transition-colors">
+            <Phone size={22} weight="bold" />
+          </a>
+        </div>
+
+        <!-- Mobile hamburger (dark) -->
+        <button
+          id="mobile-menu-toggle-scrolled"
+          class="lg:hidden p-2 text-gray-700 mobile-menu-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <List size={26} weight="bold" />
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Mobile nav (React island) -->
   <MobileNav client:load />
 </header>
 
 <script>
-  function setupMobileMenu() {
-    const toggle = document.getElementById('mobile-menu-toggle');
-    if (!toggle) return;
-    toggle.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('toggle-mobile-nav'));
+  function setupHeader() {
+    const header = document.getElementById('site-header');
+    const topState = document.getElementById('header-top');
+    const scrolledState = document.getElementById('header-scrolled');
+    if (!header || !topState || !scrolledState) return;
+
+    const isHeroPage = header.dataset.heroPage === 'true';
+    const SCROLL_THRESHOLD = 80;
+
+    function update() {
+      const scrolled = window.scrollY > SCROLL_THRESHOLD;
+
+      if (isHeroPage) {
+        if (scrolled) {
+          topState.classList.add('opacity-0', 'pointer-events-none');
+          topState.classList.remove('opacity-100');
+          scrolledState.classList.add('opacity-100');
+          scrolledState.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          topState.classList.remove('opacity-0', 'pointer-events-none');
+          topState.classList.add('opacity-100');
+          scrolledState.classList.remove('opacity-100');
+          scrolledState.classList.add('opacity-0', 'pointer-events-none');
+        }
+      } else {
+        topState.classList.add('opacity-0', 'pointer-events-none');
+        topState.classList.remove('opacity-100');
+        scrolledState.classList.add('opacity-100');
+        scrolledState.classList.remove('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+
+    // Mobile menu toggles
+    const toggles = document.querySelectorAll('.mobile-menu-toggle');
+    toggles.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('toggle-mobile-nav'));
+      });
     });
   }
-  setupMobileMenu();
-  document.addEventListener('astro:page-load', setupMobileMenu);
+
+  setupHeader();
+  document.addEventListener('astro:page-load', setupHeader);
 </script>

@@ -4,19 +4,27 @@
     {
       "label": "Shop",
       "href": "/shop",
-      "children": [
-        { "label": "Fine Ceramics", "href": "/shop/ceramics" },
-        { "label": "Kitchen Objects", "href": "/shop/kitchen" },
-        { "label": "Decoration", "href": "/shop/decor" },
-        {
-          "label": "Collections",
-          "children": [
-            { "label": "Linea Arcobaleno", "href": "/shop/arcobaleno" },
-            { "label": "Linea Piazzetta", "href": "/shop/linea-piazzetta" },
-            { "label": "Moro's Heads", "href": "/shop/teste-di-moro" }
-          ]
-        },
-        { "label": "All Products", "href": "/shop" }
+      "megaMenu": true,
+      "categories": [
+        { "label": "Fine Ceramics", "href": "/shop/ceramics", "icon": "Flower" },
+        { "label": "Kitchen Objects", "href": "/shop/kitchen", "icon": "ForkKnife" },
+        { "label": "Decoration", "href": "/shop/decor", "icon": "FlowerLotus" },
+        { "label": "All Products", "href": "/shop", "icon": "Storefront" }
+      ],
+      "collections": [
+        { "label": "Arcobaleno", "href": "/shop/arcobaleno", "icon": "Rainbow" },
+        { "label": "Piazzetta", "href": "/shop/linea-piazzetta", "icon": "CirclesFour" },
+        { "label": "Moro's Heads", "href": "/shop/teste-di-moro", "icon": "Crown" },
+        { "label": "Barocco", "href": "/shop/barocco", "icon": "Scroll" },
+        { "label": "Cachepot", "href": "/shop/cachepot", "icon": "PottedPlant" },
+        { "label": "Fishes Decor", "href": "/shop/pesci", "icon": "Fish" },
+        { "label": "Vietri", "href": "/shop/vietri-collection", "icon": "Star" },
+        { "label": "Praia", "href": "/shop/praia-collection", "icon": "SunHorizon" },
+        { "label": "Praiano", "href": "/shop/praiano-collection", "icon": "Mountains" },
+        { "label": "Abat-jour", "href": "/shop/abat-jour", "icon": "LampPendant" },
+        { "label": "Umbrella Stands", "href": "/shop/handmade-ceramic-umbrella-stand", "icon": "Umbrella" },
+        { "label": "Table Lamps", "href": "/shop/lampadine", "icon": "Lamp" },
+        { "label": "Wall Plates", "href": "/shop/piatti-murali", "icon": "FrameCorners" }
       ]
     },
     { "label": "About", "href": "/about" },

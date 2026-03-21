@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   jsonLd?: Record<string, unknown>;
+  isHeroPage?: boolean;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   ogImage = '/og-image.jpg',
   canonicalUrl,
   jsonLd,
+  isHeroPage = false,
 } = Astro.props;
 
 const siteUrl = 'https://ceramichedamario.it';
@@ -96,8 +98,8 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteU
     })} />
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
-    <main class="flex-1">
+    <Header isHeroPage={isHeroPage} />
+    <main class:list={['flex-1', !isHeroPage && 'pt-[72px]']}>
       <slot />
     </main>
     <Footer />

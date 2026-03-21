@@ -25,6 +25,7 @@
 /* Base styles */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -218,6 +219,16 @@ h5, .h5 {
     transform: none;
     transition: none;
   }
+}
+
+/* Header state transitions */
+.header-state {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Mega-dropdown hover bridge */
+.mega-dropdown {
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* Shape divider */

@@ -119,7 +119,7 @@ export default function HeroSlider({ slides }: Props) {
   }, []);
 
   return (
-    <section className="relative h-[785px] max-h-[90vh]">
+    <section className="relative h-screen">
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="fade"
