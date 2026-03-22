@@ -90,6 +90,15 @@ const cookieLabels = {
       rel="stylesheet"
     />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7Z0R0WJ6L"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-D7Z0R0WJ6L');
+    </script>
+
     <!-- JSON-LD -->
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
