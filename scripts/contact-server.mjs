@@ -191,15 +191,16 @@ const server = createServer(async (req, res) => {
     if (uaStr.includes("Linux")) return "Linux";
     return "—";
   }
-  const browser = parseBrowser(meta.userAgent || "");
-  const os = parseOS(meta.userAgent || "");
-  const isMobile = /Mobile|iPhone|Android/.test(meta.userAgent || "") ? "📱 Mobile" : "🖥 Desktop";
+  const rawUA = meta.userAgent || req.headers["user-agent"] || "";
+  const browser = parseBrowser(rawUA);
+  const os = parseOS(rawUA);
+  const isMobile = /Mobile|iPhone|Android/.test(rawUA) ? "📱 Mobile" : "🖥 Desktop";
 
   const html = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
-      <div style="text-align: center; padding: 24px 0 16px;">
-        <img src="https://ceramichedamario.it/favicon-512.png" alt="Ceramiche Da Mario" width="64" height="64" style="border-radius: 12px;" />
-      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="padding: 24px 0 16px;">
+        <img src="https://ceramichedamario.it/favicon-512.png" alt="Ceramiche Da Mario" width="64" height="64" style="border-radius: 12px; display: block; margin: 0 auto;" />
+      </td></tr></table>
       <h2 style="color: #1440e0; border-bottom: 2px solid #1440e0; padding-bottom: 8px; margin: 0 0 16px;">
         Nuovo messaggio dal sito
       </h2>
