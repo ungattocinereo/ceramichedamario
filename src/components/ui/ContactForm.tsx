@@ -171,7 +171,7 @@ export default function ContactForm({ prefilledProduct, whatsappUrl, labels: lab
           <label htmlFor="phone" className="block text-sm font-bold text-gray-700 mb-1.5">
             {l.phone} <span className="text-red-400">*</span>
           </label>
-          <input type="tel" id="phone" name="phone" required placeholder={l.phonePlaceholder} className={errors.phone ? inputError : inputNormal} />
+          <input type="tel" id="phone" name="phone" required autoComplete="tel" placeholder={l.phonePlaceholder} className={errors.phone ? inputError : inputNormal} />
           {errors.phone && <p className="text-red-500 text-xs mt-1.5">{errors.phone}</p>}
         </div>
       </div>
