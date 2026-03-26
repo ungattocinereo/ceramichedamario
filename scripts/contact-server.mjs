@@ -192,7 +192,7 @@ const server = createServer(async (req, res) => {
 
   try {
     const result = await resend.emails.send({
-      from: "Ceramiche Da Mario <onboarding@resend.dev>",
+      from: "Ceramiche Da Mario <noreply@ceramichedamario.it>",
       to: CONTACT_EMAIL_TO,
       reply_to: email,
       subject: `Nuovo messaggio dal sito: ${name || "Anonimo"}`,
