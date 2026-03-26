@@ -161,32 +161,73 @@ const server = createServer(async (req, res) => {
   const safeMessage = escapeHtml(message || "").replace(/\n/g, "<br>");
   const timestamp = new Date().toLocaleString("it-IT", { timeZone: "Europe/Rome" });
 
+  // Parse client metadata
+  let meta = {};
+  try { meta = JSON.parse(body._meta || "{}"); } catch {}
+  const ua = escapeHtml(meta.userAgent || req.headers["user-agent"] || "");
+  const lang = escapeHtml(meta.languages || meta.language || req.headers["accept-language"]?.split(",")[0] || "");
+  const tz = escapeHtml(meta.timezone || "");
+  const page = escapeHtml(meta.page || "");
+  const referrer = escapeHtml(meta.referrer || req.headers["referer"] || "");
+  const screen = meta.screenWidth ? `${meta.screenWidth}×${meta.screenHeight}` : "";
+  const clientIp = escapeHtml(req.headers["x-forwarded-for"]?.split(",")[0]?.trim() || req.socket.remoteAddress || "");
+
+  // Parse browser name from UA
+  function parseBrowser(uaStr) {
+    if (!uaStr) return "—";
+    if (uaStr.includes("Firefox/")) return "Firefox";
+    if (uaStr.includes("Edg/")) return "Edge";
+    if (uaStr.includes("OPR/") || uaStr.includes("Opera")) return "Opera";
+    if (uaStr.includes("Chrome/") && uaStr.includes("Safari/")) return "Chrome";
+    if (uaStr.includes("Safari/") && !uaStr.includes("Chrome")) return "Safari";
+    return uaStr.slice(0, 50);
+  }
+  function parseOS(uaStr) {
+    if (!uaStr) return "—";
+    if (uaStr.includes("iPhone") || uaStr.includes("iPad")) return "iOS";
+    if (uaStr.includes("Android")) return "Android";
+    if (uaStr.includes("Mac OS")) return "macOS";
+    if (uaStr.includes("Windows")) return "Windows";
+    if (uaStr.includes("Linux")) return "Linux";
+    return "—";
+  }
+  const browser = parseBrowser(meta.userAgent || "");
+  const os = parseOS(meta.userAgent || "");
+  const isMobile = /Mobile|iPhone|Android/.test(meta.userAgent || "") ? "📱 Mobile" : "🖥 Desktop";
+
   const html = `
-    <div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #1440e0; border-bottom: 2px solid #1440e0; padding-bottom: 8px;">
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+      <div style="text-align: center; padding: 24px 0 16px;">
+        <img src="https://ceramichedamario.it/favicon-512.png" alt="Ceramiche Da Mario" width="64" height="64" style="border-radius: 12px;" />
+      </div>
+      <h2 style="color: #1440e0; border-bottom: 2px solid #1440e0; padding-bottom: 8px; margin: 0 0 16px;">
         Nuovo messaggio dal sito
       </h2>
-      <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+      <table style="width: 100%; border-collapse: collapse;">
         <tr>
-          <td style="padding: 8px 12px; font-weight: bold; color: #555; width: 120px; vertical-align: top;">Nome</td>
-          <td style="padding: 8px 12px;">${safeName}</td>
+          <td style="padding: 10px 12px; font-weight: bold; color: #555; width: 120px; vertical-align: top;">Nome</td>
+          <td style="padding: 10px 12px;">${safeName}</td>
         </tr>
         <tr style="background: #f9f9f9;">
-          <td style="padding: 8px 12px; font-weight: bold; color: #555; vertical-align: top;">Email</td>
-          <td style="padding: 8px 12px;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
+          <td style="padding: 10px 12px; font-weight: bold; color: #555; vertical-align: top;">Email</td>
+          <td style="padding: 10px 12px;"><a href="mailto:${safeEmail}" style="color: #1440e0;">${safeEmail}</a></td>
         </tr>
         <tr>
-          <td style="padding: 8px 12px; font-weight: bold; color: #555; vertical-align: top;">Telefono</td>
-          <td style="padding: 8px 12px;"><a href="tel:${safePhone}">${safePhone}</a></td>
+          <td style="padding: 10px 12px; font-weight: bold; color: #555; vertical-align: top;">Telefono</td>
+          <td style="padding: 10px 12px;"><a href="tel:${safePhone}" style="color: #1440e0;">${safePhone}</a></td>
         </tr>
         <tr style="background: #f9f9f9;">
-          <td style="padding: 8px 12px; font-weight: bold; color: #555; vertical-align: top;">Messaggio</td>
-          <td style="padding: 8px 12px;">${safeMessage || "<em>Nessun messaggio</em>"}</td>
+          <td style="padding: 10px 12px; font-weight: bold; color: #555; vertical-align: top;">Messaggio</td>
+          <td style="padding: 10px 12px;">${safeMessage || "<em style='color:#999;'>Nessun messaggio</em>"}</td>
         </tr>
       </table>
-      <p style="color: #999; font-size: 12px; margin-top: 24px;">
-        Inviato il ${timestamp} dal sito ceramichedamario.it
-      </p>
+
+      <div style="margin-top: 28px; padding: 14px 16px; background: #f5f5f7; border-radius: 8px; font-size: 11px; color: #888; line-height: 1.7;">
+        <strong style="color: #666; font-size: 11px;">Dettagli visitatore</strong><br>
+        ${isMobile} · ${browser} / ${os}${screen ? ` · ${screen}` : ""}<br>
+        ${lang ? `🌐 Lingua: ${lang}<br>` : ""}${tz ? `🕐 Fuso orario: ${tz}<br>` : ""}${page ? `📄 Pagina: ${escapeHtml("https://ceramichedamario.it")}${page}<br>` : ""}${referrer ? `↩ Referrer: ${referrer}<br>` : ""}${clientIp ? `🔗 IP: ${clientIp}<br>` : ""}
+        📅 Inviato: ${timestamp}
+      </div>
     </div>
   `;
 

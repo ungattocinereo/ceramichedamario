@@ -85,6 +85,17 @@ export default function ContactForm({ prefilledProduct, whatsappUrl, labels: lab
       const data: Record<string, string> = {};
       form.forEach((val, key) => { data[key] = val as string; });
 
+      data._meta = JSON.stringify({
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        languages: navigator.languages?.join(', '),
+        referrer: document.referrer || undefined,
+        page: window.location.pathname,
+        screenWidth: screen.width,
+        screenHeight: screen.height,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      });
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         body: JSON.stringify(data),
