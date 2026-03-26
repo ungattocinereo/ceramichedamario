@@ -82,10 +82,13 @@ export default function ContactForm({ prefilledProduct, whatsappUrl, labels: lab
     setStatus('submitting');
 
     try {
-      const res = await fetch(e.currentTarget.action, {
+      const data: Record<string, string> = {};
+      form.forEach((val, key) => { data[key] = val as string; });
+
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: form,
-        headers: { Accept: 'application/json' },
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
       });
 
       if (res.ok) {
@@ -131,7 +134,7 @@ export default function ContactForm({ prefilledProduct, whatsappUrl, labels: lab
   return (
     <form
       onSubmit={handleSubmit}
-      action="https://formspree.io/f/placeholder"
+      action="/api/contact"
       method="POST"
       className="space-y-5"
       noValidate
