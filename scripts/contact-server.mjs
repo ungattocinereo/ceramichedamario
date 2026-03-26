@@ -21,7 +21,10 @@ try {
 } catch {}
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO || "info@ceramichedamario.it";
+const CONTACT_EMAIL_TO = (process.env.CONTACT_EMAIL_TO || "info@ceramichedamario.it")
+  .split(",")
+  .map((e) => e.trim())
+  .filter(Boolean);
 const PORT = parseInt(process.env.CONTACT_PORT || "9001", 10);
 const HOST = "127.0.0.1";
 const ALLOWED_ORIGINS = [
@@ -190,7 +193,7 @@ const server = createServer(async (req, res) => {
   try {
     await resend.emails.send({
       from: "Ceramiche Da Mario <noreply@ceramichedamario.it>",
-      to: [CONTACT_EMAIL_TO],
+      to: CONTACT_EMAIL_TO,
       reply_to: email,
       subject: `Nuovo messaggio dal sito: ${name || "Anonimo"}`,
       html,
