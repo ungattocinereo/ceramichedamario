@@ -75,10 +75,10 @@ const jsonLd = {
     <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 to-transparent"></div>
   </section>
 
-  <WaveDivider fill="#faf7f2" class="-mt-[50px] relative z-10" />
+  <WaveDivider fill="#ffffff" class="-mt-[50px] relative z-10" />
 
   <!-- MAIN CONTENT -->
-  <section class="bg-[#faf7f2] py-14 lg:py-20">
+  <section class="bg-white py-14 lg:py-20">
     <div class="max-w-7xl mx-auto px-6">
 
       <!-- Mobile quick-contact buttons -->
@@ -104,11 +104,11 @@ const jsonLd = {
       </div>
 
       <!-- Two-column grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-0">
 
         <!-- LEFT: FORM CARD (3/5) -->
-        <div class="lg:col-span-3" data-animate="fade-in-from-bottom">
-          <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm">
+        <div class="lg:col-span-3 lg:pr-10 lg:border-r lg:border-gray-100" data-animate="fade-in-from-bottom">
+          <div class="p-2 sm:p-4">
             <p class="eyebrow text-orange mb-2">{t('contact.sendRequest')}</p>
             <h2 class="page-subtitle text-heading-blue text-[clamp(28px,3vw,40px)] mb-2">
               {t('contact.writeToUs')}
@@ -127,22 +127,22 @@ const jsonLd = {
         </div>
 
         <!-- RIGHT: CONTACT INFO (2/5) -->
-        <div class="lg:col-span-2 space-y-4" data-animate="fade-in-from-bottom" style="transition-delay:0.15s">
+        <div class="lg:col-span-2 lg:pl-10 space-y-4" data-animate="fade-in-from-bottom" style="transition-delay:0.15s">
 
           <!-- WhatsApp hero card (desktop) -->
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-4 bg-[#25D366] text-white rounded-2xl p-6 shadow-lg hover:shadow-xl hover:bg-[#20bd5a] transition-all group">
-            <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <WhatsappLogo size={28} weight="fill" />
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-4 border border-gray-100 rounded-2xl p-5 hover:border-[#25D366]/30 hover:bg-[#25D366]/3 transition-all group">
+            <div class="w-11 h-11 rounded-full bg-[#25D366]/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <WhatsappLogo size={22} weight="fill" className="text-[#25D366]" />
             </div>
             <div>
-              <p class="font-bold text-lg">{t('contact.whatsappCard')}</p>
-              <p class="text-white/85 text-sm">{t('contact.whatsappCardSub')}</p>
+              <p class="font-bold text-gray-800">{t('contact.whatsappCard')}</p>
+              <p class="text-gray-400 text-sm">{t('contact.whatsappCardSub')}</p>
             </div>
-            <ArrowRight size={20} className="ml-auto opacity-60 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} className="ml-auto text-gray-300 group-hover:text-[#25D366] group-hover:translate-x-1 transition-all" />
           </a>
 
           <!-- Contact details card -->
-          <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <div class="border border-gray-100 rounded-2xl p-6">
             <div class="space-y-5">
               <div class="flex items-start gap-4">
                 <div class="w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center shrink-0 mt-0.5">
@@ -202,22 +202,28 @@ const jsonLd = {
           </div>
 
           <!-- Opening hours card -->
-          <div class="bg-heading-blue rounded-2xl p-6 text-white">
-            <div class="flex items-center gap-3 mb-4">
-              <Clock size={20} weight="fill" />
-              <p class="font-bold">{t('contact.openingHours')}</p>
+          <div class="border border-gray-100 rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-5">
+              <Clock size={20} weight="fill" className="text-primary" />
+              <p class="font-bold text-gray-800">{t('contact.openingHours')}</p>
             </div>
-            <div class="space-y-2 text-sm text-white/85">
-              <div class="flex justify-between">
-                <span>{t('contact.mondaySaturday')}</span>
-                <span class="font-bold text-white">9:00 – 20:00</span>
-              </div>
-              <div class="flex justify-between">
-                <span>{t('contact.sunday')}</span>
-                <span class="font-bold text-white">10:00 – 18:00</span>
-              </div>
+            <div class="space-y-2.5 text-sm">
+              {[
+                t('contact.thursday'),
+                t('contact.friday'),
+                t('contact.saturday'),
+                t('contact.sunday'),
+                t('contact.monday'),
+                t('contact.tuesday'),
+                t('contact.wednesday'),
+              ].map((day) => (
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-500">{day}</span>
+                  <span class="text-gray-800 font-medium tabular-nums">8:00 – 13:30, 16:00 – 20:00</span>
+                </div>
+              ))}
             </div>
-            <p class="text-xs text-white/50 mt-4">{t('contact.hoursNote')}</p>
+            <p class="text-xs text-gray-400 mt-5">{t('contact.hoursNote')}</p>
           </div>
         </div>
       </div>
