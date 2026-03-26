@@ -191,14 +191,20 @@ const server = createServer(async (req, res) => {
   `;
 
   try {
-    await resend.emails.send({
-      from: "Ceramiche Da Mario <noreply@ceramichedamario.it>",
+    const result = await resend.emails.send({
+      from: "Ceramiche Da Mario <onboarding@resend.dev>",
       to: CONTACT_EMAIL_TO,
       reply_to: email,
       subject: `Nuovo messaggio dal sito: ${name || "Anonimo"}`,
       html,
     });
-    console.log(`[contact] Email sent — from: ${email}, name: ${name || "Anonimo"}`);
+    console.log(`[contact] Resend response: ${JSON.stringify(result)}`);
+    if (result.error) {
+      console.error(`[contact] Resend error: ${JSON.stringify(result.error)}`);
+      respond(500, { ok: false, error: "Failed to send message" });
+      return;
+    }
+    console.log(`[contact] Email sent — id: ${result.data?.id}, from: ${email}, name: ${name || "Anonimo"}`);
     respond(200, { ok: true });
   } catch (err) {
     console.error(`[contact] Failed to send: ${err.message}`);
