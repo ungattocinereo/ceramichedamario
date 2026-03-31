@@ -39,45 +39,45 @@ const images = await Promise.all([
         </div>
       )}
     </div>
+  </div>
 
-    <!-- Row 2: bottom half has yellow background -->
-    <div class="relative">
-      <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-[#F5B749] -mx-[9999px] px-[9999px]"></div>
-      <div class="relative z-10 grid grid-cols-2 lg:grid-cols-3 gap-4">
-        {images[2] && (
-          <div class="overflow-hidden rounded-[10px] card-shadow-lg">
-            <Image
-              src={images[2]}
-              alt="Hand-painted ceramics"
-              class="w-full h-full object-cover"
-              widths={[300, 500]}
-              sizes="(max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        )}
-        {images[3] && (
-          <div class="overflow-hidden rounded-[10px] card-shadow-lg">
-            <Image
-              src={images[3]}
-              alt="Praiano village view"
-              class="w-full h-full object-cover"
-              widths={[300, 500]}
-              sizes="(max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        )}
-        {images[4] && (
-          <div class="hidden lg:block overflow-hidden rounded-[10px] card-shadow-lg">
-            <Image
-              src={images[4]}
-              alt="Ceramic craftsmanship"
-              class="w-full h-full object-cover"
-              widths={[300, 500]}
-              sizes="33vw"
-            />
-          </div>
-        )}
-      </div>
+  <!-- Row 2: bottom half has full-width yellow background -->
+  <div class="relative">
+    <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-[#F5B749]"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-3 gap-4">
+      {images[2] && (
+        <div class="overflow-hidden rounded-[10px] card-shadow-lg">
+          <Image
+            src={images[2]}
+            alt="Hand-painted ceramics"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="(max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
+      {images[3] && (
+        <div class="overflow-hidden rounded-[10px] card-shadow-lg">
+          <Image
+            src={images[3]}
+            alt="Praiano village view"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="(max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
+      {images[4] && (
+        <div class="hidden lg:block overflow-hidden rounded-[10px] card-shadow-lg">
+          <Image
+            src={images[4]}
+            alt="Ceramic craftsmanship"
+            class="w-full h-full object-cover"
+            widths={[300, 500]}
+            sizes="33vw"
+          />
+        </div>
+      )}
     </div>
   </div>
 </section>
